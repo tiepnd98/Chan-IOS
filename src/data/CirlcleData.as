@@ -1,4 +1,5 @@
 package data {
+import flash.display.Shape;
 import flash.display.Sprite;
 import flash.events.MouseEvent;
 import flash.geom.ColorTransform;
@@ -15,6 +16,15 @@ public class CirlcleData{
     private var _y:int;
     private var _colorBase:ColorTransform;
     private var _isNumberSuggest:Boolean;
+    private var _shape:Shape;
+    public function get shape():Shape {
+        return _shape;
+    }
+
+    public function set shape(value:Shape):void {
+        _shape = value;
+    }
+
     public function get isNumberSuggest():Boolean {
         return _isNumberSuggest;
     }
