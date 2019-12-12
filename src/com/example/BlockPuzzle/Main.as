@@ -1,10 +1,8 @@
 package com.example.BlockPuzzle{
 
 import avmplus.typeXml;
-
 import data.CirlcleData;
 import data.NumberBaseData;
-
 import flash.display.Loader;
 import flash.display.Screen;
 import flash.display.Shader;
@@ -36,14 +34,45 @@ public class Main extends Sprite {
     var isPlusType:Boolean = true;
     var x1:int;
     var y1:int;
-
+    var nLevel:int=0;
+    var rLevel:Number;
+    var numShape=0;
+    var n2:int=nLevel/2;
     public function Main() {
         loadGame();
     }
     private  function loadGame():void{
+        nLevel=5;
         loadBoard();
         loadNextNumber();
         loadBase();
+
+        var shapee:Shape=new Shape();
+        shapee.graphics.moveTo(listSprite[0][0].sprite.x+listSprite[0][0].sprite.width/2,listSprite[0][0].sprite.y+listSprite[0][0].sprite.width/2);
+        shapee.graphics.lineStyle(1, 0x000000);
+        shapee.graphics.lineTo(listSprite[1][1].sprite.x+listSprite[0][0].sprite.width/2,listSprite[1][1].sprite.y+listSprite[0][0].sprite.width/2);
+        addChild(shapee);
+        var spritee:Sprite = new Sprite();
+        spritee.graphics.clear();
+        spritee.graphics.beginFill(0x00000, 1);
+        spritee.graphics.drawEllipse((listSprite[0][0].sprite.x+listSprite[0][0].sprite.width/2+listSprite[1][1].sprite.x+listSprite[0][0].sprite.width/2)/2-5, (listSprite[0][0].sprite.y+listSprite[0][0].sprite.width/2+listSprite[1][1].sprite.y+listSprite[0][0].sprite.width/2)/2-5, 10, 10);
+        spritee.graphics.endFill();
+        //addChild(spritee)
+        var myShape:Shape = new Shape();
+        var size: int = 4;
+        var pointA:Point = new Point(0,0);
+        myShape.graphics.moveTo(pointy_hex_corner(pointA,size,0).x, pointy_hex_corner(pointA,size,0).y);
+        myShape.graphics.beginFill(0x000000);
+        for (var i:int = 0; i <7; i++){
+            myShape.graphics.lineStyle(2, 0xFF888B);
+            myShape.graphics.lineTo(pointy_hex_corner(pointA,size,i).x, pointy_hex_corner(pointA, size, i).y);
+            addChild(myShape);
+        }
+        myShape.graphics.endFill();
+        myShape.x=(listSprite[0][0].sprite.x+listSprite[0][0].sprite.width/2+listSprite[0][1].sprite.x+listSprite[0][0].sprite.width/2)/2;
+        myShape.y=(listSprite[0][0].sprite.y+listSprite[0][0].sprite.width/2+listSprite[0][1].sprite.y+listSprite[0][0].sprite.width/2)/2;
+        var cortran:ColorTransform =new ColorTransform();cortran.color=0xBAF6F7;
+        myShape.transform.colorTransform=new ColorTransform(0xF0FF00);
     }
 
     private function loadNextNumber():void {
@@ -53,15 +82,15 @@ public class Main extends Sprite {
         sprite.graphics.drawEllipse(0, 0, 40, 40);
         sprite.graphics.endFill();
         sprite.x = width / 2 - 20-75;
-        sprite.y = -50+5;
-        drawHex( width / 2 - 20-75+20,-50+20).transform.colorTransform=new ColorTransform(0xF0FF00);
+        sprite.y = -50+5+50;
+        drawHex( width / 2 - 20-75+20,-50+20+50).transform.colorTransform=new ColorTransform(0xF0FF00);
 
         var sprite1:Sprite = new Sprite();
         sprite1.graphics.clear();
         sprite1.graphics.beginFill(0xFF8E63, 1);
         sprite1.graphics.drawEllipse(0, 0, 30, 30);
         sprite1.x =width / 2 - 20 - 40-75;
-        sprite1.y = -50 + 10;
+        sprite1.y = -50 + 10+50;
         sprite1.graphics.endFill();
         sprite1.transform.colorTransform=new ColorTransform(0xF0FF00);
         var sprite2:Sprite = new Sprite();
@@ -69,7 +98,7 @@ public class Main extends Sprite {
         sprite2.graphics.beginFill(0xFF8E63, 1);
         sprite2.graphics.drawEllipse(0, 0, 30, 30);
         sprite2.x = width / 2 - 20 + 40 + 10-75;
-        sprite2.y = -50 + 10;
+        sprite2.y = -50 + 10+50;
         sprite2.graphics.endFill();
         sprite2.transform.colorTransform=new ColorTransform(0xF0FF00);
         addChild(sprite);
@@ -116,9 +145,9 @@ public class Main extends Sprite {
         var tempPlus = nextNumber;
         while (true) {
             tempPlus++;
-            if (tempPlus == 37 || checkBoard(tempPlus) == false) break;
+            if (tempPlus == numShape || checkBoard(tempPlus) == false) break;
         }
-        if(tempPlus<37){
+        if(tempPlus<numShape){
             nextNumber = tempPlus;
             txtNextNumber.text = nextNumber.toString();
             isPlusType = true;
@@ -147,22 +176,23 @@ public class Main extends Sprite {
     private function loadBoard():void {
         var BG:Sprite = new Sprite();
         BG.graphics.clear();
-        BG.graphics.beginFill(0x00FF83, 1);
-        BG.graphics.drawRect(0,-100,640,920);
+        BG.graphics.beginFill(0xBAF6F7, 1);
+        BG.graphics.drawRect(-100,-250,640,920);
         BG.graphics.endFill();
         addChild(BG);
-        for (var i:int = 0; i < 7; i++) {
+        n2=nLevel/2;
+        for (var i:int = 0; i < nLevel; i++) {
             var arr:Array = [];
-            if (i <= 3) {
-                for (var j:int = 0; j < 4 + i; j++) {
+            if (i <= n2) {
+                for (var j:int = 0; j < n2 + 1 + i; j++) {
                     var circle:CirlcleData = new CirlcleData();
-                    circle.shape=drawHex(80 - 20 * i + 100 + 44 * j - 2*i,39 * i+20);
+                    circle.shape=drawHex(-28-15+80 - 20 * i + 100 + 54 * j- 7*i,49 * i+20+75);
                     var sprite:Sprite = new Sprite();
                     sprite.graphics.clear();
                     sprite.graphics.beginFill(0xBAF6F7, 1);
                     sprite.graphics.drawEllipse(0, 0, 40, 40);
-                    sprite.x = 60 - 20 * i + 100 + 44 * j- 2*i;
-                    sprite.y = 39 * i;
+                    sprite.x = -28-15+60 - 20 * i + 100 + 54 * j - 7*i;
+                    sprite.y = 49 * i+75;
                     sprite.alpha=0;
                     sprite.graphics.endFill();
                     sprite.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDownCircle);
@@ -189,18 +219,18 @@ public class Main extends Sprite {
                     corTran.color = 0xFF4803;
                     circle.colorBase = corTran;
                     arr[j] = circle;
-
+                    numShape++;
                 }
             } else {
-                for (var j:int = 0; j < 10 - i; j++) {
+                for (var j:int = 0; j < nLevel + n2 - i; j++) {
                     var circle:CirlcleData = new CirlcleData();
-                    circle.shape=drawHex(20 * (i - 3) + 100 + 44 * j+20-3,39 * i+20);
+                    circle.shape=drawHex(28-28-15+20 * (i-n2) + 100 + 54 * j+7*(i-n2),49 * i+20+75);
                     var sprite:Sprite = new Sprite();
                     sprite.graphics.clear();
                     sprite.graphics.beginFill(0xBAF6F7, 1);
                     sprite.graphics.drawEllipse(0, 0, 40, 40);
-                    sprite.x = 20 * (i - 3) + 100 + 44 * j-3;
-                    sprite.y = 39 * i;
+                    sprite.x = 28-28-15+20 * (i-n2) + 100 + 54 * j-20+7*(i-n2);
+                    sprite.y = 49 * i+75;
                     sprite.alpha=0;
                     sprite.graphics.endFill();
                     sprite.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDownCircle);
@@ -227,17 +257,16 @@ public class Main extends Sprite {
                     corTran.color = 0xFF4803;
                     circle.colorBase = corTran;
                     arr[j] = circle;
+                    numShape++;
                 }
             }
             listSprite[i] = arr;
 
         }
-        listSprite[3][3].setTextString("");
-        var corTran:ColorTransform = new ColorTransform();
-        corTran.color = 0x46FF00;
-        listSprite[3][3].shape.transform.colorTransform = corTran;
-        (listSprite[3][3].sprite as Sprite).removeEventListener(MouseEvent.MOUSE_OUT, onMouseOutCircle);
-        listSprite[3][3] = null;
+        listSprite[n2][n2].setTextString("");
+        listSprite[n2][n2].shape.transform.colorTransform = new ColorTransform(0xB6FF00,0xB6FF00,0xB6FF00 );
+        (listSprite[n2][n2].sprite as Sprite).removeEventListener(MouseEvent.MOUSE_OUT, onMouseOutCircle);
+        listSprite[n2][n2] = null;
     }
 
     private function onMouseOutCircle(event:MouseEvent):void {
@@ -245,31 +274,31 @@ public class Main extends Sprite {
         corTran.color = 0xBAF6F7;
      //   (event.currentTarget as Sprite).transform.colorTransform = corTran;
 
-        for (var i:int = 0; i < 7; i++) {
-            for (var j:int = 0; j < 7; j++) {
+        for (var i:int = 0; i < nLevel; i++) {
+            for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null && listSprite[i][j].sprite == event.currentTarget) {
                     var corTran:ColorTransform = new ColorTransform();
                     corTran.color = 0xBAF6F7;
-                    listSprite[i][j].shape.transform.colorTransform= corTran;
+                    listSprite[i][j].shape.transform.colorTransform= new ColorTransform(0xF0FF00);
                 }
             }
         }
     }
 
     private function onMouseMoveCircle(event:MouseEvent):void {
-        for (var i:int = 0; i < 7; i++) {
-            for (var j:int = 0; j < 7; j++) {
+        for (var i:int = 0; i < nLevel; i++) {
+            for (var j:int = 0; j <nLevel; j++) {
                 if (listSprite[i][j] != null && listSprite[i][j].sprite == event.currentTarget) {
                   // (event.currentTarget as Sprite).transform.colorTransform = listSprite[i][j].colorBase;
-                    listSprite[i][j].shape.transform.colorTransform= listSprite[i][j].colorBase;
+                    listSprite[i][j].shape.transform.colorTransform = new ColorTransform(0xFF865);
                 }
             }
         }
     }
 
     private function onMouseDownCircle(event:MouseEvent):void {
-        for (var i:int = 0; i < 7; i++) {
-            for (var j:int = 0; j < 7; j++) {
+        for (var i:int = 0; i < nLevel; i++) {
+            for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null && listSprite[i][j].sprite == event.currentTarget) {
 
                     if (listSprite[i][j].isNumberSuggest) {
@@ -290,8 +319,6 @@ public class Main extends Sprite {
 
     private function onIsNumberSuggest(cir:CirlcleData):void {
         trace("Sugget");
-
-
         if (switchCheck) {
             var temp:int = cir.id;
             while (true) {
@@ -307,7 +334,7 @@ public class Main extends Sprite {
                 var tempPlus = cir.id;
                 while (true) {
                     tempPlus++;
-                    if (tempPlus == 37 || checkBoard(tempPlus) == false) break;
+                    if (tempPlus == numShape || checkBoard(tempPlus) == false) break;
                 }
                 if(tempPlus)
                 nextNumber = tempPlus;
@@ -320,9 +347,9 @@ public class Main extends Sprite {
             var tempPlus = cir.id;
             while (true) {
                 tempPlus++;
-                if (tempPlus == 37 || checkBoard(tempPlus) == false) break;
+                if (tempPlus == numShape || checkBoard(tempPlus) == false) break;
             }
-            if(tempPlus<37){
+            if(tempPlus<numShape){
                 nextNumber = tempPlus;
                 txtNextNumber.text = nextNumber.toString();
                 isPlusType = true;
@@ -332,8 +359,8 @@ public class Main extends Sprite {
     }
 
     private function checkBoard(a:int):Boolean {
-        for (var i:int = 0; i < 7; i++) {
-            for (var j:int = 0; j < 7; j++) {
+        for (var i:int = 0; i < nLevel; i++) {
+            for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null) {
                     if (a == listSprite[i][j].id) {
                         return true;
@@ -353,12 +380,12 @@ public class Main extends Sprite {
             var tempPlus = cir.id;
             while (true) {
                 tempPlus++;
-                key=tempPlus == 37?37:0;
-                if (tempPlus == 37 || checkBoard(tempPlus) == false){
+                key=tempPlus == numShape?numShape:0;
+                if (tempPlus == numShape || checkBoard(tempPlus) == false){
                     break;
                 }
             }
-            if(tempPlus<37){
+            if(tempPlus<numShape){
                 nextNumber = tempPlus;
                 txtNextNumber.text = nextNumber.toString();
             }else{
@@ -373,8 +400,8 @@ public class Main extends Sprite {
                     var tempPlus = cir.id;
                     while (true) {
                         tempPlus++;
-                        key=tempPlus == 37?37:0;
-                        if (tempPlus == 37 || checkBoard(tempPlus) == false){
+                        key=tempPlus == numShape?numShape:0;
+                        if (tempPlus == numShape || checkBoard(tempPlus) == false){
                             break;
                         }
                     }
@@ -395,8 +422,8 @@ public class Main extends Sprite {
                 var tempPlus = cir.id;
                 while (true) {
                     tempPlus++;
-                    key=tempPlus == 37?37:0;
-                    if (tempPlus == 37 || checkBoard(tempPlus) == false){
+                    key=tempPlus == numShape?numShape:0;
+                    if (tempPlus == numShape || checkBoard(tempPlus) == false){
                         break;
                     }
                 }
@@ -449,12 +476,14 @@ public class Main extends Sprite {
         txtRestart.addEventListener(MouseEvent.CLICK, resetGame);
     }
     private function resetGame(event:MouseEvent):void {
+         nLevel=5;
+         numShape=0;
+         n2=nLevel/2;
         loadGame();
     }
-    
     private function startCheck():Boolean {
-        for (var i:int = 0; i < 7; i++) {
-            for (var j:int = 0; j < 7; j++) {
+        for (var i:int = 0; i < nLevel; i++) {
+            for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null) {
                     if(listSprite[i][j].isFillNumber==false){
                         return  false;
@@ -466,7 +495,7 @@ public class Main extends Sprite {
     }
 
     private function checkWin(i:int,j:int,cir:CirlcleData):Boolean {
-        if(cir.id==36){
+        if(cir.id==numShape-1){
             return true;
         }
         var templist:Array = new Array();
@@ -480,30 +509,30 @@ public class Main extends Sprite {
             listSprite[i][j + 1].y = j + 1;
             templist.push(listSprite[i][j + 1]);
         }
-        if (i < 3) {
+        if (i < n2) {
 
-            if (i - 1 >= 0 && i - 1 < 7 && j - 1 >= 0 && j - 1 < 7 && listSprite[i - 1][j - 1] != null) {
+            if (i - 1 >= 0 && i - 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i - 1][j - 1] != null) {
                     listSprite[i - 1][j - 1].x = i - 1;
                     listSprite[i - 1][j - 1].y = j - 1;
                     templist.push(listSprite[i - 1][j - 1]);
             }
-            if (i - 1 >= 0 && i - 1 < 7 && j >= 0 && j < 7 && listSprite[i - 1][j] != null ) {
+            if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null ) {
                 listSprite[i - 1][j].x = i - 1;
                 listSprite[i - 1][j].y = j;
                 templist.push(listSprite[i - 1][j]);
             }
-            if (i + 1 >= 0 && i + 1 < 7 && j >= 0 && j < 7 && listSprite[i + 1][j] != null ) {
+            if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null ) {
                 listSprite[i + 1][j].x = i + 1;
                 listSprite[i + 1][j].y = j;
                 templist.push(listSprite[i + 1][j]);
             }
-            if (i + 1 >= 0 && i + 1 < 7 && j + 1 >= 0 && j + 1 < 7 && listSprite[i + 1][j + 1] != null ) {
+            if (i + 1 >= 0 && i + 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i + 1][j + 1] != null ) {
                 listSprite[i + 1][j + 1].x = i + 1;
                 listSprite[i + 1][j + 1].y = j + 1;
                 templist.push(listSprite[i + 1][j + 1]);
             }
         } else {
-            if (i == 3) {
+            if (i == n2) {
                 if (listSprite[i - 1][j - 1] != null ) {
                     listSprite[i - 1][j - 1].x = i - 1;
                     listSprite[i - 1][j - 1].y = j - 1;
@@ -525,22 +554,22 @@ public class Main extends Sprite {
                     templist.push(listSprite[i - 1][j]);
                 }
             } else {
-                if (i + 1 >= 0 && i + 1 < 7 && j >= 0 && j < 7 && listSprite[i + 1][j] != null ) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null ) {
                     listSprite[i + 1][j].x = i + 1;
                     listSprite[i + 1][j].y = j;
                     templist.push(listSprite[i + 1][j]);
                 }
-                if (i - 1 >= 0 && i - 1 < 7 && j + 1 >= 0 && j + 1 < 7 && listSprite[i - 1][j + 1] != null ) {
+                if (i - 1 >= 0 && i - 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i - 1][j + 1] != null ) {
                     listSprite[i - 1][j + 1].x = i - 1;
                     listSprite[i - 1][j + 1].y = j + 1;
                     templist.push(listSprite[i - 1][j + 1]);
                 }
-                if (i + 1 >= 0 && i + 1 < 7 && j - 1 >= 0 && j - 1 < 7 && listSprite[i + 1][j - 1] != null ) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i + 1][j - 1] != null ) {
                     listSprite[i + 1][j - 1].x = i + 1;
                     listSprite[i + 1][j - 1].y = j - 1;
                     templist.push(listSprite[i + 1][j - 1]);
                 }
-                if (i - 1 >= 0 && i - 1 < 7 && j >= 0 && j < 7 && listSprite[i - 1][j] != null ) {
+                if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null ) {
                     listSprite[i - 1][j].x = i - 1;
                     listSprite[i- 1][j].y = j;
                     templist.push(listSprite[i - 1][j]);
@@ -582,8 +611,8 @@ public class Main extends Sprite {
 //            trace(x);
             //    var nestBase:int=0;
             // nestBase = 0;
-            for (var i:int = 0; i < 7; i++) {
-                for (var j:int = 0; j < 7; j++) {
+            for (var i:int = 0; i < nLevel; i++) {
+                for (var j:int = 0; j < nLevel; j++) {
                     if (listSprite[i][j] != null) {
                         listSprite[i][j].isSetIntRandom = false;
                     }
@@ -592,8 +621,8 @@ public class Main extends Sprite {
 
             numberNextBase.nextBase = 0;
             while (true) {
-                x1 = Math.random() * 7;
-                y1 = Math.random() * 7;
+                x1 = Math.random() * nLevel;
+                y1 = Math.random() * nLevel;
                 if (listSprite[x1][y1] != null) {
                     listSprite[x1][y1].idBase = ++numberNextBase.nextBase;
                     listSprite[x1][y1].isSetIntRandom = true;
@@ -601,7 +630,8 @@ public class Main extends Sprite {
                     break;
                 }
             }
-            if (numberNextBase.nextBase == 36) {
+            trace(numberNextBase.nextBase);
+            if (numberNextBase.nextBase == numShape-1) {
                 break;
             }
         }
@@ -609,24 +639,19 @@ public class Main extends Sprite {
         listSprite[x1][y1].isFillNumber = true;
         listSprite[x1][y1].isNumberSuggest = true;
         listSprite[x1][y1].id = listSprite[x1][y1].idBase;
-        var corTran:ColorTransform = new ColorTransform();
-        corTran.color = 0xFF8659;
-        listSprite[x1][y1].colorBase = corTran;
+        listSprite[x1][y1].colorBase = new ColorTransform(0xFF865);
         listSprite[x1][y1].shape.transform.colorTransform = listSprite[x1][y1].colorBase;
         listSprite[x1][y1] .sprite.removeEventListener(MouseEvent.MOUSE_OUT, onMouseOutCircle);
         var temp:int = 0;
         while (true) {
-            var x:int = Math.random() * 7;
-            var y:int = Math.random() * 7;
+            var x:int = Math.random() * nLevel;
+            var y:int = Math.random() * nLevel;
             if (listSprite[x][y] != null && listSprite[x][y].isFillNumber == false) {
                 listSprite[x][y].setText(listSprite[x][y].idBase);
                 listSprite[x][y].isFillNumber = true;
                 listSprite[x][y].isNumberSuggest = true;
                 listSprite[x][y].id = listSprite[x][y].idBase;
-                var corTran:ColorTransform = new ColorTransform();
-                corTran.color = 0xFF8659;
-                listSprite[x][y].colorBase = corTran;
-                listSprite[x][y].shape.transform.colorTransform = listSprite[x][y].colorBase;
+                listSprite[x][y].shape.transform.colorTransform = new ColorTransform(0xFF865);
                 listSprite[x][y].sprite.removeEventListener(MouseEvent.MOUSE_OUT, onMouseOutCircle);
                 temp++;
                 if (temp == 10) {
@@ -634,8 +659,8 @@ public class Main extends Sprite {
                 }
             }
         }
-        for (var i:int = 0; i < 7; i++) {
-            for (var j:int = 0; j < 7; j++) {
+        for (var i:int = 0; i < nLevel; i++) {
+            for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null) {
                     trace(listSprite[i][j].id);
                 }
@@ -644,7 +669,7 @@ public class Main extends Sprite {
         var tempPlus = 1;
         while (true) {
             tempPlus++;
-            if (tempPlus == 37 || checkBoard(tempPlus) == false) break;
+            if (tempPlus == numShape || checkBoard(tempPlus) == false) break;
         }
         nextNumber = tempPlus;
         txtNextNumber.text = nextNumber.toString();
@@ -664,32 +689,32 @@ public class Main extends Sprite {
             listSprite[i][j + 1].y = j + 1;
             templist.push(listSprite[i][j + 1]);
         }
-        if (i < 3) {
+        if (i < n2) {
 
-            if (i - 1 >= 0 && i - 1 < 7 && j - 1 >= 0 && j - 1 < 7 && listSprite[i - 1][j - 1] != null) {
+            if (i - 1 >= 0 && i - 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i - 1][j - 1] != null) {
                 if (listSprite[i - 1][j - 1].isSetIntRandom == false) {
                     listSprite[i - 1][j - 1].x = i - 1;
                     listSprite[i - 1][j - 1].y = j - 1;
                     templist.push(listSprite[i - 1][j - 1]);
                 }
             }
-            if (i - 1 >= 0 && i - 1 < 7 && j >= 0 && j < 7 && listSprite[i - 1][j] != null && listSprite[i - 1][j].isSetIntRandom == false) {
+            if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null && listSprite[i - 1][j].isSetIntRandom == false) {
                 listSprite[i - 1][j].x = i - 1;
                 listSprite[i - 1][j].y = j;
                 templist.push(listSprite[i - 1][j]);
             }
-            if (i + 1 >= 0 && i + 1 < 7 && j >= 0 && j < 7 && listSprite[i + 1][j] != null && listSprite[i + 1][j].isSetIntRandom == false) {
+            if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null && listSprite[i + 1][j].isSetIntRandom == false) {
                 listSprite[i + 1][j].x = i + 1;
                 listSprite[i + 1][j].y = j;
                 templist.push(listSprite[i + 1][j]);
             }
-            if (i + 1 >= 0 && i + 1 < 7 && j + 1 >= 0 && j + 1 < 7 && listSprite[i + 1][j + 1] != null && listSprite[i + 1][j + 1].isSetIntRandom == false) {
+            if (i + 1 >= 0 && i + 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i + 1][j + 1] != null && listSprite[i + 1][j + 1].isSetIntRandom == false) {
                 listSprite[i + 1][j + 1].x = i + 1;
                 listSprite[i + 1][j + 1].y = j + 1;
                 templist.push(listSprite[i + 1][j + 1]);
             }
         } else {
-            if (i == 3) {
+            if (i == n2) {
                 if (listSprite[i - 1][j - 1] != null && listSprite[i - 1][j - 1].isSetIntRandom == false) {
                     listSprite[i - 1][j - 1].x = i - 1;
                     listSprite[i - 1][j - 1].y = j - 1;
@@ -711,22 +736,22 @@ public class Main extends Sprite {
                     templist.push(listSprite[i + 1][j]);
                 }
             } else {
-                if (i + 1 >= 0 && i + 1 < 7 && j >= 0 && j < 7 && listSprite[i + 1][j] != null && listSprite[i + 1][j].isSetIntRandom == false) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null && listSprite[i + 1][j].isSetIntRandom == false) {
                     listSprite[i + 1][j].x = i + 1;
                     listSprite[i + 1][j].y = j;
                     templist.push(listSprite[i + 1][j]);
                 }
-                if (i - 1 >= 0 && i - 1 < 7 && j - 1 >= 0 && j - 1 < 7 && listSprite[i - 1][j + 1] != null && listSprite[i - 1][j + 1].isSetIntRandom == false) {
+                if (i - 1 >= 0 && i - 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i - 1][j + 1] != null && listSprite[i - 1][j + 1].isSetIntRandom == false) {
                     listSprite[i - 1][j + 1].x = i - 1;
                     listSprite[i - 1][j + 1].y = j + 1;
                     templist.push(listSprite[i - 1][j + 1]);
                 }
-                if (i + 1 >= 0 && i + 1 < 7 && j - 1 >= 0 && j - 1 < 7 && listSprite[i + 1][j - 1] != null && listSprite[i + 1][j - 1].isSetIntRandom == false) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i + 1][j - 1] != null && listSprite[i + 1][j - 1].isSetIntRandom == false) {
                     listSprite[i + 1][j - 1].x = i + 1;
                     listSprite[i + 1][j - 1].y = j - 1;
                     templist.push(listSprite[i + 1][j - 1]);
                 }
-                if (i + 1 >= 0 && i + 1 < 7 && j >= 0 && j < 7 && listSprite[i + 1][j] != null && listSprite[i + 1][j].isSetIntRandom == false) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null && listSprite[i + 1][j].isSetIntRandom == false) {
                     listSprite[i + 1][j].x = i + 1;
                     listSprite[i + 1][j].y = j;
                     templist.push(listSprite[i + 1][j]);
@@ -746,7 +771,7 @@ public class Main extends Sprite {
 
     public function drawHex( a:int, b:int):Shape{
         var myShape:Shape = new Shape();
-        var size: int = 23;
+        var size: int = 28;
         var pointA:Point = new Point(0,0);
         myShape.graphics.moveTo(pointy_hex_corner(pointA,size,0).x, pointy_hex_corner(pointA,size,0).y);
         myShape.graphics.beginFill(0xFFF888);
@@ -759,7 +784,7 @@ public class Main extends Sprite {
         myShape.x=a;
         myShape.y=b;
         var cortran:ColorTransform =new ColorTransform();cortran.color=0xBAF6F7;
-        myShape.transform.colorTransform=cortran;
+        myShape.transform.colorTransform=new ColorTransform(0xF0FF00);
         return myShape;
     }
 

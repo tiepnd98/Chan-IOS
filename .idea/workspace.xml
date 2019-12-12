@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/main.swf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/main.swf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/BlockPuzzle/Main.as" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/BlockPuzzle/Main.as" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/CirlcleData.as" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/CirlcleData.as" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,8 +71,8 @@
       <option name="emulator" value="iPhoneRetina" />
       <option name="emulatorAdlOptions" value="" />
       <option name="fastPackaging" value="true" />
-      <option name="fullScreenHeight" value="800" />
-      <option name="fullScreenWidth" value="480" />
+      <option name="fullScreenHeight" value="1920" />
+      <option name="fullScreenWidth" value="1080" />
       <option name="launchUrl" value="false" />
       <option name="launcherParameters">
         <LauncherParameters>
@@ -89,9 +88,9 @@
       <option name="overriddenOutputFileName" value="" />
       <option name="overrideMainClass" value="false" />
       <option name="runTrusted" value="true" />
-      <option name="screenDpi" value="800" />
-      <option name="screenHeight" value="800" />
-      <option name="screenWidth" value="480" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="1920" />
+      <option name="screenWidth" value="1080" />
       <option name="url" value="http://" />
       <option name="usbDebugPort" value="7936" />
       <method v="2">
@@ -172,6 +171,8 @@
       <workItem from="1576017244308" duration="10196000" />
       <workItem from="1576031770270" duration="14945000" />
       <workItem from="1576051432440" duration="6748000" />
+      <workItem from="1576060031947" duration="601000" />
+      <workItem from="1576116794184" duration="19782000" />
     </task>
     <servers />
   </component>
@@ -187,10 +188,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#Project_Structure/0.0.1366.738@0.0.1366.738" timestamp="1576021591557" />
-    <state x="79" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576035379103">
+    <state x="79" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576124069782">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="79" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1576035379103" />
+    <state x="79" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1576124069782" />
     <state x="488" y="84" key="#com.intellij.ide.util.MemberChooser" timestamp="1576036112524">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -207,30 +208,30 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="320" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1576017517720" />
-    <state x="378" y="106" key="AirPackageDialog.DimensionServiceKey" timestamp="1575971469077">
+    <state x="378" y="106" key="AirPackageDialog.DimensionServiceKey" timestamp="1576125007803">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="378" y="106" key="AirPackageDialog.DimensionServiceKey/0.0.1366.738@0.0.1366.738" timestamp="1575971469077" />
+    <state x="378" y="106" key="AirPackageDialog.DimensionServiceKey/0.0.1366.738@0.0.1366.738" timestamp="1576125007803" />
     <state x="463" y="123" key="FileChooserDialogImpl" timestamp="1575971464643">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1575971464643" />
-    <state width="1323" height="148" key="GridCell.Tab.0.bottom" timestamp="1576057413385">
+    <state width="1323" height="218" key="GridCell.Tab.0.bottom" timestamp="1576142394321">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="148" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1576057413385" />
-    <state width="1323" height="148" key="GridCell.Tab.0.center" timestamp="1576057413385">
+    <state width="1323" height="218" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1576142394321" />
+    <state width="1323" height="218" key="GridCell.Tab.0.center" timestamp="1576142394320">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="148" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1576057413385" />
-    <state width="1323" height="148" key="GridCell.Tab.0.left" timestamp="1576057413385">
+    <state width="1323" height="218" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1576142394320" />
+    <state width="1323" height="218" key="GridCell.Tab.0.left" timestamp="1576142394320">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="148" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1576057413385" />
-    <state width="1323" height="148" key="GridCell.Tab.0.right" timestamp="1576057413385">
+    <state width="1323" height="218" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1576142394320" />
+    <state width="1323" height="218" key="GridCell.Tab.0.right" timestamp="1576142394321">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="148" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1576057413385" />
+    <state width="1323" height="218" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1576142394321" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1576051380781">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -251,10 +252,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="161" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1575971573833" />
-    <state x="379" y="192" key="com.intellij.ide.util.TipDialog" timestamp="1576051433027">
+    <state x="379" y="192" key="com.intellij.ide.util.TipDialog" timestamp="1576116820307">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="379" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1576051433027" />
+    <state x="379" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1576116820307" />
     <state x="65" y="0" key="new project wizard" timestamp="1576021613501">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -263,10 +264,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1575511987382" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1575530135851">
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1576134509069">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1575530135851" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1576134509069" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
