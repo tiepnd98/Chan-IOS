@@ -463,22 +463,40 @@ public class Main extends Sprite {
         capt.x = width/2-75-100;
         capt.border = false;
         capt.selectable = false;
-        var txtRestart:TextField = new TextField();
-        tf.color=0x00FF8F;
-        txtRestart.defaultTextFormat = tf;
-        txtRestart.width = 200;
-        txtRestart.height = 40;
-        txtRestart.text = "Restart!";
-        txtRestart.y = 200;
-        txtRestart.x = width/2-75-100;
+        var button:Sprite = new Sprite();
+        function drawButton():void {
+            button.graphics.clear();
+            button.graphics.beginFill(0xD4D4D4); // grey color
+            button.graphics.drawRoundRect(width/2-75-100, 450, 200, 45, 10, 10); // x, y, width, height, ellipseW, ellipseH
+            button.graphics.endFill();
+            var txtRestart:TextField = new TextField();
+            tf.color=0xB90335;
+            txtRestart.defaultTextFormat = tf;
+            txtRestart.width = 200;
+            txtRestart.height = 40;
+            txtRestart.text = "Try Again!";
+            txtRestart.y = 450;
+            txtRestart.x = width/2-75-100;
+            button.addChild(txtRestart);
+        }
+        function resetGameinPop(event:MouseEvent):void {
+            button.x += 20
+            if (button.x > 400) { button.x = 0}
+            nLevel=7;
+            numShape=0;
+            n2=nLevel/2;
+            loadGame();
+        }
+        addChild(button);
+        button.addEventListener(MouseEvent.MOUSE_DOWN, resetGameinPop);
+        drawButton();
         addChild(capt);
-        addChild(txtRestart);
-        txtRestart.addEventListener(MouseEvent.CLICK, resetGame);
+        //txtRestart.addEventListener(MouseEvent.CLICK, resetGame);
     }
     private function resetGame(event:MouseEvent):void {
-         nLevel=7;
-         numShape=0;
-         n2=nLevel/2;
+        nLevel=7;
+        numShape=0;
+        n2=nLevel/2;
         loadGame();
     }
     private function startCheck():Boolean {
