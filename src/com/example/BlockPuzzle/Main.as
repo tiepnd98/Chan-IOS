@@ -34,7 +34,7 @@ public class Main extends Sprite {
     var isPlusType:Boolean = true;
     var x1:int;
     var y1:int;
-    var nLevel:int=0;
+    var nLevel:int=7;
     var rLevel:Number;
     var numShape=0;
     var n2:int=nLevel/2;
@@ -42,7 +42,6 @@ public class Main extends Sprite {
         loadGame();
     }
     private  function loadGame():void{
-        nLevel=7;
         loadBoard();
         loadNextNumber();
         loadBase();
@@ -482,7 +481,6 @@ public class Main extends Sprite {
         function resetGameinPop(event:MouseEvent):void {
             button.x += 20
             if (button.x > 400) { button.x = 0}
-            nLevel=7;
             numShape=0;
             n2=nLevel/2;
             loadGame();
@@ -494,7 +492,6 @@ public class Main extends Sprite {
         //txtRestart.addEventListener(MouseEvent.CLICK, resetGame);
     }
     private function resetGame(event:MouseEvent):void {
-        nLevel=7;
         numShape=0;
         n2=nLevel/2;
         loadGame();
