@@ -42,7 +42,7 @@ public class Main extends Sprite {
         loadGame();
     }
     private  function loadGame():void{
-        nLevel=5;
+        nLevel=7;
         loadBoard();
         loadNextNumber();
         loadBase();
@@ -186,12 +186,12 @@ public class Main extends Sprite {
             if (i <= n2) {
                 for (var j:int = 0; j < n2 + 1 + i; j++) {
                     var circle:CirlcleData = new CirlcleData();
-                    circle.shape=drawHex(-28-15+80 - 20 * i + 100 + 54 * j- 7*i,49 * i+20+75);
+                    circle.shape=drawHex(-15+80 - 20 * i + 100 + 54 * j- 7*i,49 * i+20+75);
                     var sprite:Sprite = new Sprite();
                     sprite.graphics.clear();
                     sprite.graphics.beginFill(0xBAF6F7, 1);
                     sprite.graphics.drawEllipse(0, 0, 40, 40);
-                    sprite.x = -28-15+60 - 20 * i + 100 + 54 * j - 7*i;
+                    sprite.x = -15+60 - 20 * i + 100 + 54 * j - 7*i;
                     sprite.y = 49 * i+75;
                     sprite.alpha=0;
                     sprite.graphics.endFill();
@@ -224,12 +224,12 @@ public class Main extends Sprite {
             } else {
                 for (var j:int = 0; j < nLevel + n2 - i; j++) {
                     var circle:CirlcleData = new CirlcleData();
-                    circle.shape=drawHex(28-28-15+20 * (i-n2) + 100 + 54 * j+7*(i-n2),49 * i+20+75);
+                    circle.shape=drawHex(-15+20 * (i-n2) + 100 + 54 * j+7*(i-n2),49 * i+20+75);
                     var sprite:Sprite = new Sprite();
                     sprite.graphics.clear();
                     sprite.graphics.beginFill(0xBAF6F7, 1);
                     sprite.graphics.drawEllipse(0, 0, 40, 40);
-                    sprite.x = 28-28-15+20 * (i-n2) + 100 + 54 * j-20+7*(i-n2);
+                    sprite.x = -15+20 * (i-n2) + 100 + 54 * j-20+7*(i-n2);
                     sprite.y = 49 * i+75;
                     sprite.alpha=0;
                     sprite.graphics.endFill();
@@ -476,7 +476,7 @@ public class Main extends Sprite {
         txtRestart.addEventListener(MouseEvent.CLICK, resetGame);
     }
     private function resetGame(event:MouseEvent):void {
-         nLevel=5;
+         nLevel=7;
          numShape=0;
          n2=nLevel/2;
         loadGame();
