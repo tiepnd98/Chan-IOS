@@ -75,22 +75,28 @@ public class Main extends Sprite {
         var cortran:ColorTransform =new ColorTransform();cortran.color=0xBAF6F7;
         myShape.transform.colorTransform=new ColorTransform(0xF0FF00);
     }
+
     var timerTextField:TextField = new TextField();
+    var timeSprite:Sprite = new Sprite();
     public function timer():void{
         var delay:int = 1000; // in milliseconds
-        var time:int =30; //in secs
+        var time:int =16; //in secs +1
         var myTimer:Timer = new Timer(delay, time);
         myTimer.addEventListener(TimerEvent.TIMER, onTimer);
         myTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
         myTimer.start();
         var tf:TextFormat = new TextFormat();
-        tf.size = 20;
+        tf.size = 30;
         tf.bold = true;
         tf.font = "Trebuchet MS"
-        tf.color = 0x197791;
+        tf.color = 0xde0b0b;
         tf.align="center";
         timerTextField.defaultTextFormat = tf;
-        addChild(timerTextField);
+        timeSprite.graphics.beginFill(0x696969,0.3);
+        timeSprite.graphics.drawRoundRect(0,0,100,40,20,40);
+        timeSprite.addChild(timerTextField);
+        timeSprite.graphics.endFill();
+        addChild(timeSprite);
         function onTimer(e: TimerEvent):void {
             if(startCheck()) {
                 myTimer.stop();
@@ -500,7 +506,7 @@ public class Main extends Sprite {
         var button:Sprite = new Sprite();
         function drawButton():void {
             button.graphics.clear();
-            button.graphics.beginFill(0xD4D4D4); // grey color
+            button.graphics.beginFill(0xD4D4D4, 0.8); // grey color
             button.graphics.drawRoundRect(width/2-75-100, 450, 200, 45, 10, 10); // x, y, width, height, ellipseW, ellipseH
             button.graphics.endFill();
             var txtRestart:TextField = new TextField();
@@ -520,6 +526,7 @@ public class Main extends Sprite {
             n2=nLevel/2;
             loadGame();
         }
+        removeChild(timeSprite);
         removeChild(timerTextField);
         button.graphics.clear();
         addChild(button);
