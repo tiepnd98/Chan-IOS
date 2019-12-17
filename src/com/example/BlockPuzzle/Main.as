@@ -11,6 +11,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events;
 import flash.events.GameInputEvent;
+import flash.events.TimerEvent;
 import flash.geom.ColorTransform;
 import flash.net.registerClassAlias;
 import flash.text.TextField;
@@ -19,6 +20,7 @@ import flash.text.TextFormat;
 import flash.text.engine.TextElement;
 import flash.ui.Mouse;
 import flash.geom.Point;
+import flash.utils.Timer;
 public class Main extends Sprite {
 
     var listSprite:Array = [];
@@ -43,9 +45,9 @@ public class Main extends Sprite {
     }
     private  function loadGame():void{
         loadBoard();
+        timer();
         loadNextNumber();
         loadBase();
-
         var shapee:Shape=new Shape();
         shapee.graphics.moveTo(listSprite[0][0].sprite.x+listSprite[0][0].sprite.width/2,listSprite[0][0].sprite.y+listSprite[0][0].sprite.width/2);
         shapee.graphics.lineStyle(1, 0x000000);
@@ -72,6 +74,39 @@ public class Main extends Sprite {
         myShape.y=(listSprite[0][0].sprite.y+listSprite[0][0].sprite.width/2+listSprite[0][1].sprite.y+listSprite[0][0].sprite.width/2)/2;
         var cortran:ColorTransform =new ColorTransform();cortran.color=0xBAF6F7;
         myShape.transform.colorTransform=new ColorTransform(0xF0FF00);
+    }
+    var timerTextField:TextField = new TextField();
+    public function timer():void{
+        var delay:int = 1000; // in milliseconds
+        var time:int =30; //in secs
+        var myTimer:Timer = new Timer(delay, time);
+        myTimer.addEventListener(TimerEvent.TIMER, onTimer);
+        myTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
+        myTimer.start();
+        var tf:TextFormat = new TextFormat();
+        tf.size = 20;
+        tf.bold = true;
+        tf.font = "Trebuchet MS"
+        tf.color = 0x197791;
+        tf.align="center";
+        timerTextField.defaultTextFormat = tf;
+        addChild(timerTextField);
+        function onTimer(e: TimerEvent):void {
+            if(startCheck()) {
+                myTimer.stop();
+            }
+            else
+            {
+                timerTextField.text = String(Math.floor((myTimer.repeatCount - myTimer.currentCount) / 60)).substr(-2) + ":" + ("0" + ((myTimer.repeatCount - myTimer.currentCount) % 60)).substr(-2);         //Seconds
+                timerTextField.x = 0;
+                timerTextField.y = 0;
+                addChild(timerTextField);
+            }
+        }
+        function onComplete(e: TimerEvent):void{
+            myTimer.reset();
+            popupWin("Time Out!!!")
+        }
     }
 
     private function loadNextNumber():void {
@@ -440,7 +475,7 @@ public class Main extends Sprite {
         }
     }
 
-    private function popupWin( mess:String ):void {
+    private function popupWin( mess:String):void {
         var popupWin:Sprite=new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF,0.9);
@@ -485,13 +520,15 @@ public class Main extends Sprite {
             n2=nLevel/2;
             loadGame();
         }
+        removeChild(timerTextField);
+        button.graphics.clear();
         addChild(button);
         button.addEventListener(MouseEvent.MOUSE_DOWN, resetGameinPop);
         drawButton();
         addChild(capt);
-        //txtRestart.addEventListener(MouseEvent.CLICK, resetGame);
     }
     private function resetGame(event:MouseEvent):void {
+        removeChild(timerTextField);
         numShape=0;
         n2=nLevel/2;
         loadGame();
