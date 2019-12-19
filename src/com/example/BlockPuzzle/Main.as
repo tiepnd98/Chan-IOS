@@ -49,6 +49,9 @@ public class Main extends Sprite {
     var numberPoint:int=4;
     var cir1Draw:CirlcleData=new CirlcleData();
     var cir2Draw:CirlcleData=new CirlcleData();
+    var time:int =16; //in secs +1
+    var delay:int = 1000; // in milliseconds
+    var myTimer:Timer = new Timer(0);
     public function Main() {
         loadGame();
     }
@@ -167,40 +170,55 @@ public class Main extends Sprite {
     }
     var timerTextField:TextField = new TextField();
     var timeSprite:Sprite = new Sprite();
-    public function timer():void{
-        var delay:int = 1000; // in milliseconds
-        var time:int =16; //in secs +1
-        var myTimer:Timer = new Timer(delay, time);
-        myTimer.addEventListener(TimerEvent.TIMER, onTimer);
-        myTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
-        myTimer.start();
-        var tf:TextFormat = new TextFormat();
-        tf.size = 30;
-        tf.bold = true;
-        tf.font = "Trebuchet MS"
-        tf.color = 0xde0b0b;
-        tf.align="center";
-        timerTextField.defaultTextFormat = tf;
-        timeSprite.graphics.beginFill(0x696969,0.3);
-        timeSprite.graphics.drawRoundRect(0,0,100,40,20,40);
-        timeSprite.addChild(timerTextField);
-        timeSprite.graphics.endFill();
-        addChild(timeSprite);
-        function onTimer(e: TimerEvent):void {
-            if(startCheck()) {
-                myTimer.stop();
-            }
-            else
-            {
-                timerTextField.text = String(Math.floor((myTimer.repeatCount - myTimer.currentCount) / 60)).substr(-2) + ":" + ("0" + ((myTimer.repeatCount - myTimer.currentCount) % 60)).substr(-2);         //Seconds
-                timerTextField.x = 0;
-                timerTextField.y = 0;
-                addChild(timerTextField);
-            }
+    public function timer():void {
+        myTimer.delay = delay;
+        myTimer.repeatCount =time;
+        switch (time) {
+            case 31:
+                runClock(time);
+                break;
+            case 61:
+                runClock(time);
+                break;
+            case 91:
+                runClock(time);
+                break;
+            default:
+                runClock(16);
+                break;
         }
-        function onComplete(e: TimerEvent):void{
-            myTimer.reset();
-            popupWin("Time Out!!!")
+
+        function runClock(a: int):void {
+                myTimer.addEventListener(TimerEvent.TIMER, onTimer);
+                myTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
+                myTimer.start();
+                var tf:TextFormat = new TextFormat();
+                tf.size = 30;
+                tf.bold = true;
+                tf.font = "Trebuchet MS"
+                tf.color = 0xde0b0b;
+                tf.align = "center";
+                timerTextField.defaultTextFormat = tf;
+                timeSprite.graphics.beginFill(0x696969, 0.3);
+                timeSprite.graphics.drawRoundRect(0, 0, 100, 40, 20, 40);
+                timeSprite.addChild(timerTextField);
+                timeSprite.graphics.endFill();
+                addChild(timeSprite);
+            function onTimer(e:TimerEvent):void {
+                if (startCheck()) {
+                    myTimer.stop();
+                } else {
+                    timerTextField.text = String(Math.floor((myTimer.repeatCount - myTimer.currentCount) / 60)).substr(-2) + ":" + ("0" + ((myTimer.repeatCount - myTimer.currentCount) % 60)).substr(-2);         //Seconds
+                    timerTextField.x = 0;
+                    timerTextField.y = 0;
+                    addChild(timerTextField);
+                }
+            }
+
+            function onComplete(e:TimerEvent):void {
+                myTimer.reset();
+                popupWin("Time Out!!!")
+            }
         }
     }
 
@@ -368,6 +386,7 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelHa(event:MouseEvent):void {
+        time=91;
         nLevel=9;
         conf=-28;
         confRight=0;
@@ -375,10 +394,12 @@ public class Main extends Sprite {
         n2=nLevel/2;
         numberSuggest=12;
         numberPoint=7;
+        myTimer.reset();
         loadGame();
     }
 
     private function onClickLevelMe(event:MouseEvent):void {
+        time=61;
         nLevel=7;
         conf=-1;
         confRight=28;
@@ -386,10 +407,12 @@ public class Main extends Sprite {
         n2=nLevel/2;
         numberSuggest=12;
         numberPoint=7;
+        myTimer.reset();
         loadGame();
     }
 
     private function onClickLevelBe(event:MouseEvent):void {
+        time= 31;
         nLevel=5;
         conf=26;
         confRight=54;
@@ -397,6 +420,7 @@ public class Main extends Sprite {
         n2=nLevel/2;
         numberSuggest=9;
         numberPoint=4;
+        myTimer.reset();
         loadGame();
     }
 
