@@ -11,6 +11,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events;
 import flash.events.GameInputEvent;
+import flash.events.TimerEvent;
 import flash.geom.ColorTransform;
 import flash.net.registerClassAlias;
 import flash.text.TextField;
@@ -19,6 +20,8 @@ import flash.text.TextFormat;
 import flash.text.engine.TextElement;
 import flash.ui.Mouse;
 import flash.geom.Point;
+import flash.utils.Timer;
+
 public class Main extends Sprite {
 
     var listSprite:Array = [];
@@ -34,7 +37,7 @@ public class Main extends Sprite {
     var isPlusType:Boolean = true;
     var x1:int;
     var y1:int;
-    var nLevel:int=0;
+    var nLevel:int=5;
     var rLevel:Number;
     var numShape=0;
     var n2:int=nLevel/2;
@@ -44,8 +47,9 @@ public class Main extends Sprite {
     var listTxtLevel:Array=[];
     var numberSuggest:int=9;
     var numberPoint:int=4;
+    var cir1Draw:CirlcleData=new CirlcleData();
+    var cir2Draw:CirlcleData=new CirlcleData();
     public function Main() {
-        nLevel=5;
         loadGame();
     }
     private  function loadGame():void{
@@ -53,16 +57,6 @@ public class Main extends Sprite {
         loadNextNumber();
         loadBase();
         randomSuggest();
-        var shapee:Shape=new Shape();
-        shapee.graphics.moveTo(listSprite[0][0].sprite.x+listSprite[0][0].sprite.width/2,listSprite[0][0].sprite.y+listSprite[0][0].sprite.width/2);
-        shapee.graphics.lineStyle(1, 0x000000);
-        shapee.graphics.lineTo(listSprite[1][1].sprite.x+listSprite[0][0].sprite.width/2,listSprite[1][1].sprite.y+listSprite[0][0].sprite.width/2);
-        addChild(shapee);
-        var spritee:Sprite = new Sprite();
-        spritee.graphics.clear();
-        spritee.graphics.beginFill(0x00000, 1);
-        spritee.graphics.drawEllipse((listSprite[0][0].sprite.x+listSprite[0][0].sprite.width/2+listSprite[1][1].sprite.x+listSprite[0][0].sprite.width/2)/2-5, (listSprite[0][0].sprite.y+listSprite[0][0].sprite.width/2+listSprite[1][1].sprite.y+listSprite[0][0].sprite.width/2)/2-5, 10, 10);
-        spritee.graphics.endFill();
     }
 
     private function randomSuggest():void {
@@ -334,7 +328,7 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelHa(event:MouseEvent):void {
-        nLevel=7;
+        nLevel=9;
         conf=-28;
         confRight=0;
         numShape=0;
@@ -399,11 +393,6 @@ public class Main extends Sprite {
             txtNextNumber.text = nextNumber.toString();
             isPlusType = false;
         }
-    }
-
-    private function setPosition(sprite:Sprite, x:Number, y:Number) {
-        sprite.x = x;
-        sprite.y = y;
     }
 
     private function loadBoard():void {
@@ -669,11 +658,117 @@ public class Main extends Sprite {
         }
         if(startCheck()){
             if(checkWin(x1,y1,listSprite[x1][y1])){
-                popupWin("You Won!");
+                drawLineWin(x1,y1,listSprite[x1][y1]);
+                var myTimer:Timer = new Timer(1500,1);
+                myTimer.addEventListener(TimerEvent.TIMER, timerListener);
+                myTimer.start();
             }else {
                 popupWin("You Lose!");
             }
         }
+    }
+
+    function timerListener (e:TimerEvent):void{
+        popupWin("You Won!");
+    }
+    private function drawLineWin(i:int, j:int, cir:CirlcleData):void {
+        var templist:Array = new Array();
+        if (listSprite[i][j - 1] != null ) {
+            listSprite[i][j - 1].x = i;
+            listSprite[i][j - 1].y = j - 1;
+            templist.push(listSprite[i][j - 1]);
+        }
+        if (listSprite[i][j + 1] != null ) {
+            listSprite[i][j + 1].x = i;
+            listSprite[i][j + 1].y = j + 1;
+            templist.push(listSprite[i][j + 1]);
+        }
+        if (i < n2) {
+
+            if (i - 1 >= 0 && i - 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i - 1][j - 1] != null) {
+                listSprite[i - 1][j - 1].x = i - 1;
+                listSprite[i - 1][j - 1].y = j - 1;
+                templist.push(listSprite[i - 1][j - 1]);
+            }
+            if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null ) {
+                listSprite[i - 1][j].x = i - 1;
+                listSprite[i - 1][j].y = j;
+                templist.push(listSprite[i - 1][j]);
+            }
+            if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null ) {
+                listSprite[i + 1][j].x = i + 1;
+                listSprite[i + 1][j].y = j;
+                templist.push(listSprite[i + 1][j]);
+            }
+            if (i + 1 >= 0 && i + 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i + 1][j + 1] != null ) {
+                listSprite[i + 1][j + 1].x = i + 1;
+                listSprite[i + 1][j + 1].y = j + 1;
+                templist.push(listSprite[i + 1][j + 1]);
+            }
+        } else {
+            if (i == n2) {
+                if (listSprite[i - 1][j - 1] != null ) {
+                    listSprite[i - 1][j - 1].x = i - 1;
+                    listSprite[i - 1][j - 1].y = j - 1;
+                    templist.push(listSprite[i - 1][j - 1]);
+                }
+                if (listSprite[i + 1][j] != null ) {
+                    listSprite[i + 1][j].x = i + 1;
+                    listSprite[i + 1][j].y = j;
+                    templist.push(listSprite[i + 1][j]);
+                }
+                if (listSprite[i + 1][j - 1] != null ) {
+                    listSprite[i + 1][j - 1].x = i + 1;
+                    listSprite[i + 1][j - 1].y = j - 1;
+                    templist.push(listSprite[i + 1][j - 1]);
+                }
+                if (listSprite[i - 1][j] != null ) {
+                    listSprite[i - 1][j].x = i -1;
+                    listSprite[i - 1][j].y = j;
+                    templist.push(listSprite[i - 1][j]);
+                }
+            } else {
+                if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null ) {
+                    listSprite[i + 1][j].x = i + 1;
+                    listSprite[i + 1][j].y = j;
+                    templist.push(listSprite[i + 1][j]);
+                }
+                if (i - 1 >= 0 && i - 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i - 1][j + 1] != null ) {
+                    listSprite[i - 1][j + 1].x = i - 1;
+                    listSprite[i - 1][j + 1].y = j + 1;
+                    templist.push(listSprite[i - 1][j + 1]);
+                }
+                if (i + 1 >= 0 && i + 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i + 1][j - 1] != null ) {
+                    listSprite[i + 1][j - 1].x = i + 1;
+                    listSprite[i + 1][j - 1].y = j - 1;
+                    templist.push(listSprite[i + 1][j - 1]);
+                }
+                if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null ) {
+                    listSprite[i - 1][j].x = i - 1;
+                    listSprite[i- 1][j].y = j;
+                    templist.push(listSprite[i - 1][j]);
+                }
+            }
+        }
+        for(var i:int=0;i<templist.length;i++){
+            if(templist[i].id==cir.id+1){
+                cir1Draw=cir;
+                cir2Draw=templist[i];
+//                var timer:Timer=new Timer(0,1);
+//                timer.addEventListener(TimerEvent.TIMER, delayDraw)
+//                timer.start();
+                delayDraw();
+                drawLineWin(templist[i].x,templist[i].y,templist[i]);
+            }
+        }
+    }
+
+    private function delayDraw():void {
+        var shapee:Shape=new Shape();
+        shapee.graphics.moveTo(cir1Draw.sprite.x+cir1Draw.sprite.width/2,cir1Draw.sprite.y+cir1Draw.sprite.width/2);
+        shapee.graphics.lineStyle(1, 0x000000);
+        shapee.graphics.lineTo(cir2Draw.sprite.x+cir1Draw.sprite.width/2,cir2Draw.sprite.y+cir2Draw.sprite.width/2);
+        addChild(shapee);
     }
 
     private function popupWin( mess:String ):void {
@@ -837,34 +932,47 @@ public class Main extends Sprite {
 
 
     private function loadBase():void {
-        while (true) {
+        if(nLevel!=9){
+            while (true) {
 //            var x:int=Math.random()*7;
 //            var n:int=0;
 //            trace(x);
-            //    var nestBase:int=0;
-            // nestBase = 0;
-            for (var i:int = 0; i < nLevel; i++) {
-                for (var j:int = 0; j < nLevel; j++) {
-                    if (listSprite[i][j] != null) {
-                        listSprite[i][j].isSetIntRandom = false;
+                //    var nestBase:int=0;
+                // nestBase = 0;
+                for (var i:int = 0; i < nLevel; i++) {
+                    for (var j:int = 0; j < nLevel; j++) {
+                        if (listSprite[i][j] != null) {
+                            listSprite[i][j].isSetIntRandom = false;
+                        }
                     }
                 }
-            }
-            numberNextBase.nextBase = 0;
-            while (true) {
-                x1 = Math.random() * nLevel;
-                y1 = Math.random() * nLevel;
-                if (listSprite[x1][y1] != null) {
-                    listSprite[x1][y1].idBase = ++numberNextBase.nextBase;
-                    listSprite[x1][y1].isSetIntRandom = true;
-                    FindPath(listSprite[x1][y1], x1, y1, numberNextBase);
+                numberNextBase.nextBase = 0;
+                while (true) {
+                    x1 = Math.random() * nLevel;
+                    y1 = Math.random() * nLevel;
+                    if (listSprite[x1][y1] != null) {
+                        listSprite[x1][y1].idBase = ++numberNextBase.nextBase;
+                        listSprite[x1][y1].isSetIntRandom = true;
+                        FindPath(listSprite[x1][y1], x1, y1, numberNextBase);
+                        break;
+                    }
+                }
+                trace( numShape-1);
+                trace(numberNextBase.nextBase);
+                if (numberNextBase.nextBase == numShape-1) {
                     break;
                 }
             }
-            trace( numShape-1);
-            trace(numberNextBase.nextBase);
-            if (numberNextBase.nextBase == numShape-1) {
-                break;
+        }else{
+            var listNumber:Array=[9,8,9,4,3,10,12,6,5,2,1,11,13,14,44,45,46,48,20,19,18,15,43,42,47,49,21,22,17,16,41,52,51,50,23,24,28,38,40,53,54,55,25,27,29,38,37,57,56,26,30,33,35,36,58,31,32,34,60,59];
+            var l:int=0;
+            x1=1;y1=5;
+            for (var i:int = 0; i < nLevel; i++) {
+                for (var j:int = 0; j < nLevel; j++) {
+                    if (listSprite[i][j] != null) {
+                        listSprite[i][j].idBase=listNumber[l];l++;
+                    }
+                }
             }
         }
         listSprite[x1][y1].setText(listSprite[x1][y1].idBase);
