@@ -17,6 +17,15 @@ public class CirlcleData{
     private var _colorBase:ColorTransform;
     private var _isNumberSuggest:Boolean;
     private var _shape:Shape;
+    private var _nearCircle:CirlcleData;
+    public function get nearCircle():CirlcleData {
+        return _nearCircle;
+    }
+
+    public function set nearCircle(value:CirlcleData):void {
+        _nearCircle = value;
+    }
+
     public function get shape():Shape {
         return _shape;
     }
