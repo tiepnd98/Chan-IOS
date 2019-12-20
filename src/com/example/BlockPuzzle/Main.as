@@ -184,7 +184,7 @@ public class Main extends Sprite {
                 runClock(time);
                 break;
             default:
-                runClock(16);
+                runClock(time);
                 break;
         }
 
@@ -874,6 +874,7 @@ public class Main extends Sprite {
             button.addChild(txtRestart);
         }
         function resetGameinPop(event:MouseEvent):void {
+            myTimer.reset();
             button.x += 20
             if (button.x > 400) { button.x = 0}
             numShape=0;
