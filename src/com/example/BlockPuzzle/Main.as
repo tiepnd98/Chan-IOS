@@ -49,7 +49,7 @@ public class Main extends Sprite {
     var numberPoint:int=4;
     var cir1Draw:CirlcleData=new CirlcleData();
     var cir2Draw:CirlcleData=new CirlcleData();
-    var time:int =10; //in secs +1
+    var time:int =11; //in secs +1
     var delay:int = 1000; // in milliseconds
     var myTimer:Timer = new Timer(0);
     public function Main() {
@@ -174,13 +174,7 @@ public class Main extends Sprite {
         myTimer.delay = delay;
         myTimer.repeatCount =time;
         switch (time) {
-            case 31:
-                runClock(time);
-                break;
-            case 61:
-                runClock(time);
-                break;
-            case 91:
+            case 31, 91, 211:
                 runClock(time);
                 break;
             default:
@@ -386,7 +380,7 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelHa(event:MouseEvent):void {
-        time=91;
+        time=211;
         nLevel=9;
         conf=-28;
         confRight=0;
@@ -399,7 +393,7 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelMe(event:MouseEvent):void {
-        time=61;
+        time=91;
         nLevel=7;
         conf=-1;
         confRight=28;
@@ -839,7 +833,7 @@ public class Main extends Sprite {
         var popupWin:Sprite=new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF,0.9);
-        popupWin.graphics.drawRoundRect(width / 2-75-200,-70,400,550,20,20);
+        popupWin.graphics.drawRoundRect(width / 2-75-200,-70,400,600,20,20);
         popupWin.graphics.endFill();
         addChild(popupWin);
         var tf:TextFormat = new TextFormat();
