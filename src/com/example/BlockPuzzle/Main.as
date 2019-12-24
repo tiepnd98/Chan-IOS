@@ -49,7 +49,7 @@ public class Main extends Sprite {
     var numberPoint:int=4;
     var cir1Draw:CirlcleData=new CirlcleData();
     var cir2Draw:CirlcleData=new CirlcleData();
-    var time:int =16; //in secs +1
+    var time:int =10; //in secs +1
     var delay:int = 1000; // in milliseconds
     var myTimer:Timer = new Timer(0);
     public function Main() {
@@ -200,7 +200,7 @@ public class Main extends Sprite {
                 tf.align = "center";
                 timerTextField.defaultTextFormat = tf;
                 timeSprite.graphics.beginFill(0x696969, 0.3);
-                timeSprite.graphics.drawRoundRect(0, 0, 100, 40, 20, 40);
+                timeSprite.graphics.drawRoundRect(0, 0, 100, 35, 20, 40);
                 timeSprite.addChild(timerTextField);
                 timeSprite.graphics.endFill();
                 addChild(timeSprite);
@@ -437,7 +437,7 @@ public class Main extends Sprite {
         var tempPlus = nextNumber;
         while (true) {
             tempPlus++;
-            if (tempPlus == numShape || checkBoard(tempPlus) == false) break;
+            if (tempPlus == numShape || !checkBoard(tempPlus)) break;
         }
         if(tempPlus<numShape){
             nextNumber = tempPlus;
@@ -450,7 +450,7 @@ public class Main extends Sprite {
         var temp:int = nextNumber;
         while (true) {
             temp--;
-            if (temp == 0 || checkBoard(temp) == false) break;
+            if (temp == 0 || !checkBoard(temp)) break;
         }
         if (temp != 0) {
             nextNumber = temp;
@@ -868,7 +868,7 @@ public class Main extends Sprite {
             txtRestart.defaultTextFormat = tf;
             txtRestart.width = 200;
             txtRestart.height = 40;
-            txtRestart.text = "Try Again!";
+            txtRestart.text = "New Game";
             txtRestart.y = 450;
             txtRestart.x = width/2-75-100;
             button.addChild(txtRestart);
@@ -881,8 +881,12 @@ public class Main extends Sprite {
             n2=nLevel/2;
             loadGame();
         }
-        removeChild(timeSprite);
-        removeChild(timerTextField);
+        if(contains(timeSprite)){
+            removeChild(timeSprite);
+        }
+        if(contains(timerTextField)){
+            removeChild(timerTextField);
+        }
         button.graphics.clear();
         addChild(button);
         button.addEventListener(MouseEvent.MOUSE_DOWN, resetGameinPop);
@@ -994,7 +998,7 @@ public class Main extends Sprite {
 
         for(var i:int=0;i<templist.length;i++){
             if(templist[i].id==cir.id+1){
-                return true&&checkWin(templist[i].x,templist[i].y,templist[i]);
+                return checkWin(templist[i].x, templist[i].y, templist[i]);
             }
         }
         var tempB:Boolean=false;
