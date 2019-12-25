@@ -467,6 +467,9 @@ public class Main extends Sprite {
         distanceX=45;
         distanceY=38;
         confDistanceShape=6.2;
+        time = 1001;
+        timeSprite.graphics.clear();
+        myTimer.reset();
         loadGame();
     }
 
@@ -482,6 +485,9 @@ public class Main extends Sprite {
         distanceX=45;
         distanceY=38;
         confDistanceShape=6.2;
+        time = 301;
+        timeSprite.graphics.clear();
+        myTimer.reset();
         loadGame();
     }
 
@@ -497,6 +503,9 @@ public class Main extends Sprite {
         distanceX=45;
         distanceY=38;
         confDistanceShape=6.2;
+        time = 241;
+        timeSprite.graphics.clear();
+        myTimer.reset();
         loadGame();
     }
 
