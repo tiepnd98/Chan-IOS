@@ -327,13 +327,36 @@ public class Main extends Sprite {
         addChild(txtLevelHard);
         btnLevelHard.addEventListener(MouseEvent.CLICK, onClickLevelHa);
 
+        var btnLevelEvil:Sprite = new Sprite();
+        btnLevelEvil.graphics.clear();
+        btnLevelEvil.graphics.beginFill(0x6D00F0, 1);
+        btnLevelEvil.graphics.drawRoundRect(0, 0, 100, 30,5,5);
+        btnLevelEvil.graphics.endFill();
+        btnLevelEvil.x = width / 2+50;
+        btnLevelEvil.y = 5-120-14;
+        var txtLevelEvil:TextField = new TextField();
+        txtLevelEvil.x = btnLevelEvil.x;
+        txtLevelEvil.y = btnLevelEvil.y;
+        txtLevelEvil.width=100;
+        txtLevelEvil.height=30;
+        txtLevelEvil.mouseEnabled = false;
+        tf.size=16;
+        tf.color=0xffffff;
+        txtLevelEvil.defaultTextFormat=tf;
+        txtLevelEvil.text = "Evil";
+        listSrpiteLevel.push(btnLevelEvil);
+        listTxtLevel.push(txtLevelEvil);
+        addChild(btnLevelEvil);
+        addChild(txtLevelEvil);
+        btnLevelEvil.addEventListener(MouseEvent.CLICK, onClickLevelEvil);
+
         var btnLevelXL:Sprite = new Sprite();
         btnLevelXL.graphics.clear();
-        btnLevelXL.graphics.beginFill(0x001DF0, 1);
+        btnLevelXL.graphics.beginFill(0xFF04C6, 1);
         btnLevelXL.graphics.drawRoundRect(0, 0, 100, 30,5,5);
         btnLevelXL.graphics.endFill();
-        btnLevelXL.x = width / 2-100;
-        btnLevelXL.y = 5-90-10.5;
+        btnLevelXL.x = width / 2+50;
+        btnLevelXL.y = 5-150-17.5;
         var txtLevelXL:TextField = new TextField();
         txtLevelXL.x = btnLevelXL.x;
         txtLevelXL.y = btnLevelXL.y;
@@ -349,12 +372,65 @@ public class Main extends Sprite {
         addChild(btnLevelXL);
         addChild(txtLevelXL);
         btnLevelXL.addEventListener(MouseEvent.CLICK, onClickLevelXL);
+
+        var btnLevelXXL:Sprite = new Sprite();
+        btnLevelXXL.graphics.clear();
+        btnLevelXXL.graphics.beginFill(0xFF0404, 1);
+        btnLevelXXL.graphics.drawRoundRect(0, 0, 100, 30,5,5);
+        btnLevelXXL.graphics.endFill();
+        btnLevelXXL.x = width / 2+50;
+        btnLevelXXL.y = 5-180-21;
+        var txtLevelXXL:TextField = new TextField();
+        txtLevelXXL.x = btnLevelXXL.x;
+        txtLevelXXL.y = btnLevelXXL.y;
+        txtLevelXXL.width=100;
+        txtLevelXXL.height=30;
+        txtLevelXXL.mouseEnabled = false;
+        tf.size=16;
+        tf.color=0xffffff;
+        txtLevelXXL.defaultTextFormat=tf;
+        txtLevelXXL.text = "XL";
+        listSrpiteLevel.push(btnLevelXXL);
+        listTxtLevel.push(txtLevelXXL);
+        addChild(btnLevelXXL);
+        addChild(txtLevelXXL);
+        btnLevelXXL.addEventListener(MouseEvent.CLICK, onClickLevelXXL);
         for(var i:int=0;i<listTxtLevel.length;i++){
             listSrpiteLevel[i].visible=false;
         }
         for(var i:int=0;i<listTxtLevel.length;i++){
             listTxtLevel[i].visible=false;
         }
+    }
+
+    private function onClickLevelXXL(event:MouseEvent):void {
+        nLevel=11;
+        conf=-54;
+        confRight=-26+45;
+        numShape=0;
+        n2=nLevel/2;
+        numberSuggest=10;
+        numberPoint=12;
+        sizee=24;
+        distanceX=45;
+        distanceY=38;
+        confDistanceShape=6.2;
+        loadGame();
+    }
+
+    private function onClickLevelEvil(event:MouseEvent):void {
+        nLevel=11;
+        conf=-54;
+        confRight=-26+45;
+        numShape=0;
+        n2=nLevel/2;
+        numberSuggest=20;
+        numberPoint=8;
+        sizee=24;
+        distanceX=45;
+        distanceY=38;
+        confDistanceShape=6.2;
+        loadGame();
     }
 
     private function onClickLevelXL(event:MouseEvent):void {
