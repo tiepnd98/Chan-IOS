@@ -49,9 +49,14 @@ public class Main extends Sprite {
     var numberPoint:int=4;
     var cir1Draw:CirlcleData=new CirlcleData();
     var cir2Draw:CirlcleData=new CirlcleData();
+    var sizee:int=30;
+    var distanceX=54;
+    var distanceY=47;
+    var confDistanceShape:Number=7;
     public function Main() {
         loadGame();
     }
+
     private  function loadGame():void{
         loadBoard();
         loadNextNumber();
@@ -172,7 +177,7 @@ public class Main extends Sprite {
         sprite.graphics.endFill();
         sprite.x = width / 2 - 20-75;
         sprite.y = -50+5+50;
-        drawHex( width / 2 - 20-75+20,-50+20+50).transform.colorTransform=new ColorTransform(0xF0FF00);
+        drawHex( width / 2 - 20-75+20,-50+20+50,sizee).transform.colorTransform=new ColorTransform(0xF0FF00);
 
         var sprite1:Sprite = new Sprite();
         sprite1.graphics.clear();
@@ -204,19 +209,21 @@ public class Main extends Sprite {
         tf.font="Arial";
         tf.align="center";
         var txtPlus:TextField = new TextField();
-        txtPlus.x = sprite2.x + 10;
-        txtPlus.y = sprite2.y + 6;
-        txtPlus.text = "+";
-        txtPlus.width=30;
-        txtPlus.height=30;
+        txtPlus.x = sprite2.x +2;
+        txtPlus.y = sprite2.y ;
+        txtPlus.width=25;
+        txtPlus.height=25;
         txtPlus.mouseEnabled = false;
         txtPlus.defaultTextFormat=tf;
+        txtPlus.text = "+";
         var txtSub:TextField = new TextField();
-        txtSub.x = sprite1.x + 10;
-        txtSub.y = sprite1.y + 6;
-        txtSub.text = "-";
+        txtSub.x = sprite1.x +2;
+        txtSub.y = sprite1.y ;
         txtSub.mouseEnabled = false;
+        txtSub.width=25;
+        txtSub.height=25;
         txtSub.defaultTextFormat=tf;
+        txtSub.text = "-";
         txtNextNumber.mouseEnabled = false;
 
         txtNextNumber.defaultTextFormat=tf;
@@ -319,12 +326,50 @@ public class Main extends Sprite {
         addChild(btnLevelHard);
         addChild(txtLevelHard);
         btnLevelHard.addEventListener(MouseEvent.CLICK, onClickLevelHa);
+
+        var btnLevelXL:Sprite = new Sprite();
+        btnLevelXL.graphics.clear();
+        btnLevelXL.graphics.beginFill(0x001DF0, 1);
+        btnLevelXL.graphics.drawRoundRect(0, 0, 100, 30,5,5);
+        btnLevelXL.graphics.endFill();
+        btnLevelXL.x = width / 2-100;
+        btnLevelXL.y = 5-90-10.5;
+        var txtLevelXL:TextField = new TextField();
+        txtLevelXL.x = btnLevelXL.x;
+        txtLevelXL.y = btnLevelXL.y;
+        txtLevelXL.width=100;
+        txtLevelXL.height=30;
+        txtLevelXL.mouseEnabled = false;
+        tf.size=16;
+        tf.color=0xffffff;
+        txtLevelXL.defaultTextFormat=tf;
+        txtLevelXL.text = "XL";
+        listSrpiteLevel.push(btnLevelXL);
+        listTxtLevel.push(txtLevelXL);
+        addChild(btnLevelXL);
+        addChild(txtLevelXL);
+        btnLevelXL.addEventListener(MouseEvent.CLICK, onClickLevelXL);
         for(var i:int=0;i<listTxtLevel.length;i++){
             listSrpiteLevel[i].visible=false;
         }
         for(var i:int=0;i<listTxtLevel.length;i++){
             listTxtLevel[i].visible=false;
         }
+    }
+
+    private function onClickLevelXL(event:MouseEvent):void {
+        nLevel=11;
+        conf=-54;
+        confRight=-26+45;
+        numShape=0;
+        n2=nLevel/2;
+        numberSuggest=15;
+        numberPoint=10;
+        sizee=24;
+        distanceX=45;
+        distanceY=38;
+        confDistanceShape=6.2;
+        loadGame();
     }
 
     private function onClickLevelHa(event:MouseEvent):void {
@@ -335,6 +380,10 @@ public class Main extends Sprite {
         n2=nLevel/2;
         numberSuggest=12;
         numberPoint=7;
+        distanceX=54;
+        distanceY=47;
+        sizee=30;
+        confDistanceShape=7;
         loadGame();
     }
 
@@ -346,6 +395,10 @@ public class Main extends Sprite {
         n2=nLevel/2;
         numberSuggest=12;
         numberPoint=7;
+        distanceX=54;
+        distanceY=47;
+        sizee=30;
+        confDistanceShape=7;
         loadGame();
     }
 
@@ -357,6 +410,10 @@ public class Main extends Sprite {
         n2=nLevel/2;
         numberSuggest=9;
         numberPoint=4;
+        distanceX=54;
+        distanceY=47;
+        sizee=30;
+        confDistanceShape=7;
         loadGame();
     }
 
@@ -408,13 +465,13 @@ public class Main extends Sprite {
             if (i <= n2) {
                 for (var j:int = 0; j < n2 + 1 + i; j++) {
                     var circle:CirlcleData = new CirlcleData();
-                    circle.shape=drawHex(confRight-28-15+80 - 20 * i + 100 + 54 * j- 7*i,47 * i+20+75);
+                    circle.shape=drawHex(confRight-28-15+80 - 20 * i + 100 + distanceX * j- confDistanceShape*i,distanceY * i+20+75,sizee);
                     var sprite:Sprite = new Sprite();
                     sprite.graphics.clear();
                     sprite.graphics.beginFill(0xBAF6F7, 1);
                     sprite.graphics.drawEllipse(0, 0, 40, 40);
-                    sprite.x = confRight-28-15+60 - 20 * i + 100 + 54 * j - 7*i;
-                    sprite.y = 47 * i+75;
+                    sprite.x = confRight-28-15+60 - 20 * i + 100 + distanceX * j - 7*i;
+                    sprite.y = distanceY * i+75;
                     sprite.alpha=0;
                     sprite.graphics.endFill();
                     sprite.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDownCircle);
@@ -448,13 +505,13 @@ public class Main extends Sprite {
             } else {
                 for (var j:int = 0; j < nLevel + n2 - i; j++) {
                     var circle:CirlcleData = new CirlcleData();
-                    circle.shape=drawHex(confRight+conf-28-15+20 * (i-n2) + 100 + 54 * j+7*(i-n2),47 * i+20+75);
+                    circle.shape=drawHex(confRight+conf-28-15+20 * (i-n2) + 100 + distanceX * j+confDistanceShape*(i-n2),distanceY * i+20+75,sizee);
                     var sprite:Sprite = new Sprite();
                     sprite.graphics.clear();
                     sprite.graphics.beginFill(0xBAF6F7, 1);
                     sprite.graphics.drawEllipse(0, 0, 40, 40);
-                    sprite.x = confRight+conf-28-15+20 * (i-n2) + 100 + 54 * j-20+7*(i-n2);
-                    sprite.y = 47 * i+75;
+                    sprite.x = confRight+conf-28-15+20 * (i-n2) + 100 + distanceX * j-20+7*(i-n2);
+                    sprite.y = distanceY * i+75;
                     sprite.alpha=0;
                     sprite.graphics.endFill();
                     sprite.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDownCircle);
@@ -932,7 +989,7 @@ public class Main extends Sprite {
 
 
     private function loadBase():void {
-        if(nLevel!=9){
+        if(nLevel<9){
             while (true) {
 //            var x:int=Math.random()*7;
 //            var n:int=0;
@@ -964,14 +1021,32 @@ public class Main extends Sprite {
                 }
             }
         }else{
-            var listNumber:Array=[9,8,9,4,3,10,12,6,5,2,1,11,13,14,44,45,46,48,20,19,18,15,43,42,47,49,21,22,17,16,41,52,51,50,23,24,28,38,40,53,54,55,25,27,29,38,37,57,56,26,30,33,35,36,58,31,32,34,60,59];
-            var l:int=0;
-            x1=1;y1=5;
-            for (var i:int = 0; i < nLevel; i++) {
-                for (var j:int = 0; j < nLevel; j++) {
-                    if (listSprite[i][j] != null) {
-                        listSprite[i][j].idBase=listNumber[l];l++;
+            switch (nLevel) {
+                case 9:{
+                    var listNumber:Array=[9,8,9,4,3,10,12,6,5,2,1,11,13,14,44,45,46,48,20,19,18,15,43,42,47,49,21,22,17,16,41,52,51,50,23,24,28,38,40,53,54,55,25,27,29,38,37,57,56,26,30,33,35,36,58,31,32,34,60,59];
+                    var l:int=0;
+                    x1=1;y1=5;
+                    for (var i:int = 0; i < nLevel; i++) {
+                        for (var j:int = 0; j < nLevel; j++) {
+                            if (listSprite[i][j] != null) {
+                                listSprite[i][j].idBase=listNumber[l];l++;
+                            }
+                        }
                     }
+                    break;
+                }
+                case 11:{
+                    var listNumber:Array=[49, 48,  47, 46, 45, 44, 51, 50, 57, 59, 61, 62, 43, 52, 55, 56, 58, 60, 63, 42, 41, 53, 54, 9, 7, 5, 3, 64, 40, 39, 13 ,11, 10, 8, 6, 4, 2, 65, 37, 38, 14, 12, 80, 79, 78, 1, 68,  66, 36, 35, 15, 82, 81, 77, 76, 75, 69, 67, 32, 34, 16, 83, 86, 87, 74, 73, 70, 31, 33, 17, 84 ,85, 88, 72, 71, 28, 30, 18, 19, 89, 90, 24, 27, 29, 20, 21, 22, 23, 25, 26];
+                    var l:int=0;
+                    x1=5;y1=6;
+                    for (var i:int = 0; i < nLevel; i++) {
+                        for (var j:int = 0; j < nLevel; j++) {
+                            if (listSprite[i][j] != null) {
+                                listSprite[i][j].idBase=listNumber[l];l++;
+                            }
+                        }
+                    }
+                    break;
                 }
             }
         }
@@ -1074,9 +1149,9 @@ public class Main extends Sprite {
 
     }
 
-    public function drawHex( a:int, b:int):Shape{
+    public function drawHex( a:int, b:int, sizee:int):Shape{
         var myShape:Shape = new Shape();
-        var size: int = 30;
+        var size: int = sizee;
         var pointA:Point = new Point(0,0);
         myShape.graphics.moveTo(pointy_hex_corner(pointA,size,0).x, pointy_hex_corner(pointA,size,0).y);
         myShape.graphics.beginFill(0xFFF888);
@@ -1097,6 +1172,5 @@ public class Main extends Sprite {
         var angle_rad = Math.PI / 180 * angle_deg;
         return new Point(center.x + size * Math.cos(angle_rad), center.y + size * Math.sin(angle_rad))
     }
-
 }
 }
