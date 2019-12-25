@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="Hexagon-Number-Matrix">
+    <configurations>
+      <configuration name="Hexagon-Number-Matrix" target-platform="Mobile" pure-as="true" main-class="com.example.HexagonNumberMatrix.Main" output-file="main.swf" output-folder="$MODULE_DIR$/out/production/HexagonNumberMatrix">
+        <dependencies>
+          <sdk name="AIRSDK32" />
+        </dependencies>
+        <compiler-options>
+          <map>
+            <entry key="metadata.contributor" value="ThinhNX, TiepND" />
+            <entry key="metadata.creator" value="Sandinh JSC" />
+          </map>
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android enabled="true" package-file-name="Hexagon-Number-Matrix" />
+        <packaging-ios package-file-name="Hexagon-Number-Matrix" />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="AIRSDK32" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

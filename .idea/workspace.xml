@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8fa00c8b-a9cf-4421-9cbb-65977022a294" name="Default Changelist" comment="">
+    <list default="true" id="8fa00c8b-a9cf-4421-9cbb-65977022a294" name="Default Changelist" comment="Fix variety stable problems">
+      <change afterPath="$PROJECT_DIR$/src/com/example/HexagonNumberMatrix/Main.as" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/BlockPuzzle-Chan.apk" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/BlockPuzzle-Chan.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/main.swf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/main.swf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/BlockPuzzle/Main.as" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/BlockPuzzle/Main.as" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/CirlcleData.as" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/CirlcleData.as" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlockPuzzle-Chan.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Hexagon-Number-Matrix.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/BlockPuzzle-Chan.air" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/BlockPuzzle-Chan.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/Main.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/main-android-descriptor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/main.swf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/BlockPuzzle/Main.as" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +29,18 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="ThinhNX &lt;thinhnx@sandinh.net&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="tiepnd" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1UT5RMXk29SRrrJukIRaBDu2ixF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -49,7 +67,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.14598542" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CreateActionScriptClassDialog.DESTINATION_PACKAGE_RECENT_KEY">
@@ -62,7 +80,7 @@
   </component>
   <component name="RunManager">
     <configuration name="BlockPuzzle-Chan" type="FlashRunConfigurationType" nameIsGenerated="true">
-      <option name="BCName" value="BlockPuzzle-Chan" />
+      <option name="BCName" value="Hexagon-Number-Matrix" />
       <option name="IOSSimulatorDevice" value="" />
       <option name="IOSSimulatorSdkPath" value="" />
       <option name="adlOptions" value="" />
@@ -86,7 +104,7 @@
         </LauncherParameters>
       </option>
       <option name="mobileRunTarget" value="Emulator" />
-      <option name="moduleName" value="BlockPuzzle-Chan" />
+      <option name="moduleName" value="Hexagon-Number-Matrix" />
       <option name="overriddenMainClass" value="" />
       <option name="overriddenOutputFileName" value="" />
       <option name="overrideMainClass" value="false" />
@@ -178,11 +196,71 @@
       <workItem from="1576116794184" duration="20990000" />
       <workItem from="1576250215112" duration="673000" />
       <workItem from="1576478150775" duration="16488000" />
+      <workItem from="1576825068100" duration="1141000" />
+      <workItem from="1577168406641" duration="13774000" />
+      <workItem from="1577257673503" duration="2584000" />
     </task>
+    <task id="LOCAL-00001" summary="Merge with TiepND || add 3 level || Fix timer">
+      <created>1576753706855</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1576753706855</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fix Clock Issue">
+      <created>1576825476988</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1576825476988</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fix Timeout Issue">
+      <created>1577174045839</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1577174045839</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fix variety stable problems">
+      <created>1577183684081</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1577183684081</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix timeSprite not reloaded after New Game request">
+      <created>1577258565025</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1577258565025</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge with TiepND || add 3 level || Fix timer" />
+    <MESSAGE value="Fix Clock Issue" />
+    <MESSAGE value="Fix Timeout Issue" />
+    <MESSAGE value="Fix variety stable problems" />
+    <MESSAGE value="Fix timeSprite not reloaded after New Game request" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix timeSprite not reloaded after New Game request" />
   </component>
   <component name="WindowStateProjectService">
     <state x="310" y="33" key="#BlockPuzzle-Chan" timestamp="1576035064599">
@@ -205,62 +283,97 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="194" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1575450864473" />
-    <state x="484" y="155" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575971529966">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="680" y="221" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1577259647126">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="484" y="155" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1575971529966" />
+    <state x="680" y="221" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577259647126" />
     <state x="320" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor" timestamp="1576017517720">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="320" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1576017517720" />
-    <state x="378" y="106" key="AirPackageDialog.DimensionServiceKey" timestamp="1576493271587">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="1047" y="391" key="AirPackageDialog.DimensionServiceKey" timestamp="1577260083214">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="378" y="106" key="AirPackageDialog.DimensionServiceKey/0.0.1366.738@0.0.1366.738" timestamp="1576493271587" />
+    <state x="1047" y="391" key="AirPackageDialog.DimensionServiceKey/0.0.1920.1050@0.0.1920.1050" timestamp="1577260083214" />
+    <state x="778" y="134" key="CommitChangelistDialog2" timestamp="1577260279800">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="778" y="134" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1577260279800" />
+    <state x="92" y="92" width="1736" height="866" key="DiffContextDialog" timestamp="1576741837905">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="92" y="92" width="1736" height="866" key="DiffContextDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1576741837905" />
     <state x="463" y="123" key="FileChooserDialogImpl" timestamp="1575971464643">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1575971464643" />
-    <state width="1323" height="227" key="GridCell.Tab.0.bottom" timestamp="1576494942988">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1877" height="235" key="GridCell.Tab.0.bottom" timestamp="1577260085942">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1323" height="227" key="GridCell.Tab.0.center" timestamp="1576494942987">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1877" height="235" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1577260085942" />
+    <state width="1877" height="235" key="GridCell.Tab.0.center" timestamp="1577260085942">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1576494942987" />
-    <state width="1323" height="227" key="GridCell.Tab.0.left" timestamp="1576494942987">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1877" height="235" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1577260085942" />
+    <state width="1877" height="235" key="GridCell.Tab.0.left" timestamp="1577260085942">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1576494942987" />
-    <state width="1323" height="227" key="GridCell.Tab.0.right" timestamp="1576494942988">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1877" height="235" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1577260085942" />
+    <state width="1877" height="235" key="GridCell.Tab.0.right" timestamp="1577260085942">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1576494942988">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1877" height="235" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1577260085942" />
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1577258332600">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1576494942988">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1577258332600" />
+    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1577258332600">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1576494942988">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1577258332600" />
+    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1577258332600">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1576494942988">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1577258332600" />
+    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1577258332600">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state x="161" y="0" key="SettingsEditor" timestamp="1575971573833">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1577258332600" />
+    <state x="567" y="249" key="IDE.errors.dialog" timestamp="1577258698900">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="567" y="249" key="IDE.errors.dialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577258698900" />
+    <state x="752" y="176" width="998" height="708" key="SettingsEditor" timestamp="1577260258249">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="161" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1575971573833" />
+    <state x="752" y="176" width="998" height="708" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1577260258249" />
+    <state x="1001" y="115" key="Vcs.Push.Dialog.v2" timestamp="1577260260930">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1001" y="115" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1577260260930" />
+    <state x="92" y="92" width="1736" height="866" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1576741837905">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="92" y="92" width="1736" height="866" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1576741837905" />
     <state x="379" y="192" key="com.intellij.ide.util.TipDialog" timestamp="1576478150501">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="379" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1576478150501" />
+    <state x="769" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1577168899787">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="769" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050@0.0.1920.1050" timestamp="1577168899787" />
     <state x="65" y="0" key="new project wizard" timestamp="1576021613501">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -273,6 +386,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1576134509069" />
+    <state x="682" y="436" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1577258734373">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="682" y="436" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577258734373" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
