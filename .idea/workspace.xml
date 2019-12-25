@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8fa00c8b-a9cf-4421-9cbb-65977022a294" name="Default Changelist" comment="Fix variety stable problems">
-      <change afterPath="$PROJECT_DIR$/src/com/example/HexagonNumberMatrix/Main.as" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="2460d42e-eb52-429f-9757-694fe081b3e9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockPuzzle-Chan.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Hexagon-Number-Matrix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/BlockPuzzle-Chan.air" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/BlockPuzzle-Chan.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/Main.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/main-android-descriptor.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlockPuzzle-Chan/main.swf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/BlockPuzzle/Main.as" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/Hexagon-Number-Matrix.apk" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/Hexagon-Number-Matrix.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main-android-descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main-android-descriptor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main.swf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main.swf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +28,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ThinhNX" />
+        <entry key="$PROJECT_DIR$" value="tiepnd" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +58,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.14598542" />
+    <property name="project.structure.side.proportion" value="0.29771906" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
@@ -235,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577258565025</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add full 6 levels || Fix timeSprite">
+      <created>1577270469870</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1577270469870</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,7 +259,8 @@
     <MESSAGE value="Fix Timeout Issue" />
     <MESSAGE value="Fix variety stable problems" />
     <MESSAGE value="Fix timeSprite not reloaded after New Game request" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix timeSprite not reloaded after New Game request" />
+    <MESSAGE value="Add full 6 levels || Fix timeSprite" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add full 6 levels || Fix timeSprite" />
   </component>
   <component name="WindowStateProjectService">
     <state x="310" y="33" key="#BlockPuzzle-Chan" timestamp="1576035064599">
@@ -292,43 +292,44 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="320" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1576017517720" />
-    <state x="1047" y="391" key="AirPackageDialog.DimensionServiceKey" timestamp="1577260083214">
+    <state x="1047" y="391" key="AirPackageDialog.DimensionServiceKey" timestamp="1577270434615">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="378" y="106" key="AirPackageDialog.DimensionServiceKey/0.0.1366.738@0.0.1366.738" timestamp="1576493271587" />
-    <state x="1047" y="391" key="AirPackageDialog.DimensionServiceKey/0.0.1920.1050@0.0.1920.1050" timestamp="1577260083214" />
-    <state x="778" y="134" key="CommitChangelistDialog2" timestamp="1577265087873">
+    <state x="1047" y="391" key="AirPackageDialog.DimensionServiceKey/0.0.1920.1050@0.0.1920.1050" timestamp="1577270434615" />
+    <state x="778" y="134" key="CommitChangelistDialog2" timestamp="1577270469096">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="778" y="134" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1577265087873" />
+    <state x="778" y="134" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1577270469096" />
     <state x="92" y="92" width="1736" height="866" key="DiffContextDialog" timestamp="1576741837905">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="92" y="92" width="1736" height="866" key="DiffContextDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1576741837905" />
-    <state x="463" y="123" key="FileChooserDialogImpl" timestamp="1575971464643">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="651" y="175" key="FileChooserDialogImpl" timestamp="1577271015018">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1575971464643" />
-    <state width="938" height="235" key="GridCell.Tab.0.bottom" timestamp="1577265109338">
+    <state x="651" y="175" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1577271015018" />
+    <state width="1877" height="112" key="GridCell.Tab.0.bottom" timestamp="1577270438258">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="938" height="235" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1577265109338" />
-    <state width="938" height="235" key="GridCell.Tab.0.center" timestamp="1577265109338">
+    <state width="1877" height="112" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1577270438258" />
+    <state width="1877" height="112" key="GridCell.Tab.0.center" timestamp="1577270438258">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1576494942987" />
-    <state width="938" height="235" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1577265109338" />
-    <state width="938" height="235" key="GridCell.Tab.0.left" timestamp="1577265109337">
+    <state width="1877" height="112" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1577270438258" />
+    <state width="1877" height="112" key="GridCell.Tab.0.left" timestamp="1577270438258">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1576494942987" />
-    <state width="938" height="235" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1577265109337" />
-    <state width="938" height="235" key="GridCell.Tab.0.right" timestamp="1577265109338">
+    <state width="1877" height="112" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1577270438258" />
+    <state width="1877" height="112" key="GridCell.Tab.0.right" timestamp="1577270438258">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="938" height="235" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1577265109338" />
+    <state width="1877" height="112" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1577270438258" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1577258332600">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -353,15 +354,15 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="567" y="249" key="IDE.errors.dialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577258698900" />
-    <state x="752" y="176" width="998" height="708" key="SettingsEditor" timestamp="1577260258249">
+    <state x="752" y="176" width="998" height="708" key="SettingsEditor" timestamp="1577271039875">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="161" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1575971573833" />
-    <state x="752" y="176" width="998" height="708" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1577260258249" />
-    <state x="863" y="126" key="Vcs.Push.Dialog.v2" timestamp="1577265187677">
+    <state x="752" y="176" width="998" height="708" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1577271039875" />
+    <state x="863" y="126" key="Vcs.Push.Dialog.v2" timestamp="1577270473005">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="863" y="126" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1577265187677" />
+    <state x="863" y="126" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1577270473005" />
     <state x="92" y="92" width="1736" height="866" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1576741837905">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
