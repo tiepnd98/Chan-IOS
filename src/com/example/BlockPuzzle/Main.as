@@ -189,7 +189,7 @@ public class Main extends Sprite {
                 var tf:TextFormat = new TextFormat();
                 tf.size = 30;
                 tf.bold = true;
-                tf.font = "Trebuchet MS"
+                tf.font = "Agency FB"
                 tf.color = 0xde0b0b;
                 tf.align = "center";
                 timerTextField.defaultTextFormat = tf;
@@ -389,6 +389,7 @@ public class Main extends Sprite {
         numberSuggest=12;
         numberPoint=7;
         myTimer.reset();
+        timeSprite.graphics.clear();
         loadGame();
     }
 
@@ -402,6 +403,7 @@ public class Main extends Sprite {
         numberSuggest=12;
         numberPoint=7;
         myTimer.reset();
+        timeSprite.graphics.clear();
         loadGame();
     }
 
@@ -415,6 +417,7 @@ public class Main extends Sprite {
         numberSuggest=9;
         numberPoint=4;
         myTimer.reset();
+        timeSprite.graphics.clear();
         loadGame();
     }
 
@@ -881,6 +884,7 @@ public class Main extends Sprite {
         if(contains(timerTextField)){
             removeChild(timerTextField);
         }
+        timeSprite.graphics.clear();
         button.graphics.clear();
         addChild(button);
         button.addEventListener(MouseEvent.MOUSE_DOWN, resetGameinPop);
