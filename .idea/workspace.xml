@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2460d42e-eb52-429f-9757-694fe081b3e9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/Hexagon-Number-Matrix.apk" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/Hexagon-Number-Matrix.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main-android-descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main-android-descriptor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main.swf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main.swf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +26,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="tiepnd" />
+        <entry key="$PROJECT_DIR$" value="ThinhNX" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,7 +69,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="BlockPuzzle-Chan" type="FlashRunConfigurationType" nameIsGenerated="true">
+    <configuration name="HexagonNumberMatrix" type="FlashRunConfigurationType">
       <option name="BCName" value="Hexagon-Number-Matrix" />
       <option name="IOSSimulatorDevice" value="" />
       <option name="IOSSimulatorSdkPath" value="" />
@@ -271,10 +269,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#Project_Structure/0.0.1366.738@0.0.1366.738" timestamp="1576021591557" />
-    <state x="79" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576124069782">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="553" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577349102949">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="79" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1576124069782" />
+    <state x="553" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577349102949" />
     <state x="488" y="84" key="#com.intellij.ide.util.MemberChooser" timestamp="1576479695028">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -297,10 +296,10 @@
     </state>
     <state x="378" y="106" key="AirPackageDialog.DimensionServiceKey/0.0.1366.738@0.0.1366.738" timestamp="1576493271587" />
     <state x="1047" y="391" key="AirPackageDialog.DimensionServiceKey/0.0.1920.1050@0.0.1920.1050" timestamp="1577270434615" />
-    <state x="778" y="134" key="CommitChangelistDialog2" timestamp="1577270469096">
+    <state x="778" y="134" key="CommitChangelistDialog2" timestamp="1577349478975">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="778" y="134" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1577270469096" />
+    <state x="778" y="134" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1577349478975" />
     <state x="92" y="92" width="1736" height="866" key="DiffContextDialog" timestamp="1576741837905">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -310,26 +309,26 @@
     </state>
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1575971464643" />
     <state x="651" y="175" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1577271015018" />
-    <state width="1877" height="112" key="GridCell.Tab.0.bottom" timestamp="1577270438258">
+    <state width="1877" height="112" key="GridCell.Tab.0.bottom" timestamp="1577349546658">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1877" height="112" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1577270438258" />
-    <state width="1877" height="112" key="GridCell.Tab.0.center" timestamp="1577270438258">
+    <state width="1877" height="112" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1577349546658" />
+    <state width="1877" height="112" key="GridCell.Tab.0.center" timestamp="1577349546658">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1576494942987" />
-    <state width="1877" height="112" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1577270438258" />
-    <state width="1877" height="112" key="GridCell.Tab.0.left" timestamp="1577270438258">
+    <state width="1877" height="112" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1577349546658" />
+    <state width="1877" height="112" key="GridCell.Tab.0.left" timestamp="1577349546658">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1576494942987" />
-    <state width="1877" height="112" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1577270438258" />
-    <state width="1877" height="112" key="GridCell.Tab.0.right" timestamp="1577270438258">
+    <state width="1877" height="112" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1577349546658" />
+    <state width="1877" height="112" key="GridCell.Tab.0.right" timestamp="1577349546658">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1877" height="112" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1577270438258" />
+    <state width="1877" height="112" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1577349546658" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1577258332600">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -354,6 +353,14 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="567" y="249" key="IDE.errors.dialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577258698900" />
+    <state x="184" y="86" key="MergeDialog" timestamp="1577349325322">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577349325322" />
+    <state x="672" y="240" key="MultipleFileMergeDialog" timestamp="1577349512226">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="672" y="240" key="MultipleFileMergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577349512226" />
     <state x="752" y="176" width="998" height="708" key="SettingsEditor" timestamp="1577271039875">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

@@ -53,12 +53,16 @@ public class Main extends Sprite {
     var distanceX=54;
     var distanceY=47;
     var confDistanceShape:Number=7;
+    var time:int =11; //in secs +1
+    var delay:int = 1000; // in milliseconds
+    var myTimer:Timer = new Timer(0);
     public function Main() {
         loadGame();
     }
 
     private  function loadGame():void{
         loadBoard();
+        timer();
         loadNextNumber();
         loadBase();
         randomSuggest();
@@ -169,6 +173,54 @@ public class Main extends Sprite {
         }
         return null;
     }
+    var timerTextField:TextField = new TextField();
+    var timeSprite:Sprite = new Sprite();
+    public function timer():void {
+        myTimer.delay = delay;
+        myTimer.repeatCount =time;
+        switch (time) {
+            case 31, 91, 211:
+                runClock(time);
+                break;
+            default:
+                runClock(time);
+                break;
+        }
+
+        function runClock(a: int):void {
+                myTimer.addEventListener(TimerEvent.TIMER, onTimer);
+                myTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
+                myTimer.start();
+                var tf:TextFormat = new TextFormat();
+                tf.size = 30;
+                tf.bold = true;
+                tf.font = "Agency FB"
+                tf.color = 0xde0b0b;
+                tf.align = "center";
+                timerTextField.defaultTextFormat = tf;
+                timeSprite.graphics.beginFill(0x696969, 0.3);
+                timeSprite.graphics.drawRoundRect(5, 0, 85, 35, 20, 40);
+                timeSprite.addChild(timerTextField);
+                timeSprite.graphics.endFill();
+                addChild(timeSprite);
+            function onTimer(e:TimerEvent):void {
+                if (startCheck()) {
+                    myTimer.stop();
+                } else {
+                    timerTextField.text = String(Math.floor((myTimer.repeatCount - myTimer.currentCount) / 60)).substr(-2) + ":" + ("0" + ((myTimer.repeatCount - myTimer.currentCount) % 60)).substr(-2);         //Seconds
+                    timerTextField.x = 0;
+                    timerTextField.y = 0;
+                    addChild(timerTextField);
+                }
+            }
+
+            function onComplete(e:TimerEvent):void {
+                myTimer.reset();
+                popupWin("Time Out!!!")
+            }
+        }
+    }
+
     private function loadNextNumber():void {
         var sprite:Sprite = new Sprite();
         sprite.graphics.clear();
@@ -268,6 +320,10 @@ public class Main extends Sprite {
         sizee=24;
         distanceX=45;
         distanceY=38;
+        confDistanceShape=6.2;
+        time = 1001;
+        timeSprite.graphics.clear();
+        myTimer.reset();
         confDistanceShape=2.5;
         loadGame();
     }
@@ -283,6 +339,10 @@ public class Main extends Sprite {
         sizee=24;
         distanceX=45;
         distanceY=38;
+        confDistanceShape=6.2;
+        time = 301;
+        timeSprite.graphics.clear();
+        myTimer.reset();
         confDistanceShape=2.5;
         loadGame();
     }
@@ -298,11 +358,16 @@ public class Main extends Sprite {
         sizee=24;
         distanceX=45;
         distanceY=38;
+        confDistanceShape=6.2;
+        time = 241;
+        timeSprite.graphics.clear();
+        myTimer.reset();
         confDistanceShape=2.5;
         loadGame();
     }
 
     private function onClickLevelHa(event:MouseEvent):void {
+        time=211;
         nLevel=9;
         conf=-28;
         confRight=5;
@@ -310,6 +375,8 @@ public class Main extends Sprite {
         n2=nLevel/2;
         numberSuggest=12;
         numberPoint=7;
+        myTimer.reset();
+        timeSprite.graphics.clear();
         distanceX=54;
         distanceY=47;
         sizee=30;
@@ -318,6 +385,7 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelMe(event:MouseEvent):void {
+        time=91;
         nLevel=7;
         conf=-1;
         confRight=28+5;
@@ -325,6 +393,8 @@ public class Main extends Sprite {
         n2=nLevel/2;
         numberSuggest=12;
         numberPoint=7;
+        myTimer.reset();
+        timeSprite.graphics.clear();
         distanceX=54;
         distanceY=47;
         sizee=30;
@@ -333,6 +403,7 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelBe(event:MouseEvent):void {
+        time= 31;
         nLevel=5;
         conf=26;
         confRight=59;
@@ -340,6 +411,8 @@ public class Main extends Sprite {
         n2=nLevel/2;
         numberSuggest=9;
         numberPoint=4;
+        myTimer.reset();
+        timeSprite.graphics.clear();
         distanceX=54;
         distanceY=47;
         sizee=30;
@@ -355,7 +428,7 @@ public class Main extends Sprite {
         var tempPlus = nextNumber;
         while (true) {
             tempPlus++;
-            if (tempPlus == numShape || checkBoard(tempPlus) == false) break;
+            if (tempPlus == numShape || !checkBoard(tempPlus)) break;
         }
         if(tempPlus<numShape){
             nextNumber = tempPlus;
@@ -368,7 +441,7 @@ public class Main extends Sprite {
         var temp:int = nextNumber;
         while (true) {
             temp--;
-            if (temp == 0 || checkBoard(temp) == false) break;
+            if (temp == 0 || !checkBoard(temp)) break;
         }
         if (temp != 0) {
             nextNumber = temp;
@@ -753,11 +826,11 @@ public class Main extends Sprite {
         addChild(shapee);
     }
 
-    private function popupWin( mess:String ):void {
+    private function popupWin( mess:String):void {
         var popupWin:Sprite=new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF,0.9);
-        popupWin.graphics.drawRoundRect(width / 2-75-200,-70,400,550,20,20);
+        popupWin.graphics.drawRoundRect(width / 2-75-200,-70,400,600,20,20);
         popupWin.graphics.endFill();
         addChild(popupWin);
         var tf:TextFormat = new TextFormat();
@@ -775,6 +848,42 @@ public class Main extends Sprite {
         capt.x = width/2-75-100;
         capt.border = false;
         capt.selectable = false;
+        var button:Sprite = new Sprite();
+        function drawButton():void {
+            button.graphics.clear();
+            button.graphics.beginFill(0xD4D4D4, 0.8); // grey color
+            button.graphics.drawRoundRect(width/2-75-100, 450, 200, 45, 10, 10); // x, y, width, height, ellipseW, ellipseH
+            button.graphics.endFill();
+            var txtRestart:TextField = new TextField();
+            tf.color=0xB90335;
+            txtRestart.defaultTextFormat = tf;
+            txtRestart.width = 200;
+            txtRestart.height = 40;
+            txtRestart.text = "New Game";
+            txtRestart.y = 450;
+            txtRestart.x = width/2-75-100;
+            button.addChild(txtRestart);
+        }
+        function resetGameinPop(event:MouseEvent):void {
+            myTimer.reset();
+            button.x += 20
+            if (button.x > 400) { button.x = 0}
+            numShape=0;
+            n2=nLevel/2;
+            loadGame();
+        }
+        if(contains(timeSprite)){
+            removeChild(timeSprite);
+        }
+        if(contains(timerTextField)){
+            removeChild(timerTextField);
+        }
+        timeSprite.graphics.clear();
+        button.graphics.clear();
+        addChild(button);
+        button.addEventListener(MouseEvent.MOUSE_DOWN, resetGameinPop);
+        drawButton();
+        addChild(capt);
         var txtRestart:TextField = new TextField();
         tf.color=0x00FF8F;
         txtRestart.defaultTextFormat = tf;
@@ -1078,7 +1187,7 @@ public class Main extends Sprite {
 
         for(var i:int=0;i<templist.length;i++){
             if(templist[i].id==cir.id+1){
-                return true&&checkWin(templist[i].x,templist[i].y,templist[i]);
+                return checkWin(templist[i].x, templist[i].y, templist[i]);
             }
         }
         var tempB:Boolean=false;
