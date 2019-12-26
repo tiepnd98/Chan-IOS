@@ -3,6 +3,8 @@ package com.example.HexagonNumberMatrix{
 import avmplus.typeXml;
 import data.CirlcleData;
 import data.NumberBaseData;
+
+import flash.display.Bitmap;
 import flash.display.Loader;
 import flash.display.Screen;
 import flash.display.Shader;
@@ -884,17 +886,6 @@ public class Main extends Sprite {
         button.addEventListener(MouseEvent.MOUSE_DOWN, resetGameinPop);
         drawButton();
         addChild(capt);
-        var txtRestart:TextField = new TextField();
-        tf.color=0x00FF8F;
-        txtRestart.defaultTextFormat = tf;
-        txtRestart.width = 200;
-        txtRestart.height = 40;
-        txtRestart.text = "Restart!";
-        txtRestart.y = 200;
-        txtRestart.x = width/2-75-100;
-        addChild(capt);
-        addChild(txtRestart);
-        txtRestart.addEventListener(MouseEvent.CLICK, resetGame);
     }
     private function popupNewGame():void {
         if(contains(timeSprite)){
