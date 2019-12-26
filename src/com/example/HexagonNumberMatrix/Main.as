@@ -897,10 +897,17 @@ public class Main extends Sprite {
         txtRestart.addEventListener(MouseEvent.CLICK, resetGame);
     }
     private function popupNewGame():void {
+        if(contains(timeSprite)){
+            removeChild(timeSprite);
+        }
+        if(contains(timerTextField)){
+            removeChild(timerTextField);
+        }
+        myTimer.reset();
         var popupWin:Sprite=new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF,0.9);
-        popupWin.graphics.drawRoundRect(width / 2-75-200,-70,400,550,20,20);
+        popupWin.graphics.drawRoundRect(width / 2-75-200,-70,400,600,20,20);
         popupWin.graphics.endFill();
         addChild(popupWin);
         listSrpiteLevel.push(popupWin);
@@ -1043,7 +1050,7 @@ public class Main extends Sprite {
         tf.size=16;
         tf.color=0xffffff;
         txtLevelXXL.defaultTextFormat=tf;
-        txtLevelXXL.text = "XL";
+        txtLevelXXL.text = "IMMORTAL";
         listSrpiteLevel.push(btnLevelXXL);
         listTxtLevel.push(txtLevelXXL);
         addChild(btnLevelXXL);

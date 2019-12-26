@@ -4,6 +4,7 @@
     <list default="true" id="2460d42e-eb52-429f-9757-694fe081b3e9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main.swf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main.swf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/HexagonNumberMatrix/Main.as" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/HexagonNumberMatrix/Main.as" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577270469870</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Push all code">
+      <created>1577349591220</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1577349591220</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +266,8 @@
     <MESSAGE value="Fix variety stable problems" />
     <MESSAGE value="Fix timeSprite not reloaded after New Game request" />
     <MESSAGE value="Add full 6 levels || Fix timeSprite" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add full 6 levels || Fix timeSprite" />
+    <MESSAGE value="Push all code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Push all code" />
   </component>
   <component name="WindowStateProjectService">
     <state x="310" y="33" key="#BlockPuzzle-Chan" timestamp="1576035064599">
@@ -296,10 +305,10 @@
     </state>
     <state x="378" y="106" key="AirPackageDialog.DimensionServiceKey/0.0.1366.738@0.0.1366.738" timestamp="1576493271587" />
     <state x="1047" y="391" key="AirPackageDialog.DimensionServiceKey/0.0.1920.1050@0.0.1920.1050" timestamp="1577270434615" />
-    <state x="778" y="134" key="CommitChangelistDialog2" timestamp="1577349478975">
+    <state x="778" y="134" key="CommitChangelistDialog2" timestamp="1577349590119">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="778" y="134" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1577349478975" />
+    <state x="778" y="134" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1577349590119" />
     <state x="92" y="92" width="1736" height="866" key="DiffContextDialog" timestamp="1576741837905">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -309,26 +318,26 @@
     </state>
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1575971464643" />
     <state x="651" y="175" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1577271015018" />
-    <state width="1877" height="112" key="GridCell.Tab.0.bottom" timestamp="1577349546658">
+    <state width="1877" height="112" key="GridCell.Tab.0.bottom" timestamp="1577349945961">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1877" height="112" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1577349546658" />
-    <state width="1877" height="112" key="GridCell.Tab.0.center" timestamp="1577349546658">
+    <state width="1877" height="112" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1577349945961" />
+    <state width="1877" height="112" key="GridCell.Tab.0.center" timestamp="1577349945960">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1576494942987" />
-    <state width="1877" height="112" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1577349546658" />
-    <state width="1877" height="112" key="GridCell.Tab.0.left" timestamp="1577349546658">
+    <state width="1877" height="112" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1577349945960" />
+    <state width="1877" height="112" key="GridCell.Tab.0.left" timestamp="1577349945960">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1576494942987" />
-    <state width="1877" height="112" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1577349546658" />
-    <state width="1877" height="112" key="GridCell.Tab.0.right" timestamp="1577349546658">
+    <state width="1877" height="112" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1577349945960" />
+    <state width="1877" height="112" key="GridCell.Tab.0.right" timestamp="1577349945960">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1877" height="112" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1577349546658" />
+    <state width="1877" height="112" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1577349945960" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1577258332600">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -366,10 +375,10 @@
     </state>
     <state x="161" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1575971573833" />
     <state x="752" y="176" width="998" height="708" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1577271039875" />
-    <state x="863" y="126" key="Vcs.Push.Dialog.v2" timestamp="1577270473005">
+    <state x="653" y="145" key="Vcs.Push.Dialog.v2" timestamp="1577349596427">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="863" y="126" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1577270473005" />
+    <state x="653" y="145" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1577349596427" />
     <state x="92" y="92" width="1736" height="866" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1576741837905">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
