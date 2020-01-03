@@ -58,6 +58,8 @@ public class Main extends Sprite {
     var time:int =11; //in secs +1
     var delay:int = 1000; // in milliseconds
     var myTimer:Timer = new Timer(0);
+    var btnHelp:Sprite = new Sprite();
+    var txtHelp:TextField = new TextField();
     public function Main() {
         loadGame();
     }
@@ -68,6 +70,8 @@ public class Main extends Sprite {
         loadNextNumber();
         loadBase();
         randomSuggest();
+        txtHelp.visible=true;
+        btnHelp.visible=true;
     }
 
     private function randomSuggest():void {
@@ -292,7 +296,7 @@ public class Main extends Sprite {
         var btnNewgame:Sprite = new Sprite();
         btnNewgame.graphics.clear();
         btnNewgame.graphics.beginFill(0x00A1FD, 1);
-        btnNewgame.graphics.drawRoundRect(0, 0, 80, 25,5,5);
+        btnNewgame.graphics.drawRoundRect(0, 0, 75, 25,5,5);
         btnNewgame.graphics.endFill();
         btnNewgame.x = width / 2+25;
         btnNewgame.y = 5;
@@ -305,10 +309,127 @@ public class Main extends Sprite {
         tf.size=13;
         tf.color=0xffffff;
         txtNewGame.defaultTextFormat=tf;
-        txtNewGame.text = "New Game";
+        txtNewGame.text = "Level";
         addChild(btnNewgame);
         addChild(txtNewGame);
         btnNewgame.addEventListener(MouseEvent.CLICK, onClickNewGame);
+
+
+        btnHelp.graphics.clear();
+        btnHelp.graphics.beginFill(0x00A1FD, 1);
+        btnHelp.graphics.drawRoundRect(0, 0, 75, 25,5,5);
+        btnHelp.graphics.endFill();
+        btnHelp.x = width / 2+25+77;
+        btnHelp.y = 5;
+
+        txtHelp.x = btnHelp.x;
+        txtHelp.y = btnHelp.y+2;
+        txtHelp.width=80;
+        txtHelp.height=25;
+        txtHelp.mouseEnabled = false;
+        tf.size=13;
+        tf.color=0xffffff;
+        txtHelp.defaultTextFormat=tf;
+        txtHelp.text = "Help";
+        addChild(btnHelp);
+        addChild(txtHelp);
+        btnHelp.addEventListener(MouseEvent.CLICK, onClickHelp);
+    }
+
+    private function onClickHelp(event:MouseEvent):void {
+        txtHelp.visible=false;
+        btnHelp.visible=false;
+        myTimer.stop();
+        var popupWin:Sprite=new Sprite();
+        popupWin.graphics.clear();
+        popupWin.graphics.beginFill(0xFFFFFF,0.9);
+        popupWin.graphics.drawRoundRect(width / 2-75-200,-70,400,600,20,20);
+        popupWin.graphics.endFill();
+        addChild(popupWin);
+        listSrpiteLevel.push(popupWin);
+        var tf:TextFormat=new TextFormat();
+        tf.bold=true;
+        tf.size=18;
+        tf.font="Arial";
+        tf.align="center";
+        var btnLevelClose:Sprite = new Sprite();
+        btnLevelClose.graphics.clear();
+        btnLevelClose.graphics.beginFill(0x000000, 1);
+        btnLevelClose.graphics.drawRoundRect(0, 0, 30, 30,5,5);
+        btnLevelClose.graphics.endFill();
+        btnLevelClose.x =  width / 2+90;
+        btnLevelClose.y = -65;
+        var txtLevelClose:TextField = new TextField();
+        txtLevelClose.x = btnLevelClose.x;
+        txtLevelClose.y = btnLevelClose.y;
+        txtLevelClose.width=30;
+        txtLevelClose.height=30;
+        txtLevelClose.mouseEnabled = false;
+        tf.size=20;
+        tf.color=0xffffff;
+        txtLevelClose.defaultTextFormat=tf;
+        txtLevelClose.text = "x";
+        listSrpiteLevel.push(btnLevelClose);
+        listTxtLevel.push(txtLevelClose);
+        addChild(btnLevelClose);
+        addChild(txtLevelClose);
+        btnLevelClose.addEventListener(MouseEvent.CLICK, onClickCloseHelp);
+
+        var txt:TextField = new TextField();
+        txt.x =200 ;
+        txt.y =0;
+        txt.width=100;
+        txt.height=50;
+        txt.mouseEnabled = false;
+        tf.size=20;
+        tf.color=0x000000;
+        txt.defaultTextFormat=tf;
+        txt.autoSize="center";
+        txt.text = "HOW TO PLAY";
+        listTxtLevel.push(txt);
+        addChild(txt);
+        message("Click on an empty cell to fill it with the number indicated above the grid.",50);
+        message("Start a path from a given number by clicking on it.",70);
+        message("Erase a number with one click on a filled cell.",90);
+        message("_________RULES_________",110);
+        message("Put the numbers create a path of consecutive numbers.",130);
+        message("Numbers and links between cells are given to help finish the game.",150);
+        message("Two following numbers must be next to each other",170);
+        message("A link indicates a crossing point of the path.",190);
+        message("At the end, the entire grid must be full!",210);
+    }
+
+    private function message(txtHelpPa:String,dis:int):void {
+        var tf:TextFormat=new TextFormat();
+        tf.bold=true;
+        tf.size=18;
+        tf.font="Arial";
+        tf.align="center";
+        var txtHelp:TextField = new TextField();
+        txtHelp.x =95 ;
+        txtHelp.y =dis;
+        txtHelp.width=300;
+        txtHelp.height=50;
+        txtHelp.mouseEnabled = false;
+        tf.size=12;
+        tf.color=0x000000;
+        txtHelp.defaultTextFormat=tf;
+        txtHelp.autoSize="center";
+        txtHelp.text = txtHelpPa;
+        listTxtLevel.push(txtHelp);
+        addChild(txtHelp);
+    }
+
+    private function onClickCloseHelp(event:MouseEvent):void {
+        myTimer.start();
+        txtHelp.visible=true;
+        btnHelp.visible=true;
+        for(var i:int=0;i<listSrpiteLevel.length;i++){
+            listSrpiteLevel[i].visible=false;
+        }
+        for(var i:int=0;i<listTxtLevel.length;i++){
+            listTxtLevel[i].visible=false;
+        }
     }
 
     private function onClickLevelXXL(event:MouseEvent):void {
@@ -829,6 +950,8 @@ public class Main extends Sprite {
     }
 
     private function popupWin( mess:String):void {
+        btnHelp.visible=false;
+        txtHelp.visible=false;
         var popupWin:Sprite=new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF,0.9);
@@ -888,13 +1011,9 @@ public class Main extends Sprite {
         addChild(capt);
     }
     private function popupNewGame():void {
-        if(contains(timeSprite)){
-            removeChild(timeSprite);
-        }
-        if(contains(timerTextField)){
-            removeChild(timerTextField);
-        }
-        myTimer.reset();
+        txtHelp.visible=false;
+        btnHelp.visible=false;
+        myTimer.stop();
         var popupWin:Sprite=new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF,0.9);
@@ -1036,12 +1155,12 @@ public class Main extends Sprite {
         txtLevelXXL.x = btnLevelXXL.x;
         txtLevelXXL.y = btnLevelXXL.y;
         txtLevelXXL.width=100;
-        txtLevelXXL.height=30;
+        txtLevelXXL.height=32;
         txtLevelXXL.mouseEnabled = false;
         tf.size=16;
         tf.color=0xffffff;
         txtLevelXXL.defaultTextFormat=tf;
-        txtLevelXXL.text = "IMMORTAL";
+        txtLevelXXL.text = "Immortal";
         listSrpiteLevel.push(btnLevelXXL);
         listTxtLevel.push(txtLevelXXL);
         addChild(btnLevelXXL);
@@ -1069,11 +1188,13 @@ public class Main extends Sprite {
         listTxtLevel.push(txtLevelClose);
         addChild(btnLevelClose);
         addChild(txtLevelClose);
-        btnLevelClose.addEventListener(MouseEvent.CLICK, onClickLevelClose);
-
+        btnLevelClose.addEventListener(MouseEvent.CLICK, onClickClose);
     }
 
-    private function onClickLevelClose(event:MouseEvent):void {
+    private function onClickClose(event:MouseEvent):void {
+        txtHelp.visible=true;
+        btnHelp.visible=true;
+        myTimer.start();
         for(var i:int=0;i<listSrpiteLevel.length;i++){
             listSrpiteLevel[i].visible=false;
         }
