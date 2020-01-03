@@ -1,27 +1,17 @@
 package com.example.HexagonNumberMatrix{
 
-import avmplus.typeXml;
 import data.CirlcleData;
 import data.NumberBaseData;
 
-import flash.display.Bitmap;
 import flash.display.Loader;
-import flash.display.Screen;
-import flash.display.Shader;
 import flash.display.Shape;
 import flash.display.Sprite;
-import flash.events.Event;
-import flash.events;
-import flash.events.GameInputEvent;
+import flash.events.MouseEvent;
 import flash.events.TimerEvent;
 import flash.geom.ColorTransform;
-import flash.net.registerClassAlias;
-import flash.text.TextField;
-import flash.events.MouseEvent;
-import flash.text.TextFormat;
-import flash.text.engine.TextElement;
-import flash.ui.Mouse;
 import flash.geom.Point;
+import flash.text.TextField;
+import flash.text.TextFormat;
 import flash.utils.Timer;
 
 public class Main extends Sprite {
@@ -55,16 +45,46 @@ public class Main extends Sprite {
     var distanceX=54;
     var distanceY=47;
     var confDistanceShape:Number=7;
-    var time:int =11; //in secs +1
+    var time:int =755; //in secs +1
     var delay:int = 1000; // in milliseconds
     var myTimer:Timer = new Timer(0);
     var btnHelp:Sprite = new Sprite();
     var txtHelp:TextField = new TextField();
+    var buttonWelcome:Sprite = new Sprite();
     public function Main() {
-        loadGame();
+        welcomeGame();
     }
 
-    private  function loadGame():void{
+    private function welcomeGame():void{
+        buttonWelcome.graphics.clear();
+        buttonWelcome.graphics.beginFill(0xD4D4D4, 0.8); // grey color
+        buttonWelcome.graphics.drawRoundRect(150, 450, 200, 45, 10, 10); // x, y, width, height, ellipseW, ellipseH
+        buttonWelcome.graphics.endFill();
+        var start:TextField = new TextField();
+        var tf:TextFormat = new TextFormat();
+        tf.color=0xB90335;
+        tf.align = "center";
+        tf.size = 20;
+        tf.bold = true;
+        start.defaultTextFormat = tf;
+        start.width = 200;
+        start.height = 40;
+        start.text = "START THIS GAME";
+        start.y = 455;
+        start.x = 155;
+        buttonWelcome.addChild(start);
+        addChild(buttonWelcome);
+        buttonWelcome.addEventListener(MouseEvent.CLICK, onButtonWelcomeClick);
+    }
+
+    private function onButtonWelcomeClick(event:MouseEvent):void {
+        loadGame();
+    }
+    private function loadGame():void{
+        buttonWelcome.removeEventListener(MouseEvent.CLICK, loadGame);
+        if(contains(buttonWelcome)){
+            removeChild(buttonWelcome);
+        }
         loadBoard();
         timer();
         loadNextNumber();
@@ -1302,7 +1322,6 @@ public class Main extends Sprite {
                 }
             }
         }
-
 
         for(var i:int=0;i<templist.length;i++){
             if(templist[i].id==cir.id+1){
