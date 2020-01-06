@@ -3,6 +3,8 @@ package com.example.HexagonNumberMatrix{
 import data.CirlcleData;
 import data.NumberBaseData;
 
+import flash.display.DisplayObject;
+
 import flash.display.Loader;
 import flash.display.Shape;
 import flash.display.Sprite;
@@ -45,28 +47,28 @@ public class Main extends Sprite {
     var distanceX=54;
     var distanceY=47;
     var confDistanceShape:Number=7;
-    var time:int =755; //in secs +1
+    var time:int =31; //in secs +1
     var delay:int = 1000; // in milliseconds
     var myTimer:Timer = new Timer(0);
     var btnHelp:Sprite = new Sprite();
     var txtHelp:TextField = new TextField();
     var buttonWelcome:Sprite = new Sprite();
-    public function Main() {
+    public function Main(){
         welcomeGame();
     }
 
-    private function welcomeGame():void{
+    private function welcomeGame() :void{
         buttonWelcome.graphics.clear();
         buttonWelcome.graphics.beginFill(0xD4D4D4, 0.8); // grey color
         buttonWelcome.graphics.drawRoundRect(150, 450, 200, 45, 10, 10); // x, y, width, height, ellipseW, ellipseH
         buttonWelcome.graphics.endFill();
         var start:TextField = new TextField();
-        var tf:TextFormat = new TextFormat();
-        tf.color=0xB90335;
-        tf.align = "center";
-        tf.size = 20;
-        tf.bold = true;
-        start.defaultTextFormat = tf;
+        var tfWlc:TextFormat = new TextFormat();
+        tfWlc.color=0xB90335;
+        tfWlc.align = "center";
+        tfWlc.size = 20;
+        tfWlc.bold = true;
+        start.defaultTextFormat = tfWlc;
         start.width = 200;
         start.height = 40;
         start.text = "START THIS GAME";
@@ -75,6 +77,16 @@ public class Main extends Sprite {
         buttonWelcome.addChild(start);
         addChild(buttonWelcome);
         buttonWelcome.addEventListener(MouseEvent.CLICK, onButtonWelcomeClick);
+        var tfLvl:TextFormat=new TextFormat();
+        tfLvl.bold=true;
+        tfLvl.size=22;
+        tfLvl.font="Arial";
+        tfLvl.align="center";
+        tfLvl.size=13;
+        tfLvl.color=0xffffff;
+        txtNewGame.defaultTextFormat=tfLvl;
+        txtNewGame.text = "Harder ?";
+
     }
 
     private function onButtonWelcomeClick(event:MouseEvent):void {
@@ -89,6 +101,7 @@ public class Main extends Sprite {
         timer();
         loadNextNumber();
         loadBase();
+        loadButton();
         randomSuggest();
         txtHelp.visible=true;
         btnHelp.visible=true;
@@ -313,27 +326,6 @@ public class Main extends Sprite {
         sprite1.addEventListener(MouseEvent.MOUSE_DOWN, onClickSub);
         sprite2.addEventListener(MouseEvent.MOUSE_DOWN, onClickPlus);
 
-        var btnNewgame:Sprite = new Sprite();
-        btnNewgame.graphics.clear();
-        btnNewgame.graphics.beginFill(0x00A1FD, 1);
-        btnNewgame.graphics.drawRoundRect(0, 0, 75, 25,5,5);
-        btnNewgame.graphics.endFill();
-        btnNewgame.x = width / 2+25;
-        btnNewgame.y = 5;
-        var txtNewGame:TextField = new TextField();
-        txtNewGame.x = btnNewgame.x;
-        txtNewGame.y = btnNewgame.y+2;
-        txtNewGame.width=80;
-        txtNewGame.height=25;
-        txtNewGame.mouseEnabled = false;
-        tf.size=13;
-        tf.color=0xffffff;
-        txtNewGame.defaultTextFormat=tf;
-        txtNewGame.text = "Level";
-        addChild(btnNewgame);
-        addChild(txtNewGame);
-        btnNewgame.addEventListener(MouseEvent.CLICK, onClickNewGame);
-
 
         btnHelp.graphics.clear();
         btnHelp.graphics.beginFill(0x00A1FD, 1);
@@ -439,6 +431,33 @@ public class Main extends Sprite {
         listTxtLevel.push(txtHelp);
         addChild(txtHelp);
     }
+    var btnNewgame:Sprite = new Sprite();
+    var txtNewGame:TextField = new TextField();
+    private function loadButton():void{
+
+        btnNewgame.graphics.clear();
+        btnNewgame.graphics.beginFill(0x00A1FD, 1);
+        btnNewgame.graphics.drawRoundRect(0, 0, 75, 25,5,5);
+        btnNewgame.graphics.endFill();
+        btnNewgame.x = width / 2+25;
+        btnNewgame.y = 5;
+        txtNewGame.x = btnNewgame.x;
+        txtNewGame.y = btnNewgame.y+2;
+        txtNewGame.width=80;
+        txtNewGame.height=25;
+        txtNewGame.mouseEnabled = false;
+        var tf:TextFormat=new TextFormat();
+        tf.bold=true;
+        tf.size=22;
+        tf.font="Arial";
+        tf.align="center";
+        tf.size=13;
+        tf.color=0xffffff;
+        txtNewGame.defaultTextFormat=tf;
+        addChild(btnNewgame);
+        addChild(txtNewGame);
+        btnNewgame.addEventListener(MouseEvent.CLICK, onClickNewGame);
+    }
 
     private function onClickCloseHelp(event:MouseEvent):void {
         myTimer.start();
@@ -468,6 +487,7 @@ public class Main extends Sprite {
         timeSprite.graphics.clear();
         myTimer.reset();
         confDistanceShape=2.5;
+        txtNewGame.text ="IMMORTAL";
         loadGame();
     }
 
@@ -487,6 +507,8 @@ public class Main extends Sprite {
         timeSprite.graphics.clear();
         myTimer.reset();
         confDistanceShape=2.5;
+        txtNewGame.visible = true;
+        txtNewGame.text ="EVIL";
         loadGame();
     }
 
@@ -506,6 +528,7 @@ public class Main extends Sprite {
         timeSprite.graphics.clear();
         myTimer.reset();
         confDistanceShape=2.5;
+        txtNewGame.text ="XL";
         loadGame();
     }
 
@@ -524,6 +547,8 @@ public class Main extends Sprite {
         distanceY=47;
         sizee=30;
         confDistanceShape=7;
+
+        txtNewGame.text ="HARD";
         loadGame();
     }
 
@@ -542,6 +567,7 @@ public class Main extends Sprite {
         distanceY=47;
         sizee=30;
         confDistanceShape=7;
+        txtNewGame.text ="MEDIUM";
         loadGame();
     }
 
@@ -560,6 +586,7 @@ public class Main extends Sprite {
         distanceY=47;
         sizee=30;
         confDistanceShape=7;
+        txtNewGame.text ="BEGIN";
         loadGame();
     }
 
