@@ -1,11 +1,15 @@
-package com.example.HexagonNumberMatrix{
+package com.example.HexagonNumberMatrix {
 
 import data.CirlcleData;
 import data.NumberBaseData;
 
+import flash.compiler.embed.EmbeddedMovieClip;
+import flash.display.Bitmap;
 import flash.display.DisplayObject;
 
 import flash.display.Loader;
+import flash.display.Scene;
+import flash.display.Screen;
 import flash.display.Shape;
 import flash.display.Sprite;
 import flash.events.MouseEvent;
@@ -31,84 +35,113 @@ public class Main extends Sprite {
     var isPlusType:Boolean = true;
     var x1:int;
     var y1:int;
-    var nLevel:int=5;
+    var nLevel:int = 5;
     var rLevel:Number;
-    var numShape=0;
-    var n2:int=nLevel/2;
-    var conf:int=26;
-    var confRight:int=59;
-    var listSrpiteLevel:Array=[];
-    var listTxtLevel:Array=[];
-    var numberSuggest:int=9;
-    var numberPoint:int=4;
-    var cir1Draw:CirlcleData=new CirlcleData();
-    var cir2Draw:CirlcleData=new CirlcleData();
-    var sizee:int=30;
-    var distanceX=54;
-    var distanceY=47;
-    var confDistanceShape:Number=7;
-    var time:int =31; //in secs +1
+    var numShape = 0;
+    var n2:int = nLevel / 2;
+    var conf:int = 26;
+    var confRight:int = 59;
+    var listSrpiteLevel:Array = [];
+    var listTxtLevel:Array = [];
+    var numberSuggest:int = 9;
+    var numberPoint:int = 4;
+    var cir1Draw:CirlcleData = new CirlcleData();
+    var cir2Draw:CirlcleData = new CirlcleData();
+    var sizee:int = 30;
+    var distanceX = 54;
+    var distanceY = 47;
+    var confDistanceShape:Number = 7;
+    var time:int = 30; //in secs +1
     var delay:int = 1000; // in milliseconds
     var myTimer:Timer = new Timer(0);
-    var btnHelp:Sprite = new Sprite();
-    var txtHelp:TextField = new TextField();
-    var buttonWelcome:Sprite = new Sprite();
-    public function Main(){
+
+    //Embed Image
+    [Embed(source='img/test.jpg')]
+    private const embeddedImage:Class;
+    [Embed(source='img/btnStart.png')]
+    private const BtnStart:Class;
+    [Embed(source='img/BG.png')]
+    private const BgIngame:Class;
+    [Embed(source='img/btnPause.png')]
+    private const btnPause:Class;
+    [Embed(source='img/question-mark.png')]
+    private const BtnHelp:Class;
+    [Embed(source='img/access-denied.png')]
+    private const BtnClose:Class;
+    [Embed(source='img/helpIcon.png')]
+    private const HelpIcon:Class;
+    [Embed(source='img/Siver.png')]
+    private const SiverIcon:Class;
+    [Embed(source='img/Bronze.png')]
+    private const Bronze:Class;
+    [Embed(source='img/Gold.png')]
+    private const Gold:Class;
+    [Embed(source='img/Platium.png')]
+    private const Platium:Class;
+    [Embed(source='img/Diamond.png')]
+    private const Diamond:Class;
+    [Embed(source='img/Mater.png')]
+    private const Mater:Class;
+    [Embed(source='img/reload.png')]
+    private const Reload:Class;
+    //embed
+    [Embed(source='img/ButtonClick.mp3')]
+    private const SoundClick:Class;
+    [Embed(source='img/Win.mp3')]
+    private const LevelClick:Class;
+    [Embed(source='img/PickCell.mp3')]
+
+    private const WinSound:Class;
+    var isLoad:Boolean=true;
+    var sou=new SoundClick();
+    var winSound=new WinSound();
+    var levelClick=new LevelClick();
+    public function Main() {
         welcomeGame();
     }
 
-    private function welcomeGame() :void{
+    private function welcomeGame():void {
+        var popupWin:Sprite = new Sprite();
+        popupWin.graphics.clear();
+        popupWin.graphics.beginFill(0xFFFFFF, 0.9);
+        popupWin.graphics.drawRoundRect(0, -185, width, height,0,0 );
+        popupWin.graphics.endFill();
+        addChild(popupWin);
+        var bg:DisplayObject = new embeddedImage();
+        bg.scaleY = 0.85;
+        bg.scaleX = 0.8;
+        bg.y = -185;
+        addChild(bg);
+        var btnStart:DisplayObject = new BtnStart();
+        btnStart.scaleX = 1.5;
+        btnStart.scaleY = 1.5;
+        btnStart.x = stage.width / 2 - btnStart.width / 2;
+        btnStart.y = stage.height / 2 - btnStart.height / 2;
+        var buttonWelcome:Sprite = new Sprite();
         buttonWelcome.graphics.clear();
-        buttonWelcome.graphics.beginFill(0xD4D4D4, 0.8); // grey color
-        buttonWelcome.graphics.drawRoundRect(150, 450, 200, 45, 10, 10); // x, y, width, height, ellipseW, ellipseH
+        buttonWelcome.graphics.beginFill(0xD4D4D4, 0.8);
+        buttonWelcome.graphics.drawEllipse(stage.width / 2 - btnStart.width / 2, stage.height / 2 - btnStart.height / 2, btnStart.width, btnStart.height);
         buttonWelcome.graphics.endFill();
-        var start:TextField = new TextField();
-        var tfWlc:TextFormat = new TextFormat();
-        tfWlc.color=0xB90335;
-        tfWlc.align = "center";
-        tfWlc.size = 20;
-        tfWlc.bold = true;
-        start.defaultTextFormat = tfWlc;
-        start.width = 200;
-        start.height = 40;
-        start.text = "START THIS GAME";
-        start.y = 455;
-        start.x = 155;
-        buttonWelcome.addChild(start);
+        buttonWelcome.addChild(btnStart);
         addChild(buttonWelcome);
         buttonWelcome.addEventListener(MouseEvent.CLICK, onButtonWelcomeClick);
-        var tfLvl:TextFormat=new TextFormat();
-        tfLvl.bold=true;
-        tfLvl.size=22;
-        tfLvl.font="Arial";
-        tfLvl.align="center";
-        tfLvl.size=13;
-        tfLvl.color=0xffffff;
-        txtNewGame.defaultTextFormat=tfLvl;
-        txtNewGame.text = "Harder ?";
-
     }
 
     private function onButtonWelcomeClick(event:MouseEvent):void {
+        sou.play();
         loadGame();
     }
-    private function loadGame():void{
-        buttonWelcome.removeEventListener(MouseEvent.CLICK, loadGame);
-        if(contains(buttonWelcome)){
-            removeChild(buttonWelcome);
-        }
+
+    private function loadGame():void {
         loadBoard();
         timer();
         loadNextNumber();
         loadBase();
-        loadButton();
         randomSuggest();
-        txtHelp.visible=true;
-        btnHelp.visible=true;
     }
 
     private function randomSuggest():void {
-        var listS:Array=[];
+        var listS:Array = [];
         for (var i:int = 0; i < nLevel; i++) {
             for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null) {
@@ -116,42 +149,44 @@ public class Main extends Sprite {
                 }
             }
         }
-        for(var i:int=0;i<numberPoint;i++){
+        for (var i:int = 0; i < numberPoint; i++) {
             randomS(listS);
         }
     }
 
     private function randomS(listS:Array):void {
-        var cir:CirlcleData=new CirlcleData();
-        cir=listS[int(Math.random()*listS.length)];
-        var nearCir:CirlcleData=new CirlcleData();
-        nearCir=randomNear(cir.x,cir.y,cir);
-        cir.nearCircle=nearCir;
-        if(nearCir!=null){
+        var cir:CirlcleData = new CirlcleData();
+        cir = listS[int(Math.random() * listS.length)];
+        var nearCir:CirlcleData = new CirlcleData();
+        nearCir = randomNear(cir.x, cir.y, cir);
+        cir.nearCircle = nearCir;
+        if (nearCir != null) {
 
             var myShape:Shape = new Shape();
-            var size: int = 4;
-            var pointA:Point = new Point(0,0);
-            myShape.graphics.moveTo(pointy_hex_corner(pointA,size,0).x, pointy_hex_corner(pointA,size,0).y);
+            var size:int = 4;
+            var pointA:Point = new Point(0, 0);
+            myShape.graphics.moveTo(pointy_hex_corner(pointA, size, 0).x, pointy_hex_corner(pointA, size, 0).y);
             myShape.graphics.beginFill(0x000000);
-            for (var i:int = 0; i <7; i++){
+            for (var i:int = 0; i < 7; i++) {
                 myShape.graphics.lineStyle(2, 0xFF888B);
-                myShape.graphics.lineTo(pointy_hex_corner(pointA,size,i).x, pointy_hex_corner(pointA, size, i).y);
+                myShape.graphics.lineTo(pointy_hex_corner(pointA, size, i).x, pointy_hex_corner(pointA, size, i).y);
                 addChild(myShape);
             }
             myShape.graphics.endFill();
-            myShape.x=(cir.sprite.x+cir.sprite.width/2+nearCir.sprite.x+cir.sprite.width/2)/2;
-            myShape.y=(cir.sprite.y+cir.sprite.width/2+nearCir.sprite.y+cir.sprite.width/2)/2;
-            var cortran:ColorTransform =new ColorTransform();cortran.color=0xBAF6F7;
-            myShape.transform.colorTransform=new ColorTransform(0xF0FF00);
+            myShape.x = (cir.sprite.x + cir.sprite.width / 2 + nearCir.sprite.x + cir.sprite.width / 2) / 2;
+            myShape.y = (cir.sprite.y + cir.sprite.width / 2 + nearCir.sprite.y + cir.sprite.width / 2) / 2;
+            var cortran:ColorTransform = new ColorTransform();
+            cortran.color = 0xBAF6F7;
+            myShape.transform.colorTransform = new ColorTransform(0xF0FF00);
         }
     }
-    private function randomNear(i:int,j:int,cir:CirlcleData):CirlcleData {
+
+    private function randomNear(i:int, j:int, cir:CirlcleData):CirlcleData {
         var templist:Array = new Array();
-        if (listSprite[i][j - 1] != null ) {
+        if (listSprite[i][j - 1] != null) {
             templist.push(listSprite[i][j - 1]);
         }
-        if (listSprite[i][j + 1] != null ) {
+        if (listSprite[i][j + 1] != null) {
             templist.push(listSprite[i][j + 1]);
         }
         if (i < n2) {
@@ -159,64 +194,66 @@ public class Main extends Sprite {
             if (i - 1 >= 0 && i - 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i - 1][j - 1] != null) {
                 templist.push(listSprite[i - 1][j - 1]);
             }
-            if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null ) {
+            if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null) {
                 templist.push(listSprite[i - 1][j]);
             }
-            if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null ) {
+            if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null) {
                 templist.push(listSprite[i + 1][j]);
             }
-            if (i + 1 >= 0 && i + 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i + 1][j + 1] != null ) {
+            if (i + 1 >= 0 && i + 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i + 1][j + 1] != null) {
                 templist.push(listSprite[i + 1][j + 1]);
             }
         } else {
             if (i == n2) {
-                if (listSprite[i - 1][j - 1] != null ) {
+                if (listSprite[i - 1][j - 1] != null) {
                     listSprite[i - 1][j - 1].x = i - 1;
                     listSprite[i - 1][j - 1].y = j - 1;
                     templist.push(listSprite[i - 1][j - 1]);
                 }
-                if (listSprite[i + 1][j] != null ) {
+                if (listSprite[i + 1][j] != null) {
                     listSprite[i + 1][j].x = i + 1;
                     listSprite[i + 1][j].y = j;
                     templist.push(listSprite[i + 1][j]);
                 }
-                if (listSprite[i + 1][j - 1] != null ) {
+                if (listSprite[i + 1][j - 1] != null) {
                     listSprite[i + 1][j - 1].x = i + 1;
                     listSprite[i + 1][j - 1].y = j - 1;
                     templist.push(listSprite[i + 1][j - 1]);
                 }
-                if (listSprite[i - 1][j] != null ) {
-                    listSprite[i - 1][j].x = i -1;
+                if (listSprite[i - 1][j] != null) {
+                    listSprite[i - 1][j].x = i - 1;
                     listSprite[i - 1][j].y = j;
                     templist.push(listSprite[i - 1][j]);
                 }
             } else {
-                if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null ) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null) {
                     templist.push(listSprite[i + 1][j]);
                 }
-                if (i - 1 >= 0 && i - 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i - 1][j + 1] != null ) {
+                if (i - 1 >= 0 && i - 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i - 1][j + 1] != null) {
                     templist.push(listSprite[i - 1][j + 1]);
                 }
-                if (i + 1 >= 0 && i + 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i + 1][j - 1] != null ) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i + 1][j - 1] != null) {
                     templist.push(listSprite[i + 1][j - 1]);
                 }
-                if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null ) {
+                if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null) {
                     templist.push(listSprite[i - 1][j]);
                 }
             }
         }
-        for(var l:int;l<templist.length;l++){
-            if(templist[l].idBase==cir.idBase+1){
+        for (var l:int; l < templist.length; l++) {
+            if (templist[l].idBase == cir.idBase + 1) {
                 return templist[l];
             }
         }
         return null;
     }
+
     var timerTextField:TextField = new TextField();
     var timeSprite:Sprite = new Sprite();
+
     public function timer():void {
         myTimer.delay = delay;
-        myTimer.repeatCount =time;
+        myTimer.repeatCount = time;
         switch (time) {
             case 31, 91, 211:
                 runClock(time);
@@ -226,22 +263,23 @@ public class Main extends Sprite {
                 break;
         }
 
-        function runClock(a: int):void {
-                myTimer.addEventListener(TimerEvent.TIMER, onTimer);
-                myTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
-                myTimer.start();
-                var tf:TextFormat = new TextFormat();
-                tf.size = 30;
-                tf.bold = true;
-                tf.font = "Agency FB"
-                tf.color = 0xde0b0b;
-                tf.align = "center";
-                timerTextField.defaultTextFormat = tf;
-                timeSprite.graphics.beginFill(0x696969, 0.3);
-                timeSprite.graphics.drawRoundRect(5, 0, 85, 35, 20, 40);
-                timeSprite.addChild(timerTextField);
-                timeSprite.graphics.endFill();
-                addChild(timeSprite);
+        function runClock(a:int):void {
+            myTimer.addEventListener(TimerEvent.TIMER, onTimer);
+            myTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
+            myTimer.start();
+            var tf:TextFormat = new TextFormat();
+            tf.size = 30;
+            tf.bold = true;
+            tf.font = "Agency FB"
+            tf.color = 0xde0b0b;
+            tf.align = "center";
+            timerTextField.defaultTextFormat = tf;
+            timeSprite.graphics.beginFill(0x696969, 0.3);
+            timeSprite.graphics.drawRoundRect(5, 0, 85, 35, 20, 40);
+            timeSprite.addChild(timerTextField);
+            timeSprite.graphics.endFill();
+            addChild(timeSprite);
+
             function onTimer(e:TimerEvent):void {
                 if (startCheck()) {
                     myTimer.stop();
@@ -256,6 +294,7 @@ public class Main extends Sprite {
             function onComplete(e:TimerEvent):void {
                 myTimer.reset();
                 popupWin("Time Out!!!")
+
             }
         }
     }
@@ -266,58 +305,57 @@ public class Main extends Sprite {
         sprite.graphics.beginFill(0xFF4600, 0);
         sprite.graphics.drawEllipse(0, 0, 40, 40);
         sprite.graphics.endFill();
-        sprite.x = width / 2 - 20-75+5;
-        sprite.y = -50+5+50;
-        drawHex( width / 2 - 20-75+20+5,-50+20+50,sizee).transform.colorTransform=new ColorTransform(0xF0FF00);
-
+        sprite.x = width / 2 - 20 - 75 + 5;
+        sprite.y = -50 + 5 + 50;
+        drawHex(width / 2 - 20 - 75 + 20 + 5, -50 + 20 + 50, sizee).transform.colorTransform = new ColorTransform(0xF0FF00);
         var sprite1:Sprite = new Sprite();
         sprite1.graphics.clear();
         sprite1.graphics.beginFill(0xFF8E63, 1);
         sprite1.graphics.drawEllipse(0, 0, 30, 30);
-        sprite1.x =width / 2 - 20 - 40-75+5;
-        sprite1.y = -50 + 10+50;
+        sprite1.x = width / 2 - 20 - 40 - 75 + 5;
+        sprite1.y = -50 + 10 + 50;
         sprite1.graphics.endFill();
-        sprite1.transform.colorTransform=new ColorTransform(0xF0FF00);
+        sprite1.transform.colorTransform = new ColorTransform(0xF0FF00);
         var sprite2:Sprite = new Sprite();
         sprite2.graphics.clear();
         sprite2.graphics.beginFill(0xFF8E63, 1);
         sprite2.graphics.drawEllipse(0, 0, 30, 30);
-        sprite2.x = width / 2 - 20 + 40 + 10-75+5;
-        sprite2.y = -50 + 10+50;
+        sprite2.x = width / 2 - 20 + 40 + 10 - 75 + 5;
+        sprite2.y = -50 + 10 + 50;
         sprite2.graphics.endFill();
-        sprite2.transform.colorTransform=new ColorTransform(0xF0FF00);
+        sprite2.transform.colorTransform = new ColorTransform(0xF0FF00);
         addChild(sprite);
         addChild(sprite1);
         addChild(sprite2);
         txtNextNumber.text = nextNumber.toString();
         txtNextNumber.x = sprite.x;
-        txtNextNumber.y = sprite.y ;
-        txtNextNumber.width=40;
-        txtNextNumber.height=40;
-        var tf:TextFormat=new TextFormat();
-        tf.bold=true;
-        tf.size=22;
-        tf.font="Arial";
-        tf.align="center";
+        txtNextNumber.y = sprite.y;
+        txtNextNumber.width = 40;
+        txtNextNumber.height = 40;
+        var tf:TextFormat = new TextFormat();
+        tf.bold = true;
+        tf.size = 22;
+        tf.font = "Arial";
+        tf.align = "center";
         var txtPlus:TextField = new TextField();
-        txtPlus.x = sprite2.x +2;
-        txtPlus.y = sprite2.y ;
-        txtPlus.width=25;
-        txtPlus.height=25;
+        txtPlus.x = sprite2.x + 2;
+        txtPlus.y = sprite2.y;
+        txtPlus.width = 25;
+        txtPlus.height = 25;
         txtPlus.mouseEnabled = false;
-        txtPlus.defaultTextFormat=tf;
+        txtPlus.defaultTextFormat = tf;
         txtPlus.text = "+";
         var txtSub:TextField = new TextField();
-        txtSub.x = sprite1.x +2;
-        txtSub.y = sprite1.y ;
+        txtSub.x = sprite1.x + 2;
+        txtSub.y = sprite1.y;
         txtSub.mouseEnabled = false;
-        txtSub.width=25;
-        txtSub.height=25;
-        txtSub.defaultTextFormat=tf;
+        txtSub.width = 25;
+        txtSub.height = 25;
+        txtSub.defaultTextFormat = tf;
         txtSub.text = "-";
         txtNextNumber.mouseEnabled = false;
 
-        txtNextNumber.defaultTextFormat=tf;
+        txtNextNumber.defaultTextFormat = tf;
 
 
         addChild(txtNextNumber);
@@ -327,266 +365,252 @@ public class Main extends Sprite {
         sprite2.addEventListener(MouseEvent.MOUSE_DOWN, onClickPlus);
 
 
-        btnHelp.graphics.clear();
-        btnHelp.graphics.beginFill(0x00A1FD, 1);
-        btnHelp.graphics.drawRoundRect(0, 0, 75, 25,5,5);
-        btnHelp.graphics.endFill();
-        btnHelp.x = width / 2+25+77;
-        btnHelp.y = 5;
+        var btnNewgame:Sprite = new Sprite();
+        btnNewgame.graphics.clear();
+        btnNewgame.graphics.beginFill(0x00A1FD, 0);
+        btnNewgame.graphics.drawEllipse(0, 0, 50, 50);
+        btnNewgame.graphics.endFill();
+        btnNewgame.x = width-btnNewgame.width-140-20;
+        btnNewgame.y = -165;
+        addChild(btnNewgame);
+        btnNewgame.addEventListener(MouseEvent.CLICK, onClickNewGame);
+        var btnPaus:DisplayObject=new btnPause();
+        btnPaus.scaleX=0.5;
+        btnPaus.scaleY=0.5;
+        btnPaus.x=width-btnPaus.width-140-20;
+        btnPaus.y=-165;
+        addChild(btnPaus);
 
-        txtHelp.x = btnHelp.x;
-        txtHelp.y = btnHelp.y+2;
-        txtHelp.width=80;
-        txtHelp.height=25;
-        txtHelp.mouseEnabled = false;
-        tf.size=13;
-        tf.color=0xffffff;
-        txtHelp.defaultTextFormat=tf;
-        txtHelp.text = "Help";
+        var btnHelp:Sprite = new Sprite();
+        btnHelp.graphics.clear();
+        btnHelp.graphics.beginFill(0x5B527F, 1);
+        btnHelp.graphics.drawEllipse(width-btnNewgame.width-140-20, -100, 50, 50);
+        btnHelp.graphics.endFill();
         addChild(btnHelp);
-        addChild(txtHelp);
         btnHelp.addEventListener(MouseEvent.CLICK, onClickHelp);
+        var btnHel:DisplayObject=new BtnHelp();
+        btnHel.scaleY=0.5;
+        btnHel.scaleX=0.5;
+        btnHel.x=width-btnNewgame.width-140-20+10;
+        btnHel.y=-100+10;
+        addChild(btnHel);
     }
 
     private function onClickHelp(event:MouseEvent):void {
-        txtHelp.visible=false;
-        btnHelp.visible=false;
+        sou.play();
         myTimer.stop();
-        var popupWin:Sprite=new Sprite();
+        var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
-        popupWin.graphics.beginFill(0xFFFFFF,0.9);
-        popupWin.graphics.drawRoundRect(width / 2-75-200,-70,400,600,20,20);
+        popupWin.graphics.beginFill(0xFFFFFF, 0.9);
+        popupWin.graphics.drawRoundRect(0, -185, 640, 920 ,0,0);
         popupWin.graphics.endFill();
         addChild(popupWin);
         listSrpiteLevel.push(popupWin);
-        var tf:TextFormat=new TextFormat();
-        tf.bold=true;
-        tf.size=18;
-        tf.font="Arial";
-        tf.align="center";
+        var tf:TextFormat = new TextFormat();
+        tf.bold = true;
+        tf.size = 18;
+        tf.font = "Arial";
+        tf.align = "center";
         var btnLevelClose:Sprite = new Sprite();
         btnLevelClose.graphics.clear();
-        btnLevelClose.graphics.beginFill(0x000000, 1);
-        btnLevelClose.graphics.drawRoundRect(0, 0, 30, 30,5,5);
+        btnLevelClose.graphics.beginFill(0x5D527D, 1);
+        btnLevelClose.graphics.drawEllipse(0, 0, 50, 50);
         btnLevelClose.graphics.endFill();
-        btnLevelClose.x =  width / 2+90;
-        btnLevelClose.y = -65;
-        var txtLevelClose:TextField = new TextField();
-        txtLevelClose.x = btnLevelClose.x;
-        txtLevelClose.y = btnLevelClose.y;
-        txtLevelClose.width=30;
-        txtLevelClose.height=30;
-        txtLevelClose.mouseEnabled = false;
-        tf.size=20;
-        tf.color=0xffffff;
-        txtLevelClose.defaultTextFormat=tf;
-        txtLevelClose.text = "x";
+        btnLevelClose.x = width-btnLevelClose.width-140-20;
+        btnLevelClose.y = -165;
         listSrpiteLevel.push(btnLevelClose);
-        listTxtLevel.push(txtLevelClose);
         addChild(btnLevelClose);
-        addChild(txtLevelClose);
         btnLevelClose.addEventListener(MouseEvent.CLICK, onClickCloseHelp);
 
+        var btnClos:DisplayObject=new BtnClose();
+        btnClos.scaleX=0.4;
+        btnClos.scaleY=0.4;
+        btnClos.x=width-btnLevelClose.width-140-20+12;
+        btnClos.y=-165+12;
+        addChild(btnClos);
+        listSrpiteLevel.push(btnClos);
+
+        var helpIcon:DisplayObject=new HelpIcon();
+        helpIcon.scaleX=0.75;
+        helpIcon.scaleY=0.75;
+        helpIcon.x=(width-helpIcon.width-140)/2;
+        helpIcon.y=-160;
+        addChild(helpIcon);
+        listSrpiteLevel.push(helpIcon);
+
         var txt:TextField = new TextField();
-        txt.x =200 ;
-        txt.y =0;
-        txt.width=100;
-        txt.height=50;
+        txt.x = 200;
+        txt.y = 0;
+        txt.width = 100;
+        txt.height = 50;
         txt.mouseEnabled = false;
-        tf.size=20;
-        tf.color=0x000000;
-        txt.defaultTextFormat=tf;
-        txt.autoSize="center";
+        tf.size = 20;
+        tf.color = 0x000000;
+        txt.defaultTextFormat = tf;
+        txt.autoSize = "center";
         txt.text = "HOW TO PLAY";
         listTxtLevel.push(txt);
         addChild(txt);
-        message("Click on an empty cell to fill it with the number indicated above the grid.",50);
-        message("Start a path from a given number by clicking on it.",70);
-        message("Erase a number with one click on a filled cell.",90);
-        message("_________RULES_________",110);
-        message("Put the numbers create a path of consecutive numbers.",130);
-        message("Numbers and links between cells are given to help finish the game.",150);
-        message("Two following numbers must be next to each other",170);
-        message("A link indicates a crossing point of the path.",190);
-        message("At the end, the entire grid must be full!",210);
+        message("Click on an empty cell to fill it with the number indicated above the grid.", 50);
+        message("Start a path from a given number by clicking on it.", 70);
+        message("Erase a number with one click on a filled cell.", 90);
+        message("_________RULES_________", 110);
+        message("Put the numbers create a path of consecutive numbers.", 130);
+        message("Numbers and links between cells are given to help finish the game.", 150);
+        message("Two following numbers must be next to each other", 170);
+        message("A link indicates a crossing point of the path.", 190);
+        message("At the end, the entire grid must be full!", 210);
     }
 
-    private function message(txtHelpPa:String,dis:int):void {
-        var tf:TextFormat=new TextFormat();
-        tf.bold=true;
-        tf.size=18;
-        tf.font="Arial";
-        tf.align="center";
+    private function message(txtHelpPa:String, dis:int):void {
+        var tf:TextFormat = new TextFormat();
+        tf.bold = true;
+        tf.size = 18;
+        tf.font = "Arial";
+        tf.align = "center";
         var txtHelp:TextField = new TextField();
-        txtHelp.x =95 ;
-        txtHelp.y =dis;
-        txtHelp.width=300;
-        txtHelp.height=50;
+        txtHelp.x = 95;
+        txtHelp.y = dis;
+        txtHelp.width = 300;
+        txtHelp.height = 50;
         txtHelp.mouseEnabled = false;
-        tf.size=12;
-        tf.color=0x000000;
-        txtHelp.defaultTextFormat=tf;
-        txtHelp.autoSize="center";
+        tf.size = 12;
+        tf.color = 0x000000;
+        txtHelp.defaultTextFormat = tf;
+        txtHelp.autoSize = "center";
         txtHelp.text = txtHelpPa;
         listTxtLevel.push(txtHelp);
         addChild(txtHelp);
     }
-    var btnNewgame:Sprite = new Sprite();
-    var txtNewGame:TextField = new TextField();
-    private function loadButton():void{
-
-        btnNewgame.graphics.clear();
-        btnNewgame.graphics.beginFill(0x00A1FD, 1);
-        btnNewgame.graphics.drawRoundRect(0, 0, 75, 25,5,5);
-        btnNewgame.graphics.endFill();
-        btnNewgame.x = width / 2+25;
-        btnNewgame.y = 5;
-        txtNewGame.x = btnNewgame.x;
-        txtNewGame.y = btnNewgame.y+2;
-        txtNewGame.width=80;
-        txtNewGame.height=25;
-        txtNewGame.mouseEnabled = false;
-        var tf:TextFormat=new TextFormat();
-        tf.bold=true;
-        tf.size=22;
-        tf.font="Arial";
-        tf.align="center";
-        tf.size=13;
-        tf.color=0xffffff;
-        txtNewGame.defaultTextFormat=tf;
-        addChild(btnNewgame);
-        addChild(txtNewGame);
-        btnNewgame.addEventListener(MouseEvent.CLICK, onClickNewGame);
-    }
 
     private function onClickCloseHelp(event:MouseEvent):void {
+        sou.play();
         myTimer.start();
-        txtHelp.visible=true;
-        btnHelp.visible=true;
-        for(var i:int=0;i<listSrpiteLevel.length;i++){
-            listSrpiteLevel[i].visible=false;
+        for (var i:int = 0; i < listSrpiteLevel.length; i++) {
+            listSrpiteLevel[i].visible = false;
         }
-        for(var i:int=0;i<listTxtLevel.length;i++){
-            listTxtLevel[i].visible=false;
+        for (var i:int = 0; i < listTxtLevel.length; i++) {
+            listTxtLevel[i].visible = false;
         }
     }
 
     private function onClickLevelXXL(event:MouseEvent):void {
-        nLevel=11;
-        conf=-54+24;
-        confRight=-26+27;
-        numShape=0;
-        n2=nLevel/2;
-        numberSuggest=10;
-        numberPoint=12;
-        sizee=24;
-        distanceX=45;
-        distanceY=38;
-        confDistanceShape=6.2;
+        levelClick.play();
+        nLevel = 11;
+        conf = -54 + 24;
+        confRight = -26 + 27;
+        numShape = 0;
+        n2 = nLevel / 2;
+        numberSuggest = 10;
+        numberPoint = 12;
+        sizee = 24;
+        distanceX = 45;
+        distanceY = 38;
+        confDistanceShape = 6.2;
         time = 1001;
         timeSprite.graphics.clear();
         myTimer.reset();
-        confDistanceShape=2.5;
-        txtNewGame.text ="IMMORTAL";
+        confDistanceShape = 2.5;
         loadGame();
     }
 
     private function onClickLevelEvil(event:MouseEvent):void {
-        nLevel=11;
-        conf=-54+24;
-        confRight=-26+27;
-        numShape=0;
-        n2=nLevel/2;
-        numberSuggest=20;
-        numberPoint=8;
-        sizee=24;
-        distanceX=45;
-        distanceY=38;
-        confDistanceShape=6.2;
+        levelClick.play();
+        nLevel = 11;
+        conf = -54 + 24;
+        confRight = -26 + 27;
+        numShape = 0;
+        n2 = nLevel / 2;
+        numberSuggest = 20;
+        numberPoint = 8;
+        sizee = 24;
+        distanceX = 45;
+        distanceY = 38;
+        confDistanceShape = 6.2;
         time = 301;
         timeSprite.graphics.clear();
         myTimer.reset();
-        confDistanceShape=2.5;
-        txtNewGame.visible = true;
-        txtNewGame.text ="EVIL";
+        confDistanceShape = 2.5;
         loadGame();
     }
 
     private function onClickLevelXL(event:MouseEvent):void {
-        nLevel=11;
-        conf=-54+24;
-        confRight=-26+27;
-        numShape=0;
-        n2=nLevel/2;
-        numberSuggest=15;
-        numberPoint=10;
-        sizee=24;
-        distanceX=45;
-        distanceY=38;
-        confDistanceShape=6.2;
+        levelClick.play();
+        nLevel = 11;
+        conf = -54 + 24;
+        confRight = -26 + 27;
+        numShape = 0;
+        n2 = nLevel / 2;
+        numberSuggest = 15;
+        numberPoint = 10;
+        sizee = 24;
+        distanceX = 45;
+        distanceY = 38;
+        confDistanceShape = 6.2;
         time = 241;
         timeSprite.graphics.clear();
         myTimer.reset();
-        confDistanceShape=2.5;
-        txtNewGame.text ="XL";
+        confDistanceShape = 2.5;
         loadGame();
     }
 
     private function onClickLevelHa(event:MouseEvent):void {
-        time=211;
-        nLevel=9;
-        conf=-28;
-        confRight=5;
-        numShape=0;
-        n2=nLevel/2;
-        numberSuggest=12;
-        numberPoint=7;
+        levelClick.play();
+        time = 211;
+        nLevel = 9;
+        conf = -28;
+        confRight = 5;
+        numShape = 0;
+        n2 = nLevel / 2;
+        numberSuggest = 12;
+        numberPoint = 7;
         myTimer.reset();
         timeSprite.graphics.clear();
-        distanceX=54;
-        distanceY=47;
-        sizee=30;
-        confDistanceShape=7;
-
-        txtNewGame.text ="HARD";
+        distanceX = 54;
+        distanceY = 47;
+        sizee = 30;
+        confDistanceShape = 7;
         loadGame();
     }
 
     private function onClickLevelMe(event:MouseEvent):void {
-        time=91;
-        nLevel=7;
-        conf=-1;
-        confRight=28+5;
-        numShape=0;
-        n2=nLevel/2;
-        numberSuggest=12;
-        numberPoint=7;
-        myTimer.reset();
-        timeSprite.graphics.clear();
-        distanceX=54;
-        distanceY=47;
-        sizee=30;
-        confDistanceShape=7;
-        txtNewGame.text ="MEDIUM";
-        loadGame();
+        levelClick.play();
+        if(isLoad){
+            isLoad=false;
+            time = 91;
+            nLevel = 7;
+            conf = -1;
+            confRight = 28 + 5;
+            numShape = 0;
+            n2 = nLevel / 2;
+            numberSuggest = 12;
+            numberPoint = 7;
+            myTimer.reset();
+            timeSprite.graphics.clear();
+            distanceX = 54;
+            distanceY = 47;
+            sizee = 30;
+            confDistanceShape = 7;
+            loadGame();
+        }
     }
 
     private function onClickLevelBe(event:MouseEvent):void {
-        time= 31;
-        nLevel=5;
-        conf=26;
-        confRight=59;
-        numShape=0;
-        n2=nLevel/2;
-        numberSuggest=9;
-        numberPoint=4;
+        levelClick.play();
+        time = 31;
+        nLevel = 5;
+        conf = 26;
+        confRight = 59;
+        numShape = 0;
+        n2 = nLevel / 2;
+        numberSuggest = 9;
+        numberPoint = 4;
         myTimer.reset();
         timeSprite.graphics.clear();
-        distanceX=54;
-        distanceY=47;
-        sizee=30;
-        confDistanceShape=7;
-        txtNewGame.text ="BEGIN";
+        distanceX = 54;
+        distanceY = 47;
+        sizee = 30;
+        confDistanceShape = 7;
         loadGame();
     }
 
@@ -600,7 +624,7 @@ public class Main extends Sprite {
             tempPlus++;
             if (tempPlus == numShape || !checkBoard(tempPlus)) break;
         }
-        if(tempPlus<numShape){
+        if (tempPlus < numShape) {
             nextNumber = tempPlus;
             txtNextNumber.text = nextNumber.toString();
             isPlusType = true;
@@ -621,26 +645,31 @@ public class Main extends Sprite {
     }
 
     private function loadBoard():void {
-        var BG:Sprite = new Sprite();
-        BG.graphics.clear();
-        BG.graphics.beginFill(0xBAF6F7, 1);
-        BG.graphics.drawRect(-100,-250,640,920);
-        BG.graphics.endFill();
-        addChild(BG);
-        n2=nLevel/2;
+        var popupWin:Sprite = new Sprite();
+        popupWin.graphics.clear();
+        popupWin.graphics.beginFill(0xFFFFFF, 0.9);
+        popupWin.graphics.drawRoundRect(0, -185, width, height,0,0 );
+        popupWin.graphics.endFill();
+        addChild(popupWin);
+        var bg:DisplayObject=new BgIngame();
+        bg.y=-185;
+        bg.scaleX=0.335;
+        bg.scaleY=0.5;
+        addChild(bg);
+        n2 = nLevel / 2;
         for (var i:int = 0; i < nLevel; i++) {
             var arr:Array = [];
             if (i <= n2) {
                 for (var j:int = 0; j < n2 + 1 + i; j++) {
                     var circle:CirlcleData = new CirlcleData();
-                    circle.shape=drawHex(confRight-28-15+80 - 20 * i + 100 + distanceX * j- confDistanceShape*i,distanceY * i+20+75,sizee);
+                    circle.shape = drawHex(confRight - 28 - 15 + 80 - 20 * i + 100 + distanceX * j - confDistanceShape * i, distanceY * i + 20 + 75, sizee);
                     var sprite:Sprite = new Sprite();
                     sprite.graphics.clear();
                     sprite.graphics.beginFill(0xBAF6F7, 1);
                     sprite.graphics.drawEllipse(0, 0, 40, 40);
-                    sprite.x = confRight-28-15+60 - 20 * i + 100 + distanceX * j - confDistanceShape*i;
-                    sprite.y = distanceY * i+75;
-                    sprite.alpha=0;
+                    sprite.x = confRight - 28 - 15 + 60 - 20 * i + 100 + distanceX * j - confDistanceShape * i;
+                    sprite.y = distanceY * i + 75;
+                    sprite.alpha = 0;
                     sprite.graphics.endFill();
                     sprite.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDownCircle);
                     sprite.addEventListener(MouseEvent.MOUSE_OVER, onMouseMoveCircle);
@@ -650,37 +679,37 @@ public class Main extends Sprite {
                     var textfield:TextField = new TextField();
                     textfield.textColor = 0x000000;
                     textfield.x = sprite.x;
-                    textfield.y = sprite.y+5;
+                    textfield.y = sprite.y + 5;
                     textfield.mouseEnabled = false;
-                    textfield.width=40;
-                    textfield.height=40;
-                    var tf:TextFormat=new TextFormat();
-                    tf.bold=true;
-                    tf.font="Arial";
-                    tf.size=18;
-                    tf.align="center";
-                    textfield.defaultTextFormat=tf;
+                    textfield.width = 40;
+                    textfield.height = 40;
+                    var tf:TextFormat = new TextFormat();
+                    tf.bold = true;
+                    tf.font = "Arial";
+                    tf.size = 18;
+                    tf.align = "center";
+                    textfield.defaultTextFormat = tf;
                     addChild(textfield);
                     circle.txtCurrentNumber = textfield;
                     var corTran:ColorTransform = new ColorTransform();
                     corTran.color = 0xFF4803;
                     circle.colorBase = corTran;
-                    circle.x=i;
-                    circle.y=j;
+                    circle.x = i;
+                    circle.y = j;
                     arr[j] = circle;
                     numShape++;
                 }
             } else {
                 for (var j:int = 0; j < nLevel + n2 - i; j++) {
                     var circle:CirlcleData = new CirlcleData();
-                    circle.shape=drawHex(confRight+conf-28-15+20 * (i-n2) + 100 + distanceX * j+confDistanceShape*(i-n2),distanceY * i+20+75,sizee);
+                    circle.shape = drawHex(confRight + conf - 28 - 15 + 20 * (i - n2) + 100 + distanceX * j + confDistanceShape * (i - n2), distanceY * i + 20 + 75, sizee);
                     var sprite:Sprite = new Sprite();
                     sprite.graphics.clear();
                     sprite.graphics.beginFill(0xBAF6F7, 1);
                     sprite.graphics.drawEllipse(0, 0, 40, 40);
-                    sprite.x = confRight+conf-28-15+20 * (i-n2) + 100 + distanceX * j-20+confDistanceShape*(i-n2);
-                    sprite.y = distanceY * i+75;
-                    sprite.alpha=0;
+                    sprite.x = confRight + conf - 28 - 15 + 20 * (i - n2) + 100 + distanceX * j - 20 + confDistanceShape * (i - n2);
+                    sprite.y = distanceY * i + 75;
+                    sprite.alpha = 0;
                     sprite.graphics.endFill();
                     sprite.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDownCircle);
                     sprite.addEventListener(MouseEvent.MOUSE_OVER, onMouseMoveCircle);
@@ -689,24 +718,24 @@ public class Main extends Sprite {
                     circle.sprite = sprite;
                     var textfield:TextField = new TextField();
                     textfield.textColor = 0x000000;
-                    textfield.x = sprite.x ;
-                    textfield.y = sprite.y+5 ;
+                    textfield.x = sprite.x;
+                    textfield.y = sprite.y + 5;
                     textfield.mouseEnabled = false;
-                    textfield.width=40;
-                    textfield.height=40;
-                    var tf:TextFormat=new TextFormat();
-                    tf.bold=true;
-                    tf.size=18;
-                    tf.font="Arial";
-                    tf.align="center";
-                    textfield.defaultTextFormat=tf;
+                    textfield.width = 40;
+                    textfield.height = 40;
+                    var tf:TextFormat = new TextFormat();
+                    tf.bold = true;
+                    tf.size = 18;
+                    tf.font = "Arial";
+                    tf.align = "center";
+                    textfield.defaultTextFormat = tf;
                     addChild(textfield);
                     circle.txtCurrentNumber = textfield;
                     var corTran:ColorTransform = new ColorTransform();
                     corTran.color = 0xFF4803;
                     circle.colorBase = corTran;
-                    circle.x=i;
-                    circle.y=j;
+                    circle.x = i;
+                    circle.y = j;
                     arr[j] = circle;
                     numShape++;
                 }
@@ -714,7 +743,7 @@ public class Main extends Sprite {
             listSprite[i] = arr;
         }
         listSprite[n2][n2].setTextString("");
-        listSprite[n2][n2].shape.transform.colorTransform = new ColorTransform(0xB6FF00,0xB6FF00,0xB6FF00 );
+        listSprite[n2][n2].shape.transform.colorTransform = new ColorTransform(0xB6FF00, 0xB6FF00, 0xB6FF00);
         (listSprite[n2][n2].sprite as Sprite).removeEventListener(MouseEvent.MOUSE_OUT, onMouseOutCircle);
         listSprite[n2][n2] = null;
     }
@@ -722,14 +751,14 @@ public class Main extends Sprite {
     private function onMouseOutCircle(event:MouseEvent):void {
         var corTran:ColorTransform = new ColorTransform();
         corTran.color = 0xBAF6F7;
-     //   (event.currentTarget as Sprite).transform.colorTransform = corTran;
+        //   (event.currentTarget as Sprite).transform.colorTransform = corTran;
 
         for (var i:int = 0; i < nLevel; i++) {
             for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null && listSprite[i][j].sprite == event.currentTarget) {
                     var corTran:ColorTransform = new ColorTransform();
                     corTran.color = 0xBAF6F7;
-                    listSprite[i][j].shape.transform.colorTransform= new ColorTransform(0xF0FF00);
+                    listSprite[i][j].shape.transform.colorTransform = new ColorTransform(0xF0FF00);
                 }
             }
         }
@@ -737,9 +766,9 @@ public class Main extends Sprite {
 
     private function onMouseMoveCircle(event:MouseEvent):void {
         for (var i:int = 0; i < nLevel; i++) {
-            for (var j:int = 0; j <nLevel; j++) {
+            for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null && listSprite[i][j].sprite == event.currentTarget) {
-                  // (event.currentTarget as Sprite).transform.colorTransform = listSprite[i][j].colorBase;
+                    // (event.currentTarget as Sprite).transform.colorTransform = listSprite[i][j].colorBase;
                     listSprite[i][j].shape.transform.colorTransform = new ColorTransform(0xFF865);
                 }
             }
@@ -747,6 +776,7 @@ public class Main extends Sprite {
     }
 
     private function onMouseDownCircle(event:MouseEvent):void {
+        sou.play();
         for (var i:int = 0; i < nLevel; i++) {
             for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null && listSprite[i][j].sprite == event.currentTarget) {
@@ -779,14 +809,14 @@ public class Main extends Sprite {
                 txtNextNumber.text = nextNumber.toString();
                 isPlusType = false;
                 switchCheck = !switchCheck;
-            }else {
+            } else {
                 var tempPlus = cir.id;
                 while (true) {
                     tempPlus++;
                     if (tempPlus == numShape || checkBoard(tempPlus) == false) break;
                 }
-                if(tempPlus)
-                nextNumber = tempPlus;
+                if (tempPlus)
+                    nextNumber = tempPlus;
                 txtNextNumber.text = nextNumber.toString();
                 isPlusType = true;
                 switchCheck = !switchCheck;
@@ -798,7 +828,7 @@ public class Main extends Sprite {
                 tempPlus++;
                 if (tempPlus == numShape || checkBoard(tempPlus) == false) break;
             }
-            if(tempPlus<numShape){
+            if (tempPlus < numShape) {
                 nextNumber = tempPlus;
                 txtNextNumber.text = nextNumber.toString();
                 isPlusType = true;
@@ -824,20 +854,20 @@ public class Main extends Sprite {
         cir.isFillNumber = true;
         cir.getText().text = txtNextNumber.text;
         cir.id = nextNumber;
-        var key:int=0;
+        var key:int = 0;
         if (isPlusType) {
             var tempPlus = cir.id;
             while (true) {
                 tempPlus++;
-                key=tempPlus == numShape?numShape:0;
-                if (tempPlus == numShape || checkBoard(tempPlus) == false){
+                key = tempPlus == numShape ? numShape : 0;
+                if (tempPlus == numShape || checkBoard(tempPlus) == false) {
                     break;
                 }
             }
-            if(tempPlus<numShape){
+            if (tempPlus < numShape) {
                 nextNumber = tempPlus;
                 txtNextNumber.text = nextNumber.toString();
-            }else{
+            } else {
                 var temp:int = cir.id;
                 while (true) {
                     temp--;
@@ -849,8 +879,8 @@ public class Main extends Sprite {
                     var tempPlus = cir.id;
                     while (true) {
                         tempPlus++;
-                        key=tempPlus == numShape?numShape:0;
-                        if (tempPlus == numShape || checkBoard(tempPlus) == false){
+                        key = tempPlus == numShape ? numShape : 0;
+                        if (tempPlus == numShape || checkBoard(tempPlus) == false) {
                             break;
                         }
                     }
@@ -871,8 +901,8 @@ public class Main extends Sprite {
                 var tempPlus = cir.id;
                 while (true) {
                     tempPlus++;
-                    key=tempPlus == numShape?numShape:0;
-                    if (tempPlus == numShape || checkBoard(tempPlus) == false){
+                    key = tempPlus == numShape ? numShape : 0;
+                    if (tempPlus == numShape || checkBoard(tempPlus) == false) {
                         break;
                     }
                 }
@@ -881,29 +911,31 @@ public class Main extends Sprite {
                 isPlusType = true;
             }
         }
-        if(startCheck()){
-            if(checkWin(x1,y1,listSprite[x1][y1])){
-                drawLineWin(x1,y1,listSprite[x1][y1]);
-                var myTimer:Timer = new Timer(1500,1);
+        if (startCheck()) {
+            if (checkWin(x1, y1, listSprite[x1][y1])) {
+                drawLineWin(x1, y1, listSprite[x1][y1]);
+                var myTimer:Timer = new Timer(1500, 1);
                 myTimer.addEventListener(TimerEvent.TIMER, timerListener);
                 myTimer.start();
-            }else {
+            } else {
                 popupWin("You Lose!");
             }
         }
     }
 
-    function timerListener (e:TimerEvent):void{
+    function timerListener(e:TimerEvent):void {
+        winSound.play();
         popupWin("You Won!");
     }
+
     private function drawLineWin(i:int, j:int, cir:CirlcleData):void {
         var templist:Array = new Array();
-        if (listSprite[i][j - 1] != null ) {
+        if (listSprite[i][j - 1] != null) {
             listSprite[i][j - 1].x = i;
             listSprite[i][j - 1].y = j - 1;
             templist.push(listSprite[i][j - 1]);
         }
-        if (listSprite[i][j + 1] != null ) {
+        if (listSprite[i][j + 1] != null) {
             listSprite[i][j + 1].x = i;
             listSprite[i][j + 1].y = j + 1;
             templist.push(listSprite[i][j + 1]);
@@ -915,94 +947,92 @@ public class Main extends Sprite {
                 listSprite[i - 1][j - 1].y = j - 1;
                 templist.push(listSprite[i - 1][j - 1]);
             }
-            if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null ) {
+            if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null) {
                 listSprite[i - 1][j].x = i - 1;
                 listSprite[i - 1][j].y = j;
                 templist.push(listSprite[i - 1][j]);
             }
-            if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null ) {
+            if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null) {
                 listSprite[i + 1][j].x = i + 1;
                 listSprite[i + 1][j].y = j;
                 templist.push(listSprite[i + 1][j]);
             }
-            if (i + 1 >= 0 && i + 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i + 1][j + 1] != null ) {
+            if (i + 1 >= 0 && i + 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i + 1][j + 1] != null) {
                 listSprite[i + 1][j + 1].x = i + 1;
                 listSprite[i + 1][j + 1].y = j + 1;
                 templist.push(listSprite[i + 1][j + 1]);
             }
         } else {
             if (i == n2) {
-                if (listSprite[i - 1][j - 1] != null ) {
+                if (listSprite[i - 1][j - 1] != null) {
                     listSprite[i - 1][j - 1].x = i - 1;
                     listSprite[i - 1][j - 1].y = j - 1;
                     templist.push(listSprite[i - 1][j - 1]);
                 }
-                if (listSprite[i + 1][j] != null ) {
+                if (listSprite[i + 1][j] != null) {
                     listSprite[i + 1][j].x = i + 1;
                     listSprite[i + 1][j].y = j;
                     templist.push(listSprite[i + 1][j]);
                 }
-                if (listSprite[i + 1][j - 1] != null ) {
+                if (listSprite[i + 1][j - 1] != null) {
                     listSprite[i + 1][j - 1].x = i + 1;
                     listSprite[i + 1][j - 1].y = j - 1;
                     templist.push(listSprite[i + 1][j - 1]);
                 }
-                if (listSprite[i - 1][j] != null ) {
-                    listSprite[i - 1][j].x = i -1;
+                if (listSprite[i - 1][j] != null) {
+                    listSprite[i - 1][j].x = i - 1;
                     listSprite[i - 1][j].y = j;
                     templist.push(listSprite[i - 1][j]);
                 }
             } else {
-                if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null ) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null) {
                     listSprite[i + 1][j].x = i + 1;
                     listSprite[i + 1][j].y = j;
                     templist.push(listSprite[i + 1][j]);
                 }
-                if (i - 1 >= 0 && i - 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i - 1][j + 1] != null ) {
+                if (i - 1 >= 0 && i - 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i - 1][j + 1] != null) {
                     listSprite[i - 1][j + 1].x = i - 1;
                     listSprite[i - 1][j + 1].y = j + 1;
                     templist.push(listSprite[i - 1][j + 1]);
                 }
-                if (i + 1 >= 0 && i + 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i + 1][j - 1] != null ) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i + 1][j - 1] != null) {
                     listSprite[i + 1][j - 1].x = i + 1;
                     listSprite[i + 1][j - 1].y = j - 1;
                     templist.push(listSprite[i + 1][j - 1]);
                 }
-                if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null ) {
+                if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null) {
                     listSprite[i - 1][j].x = i - 1;
-                    listSprite[i- 1][j].y = j;
+                    listSprite[i - 1][j].y = j;
                     templist.push(listSprite[i - 1][j]);
                 }
             }
         }
-        for(var i:int=0;i<templist.length;i++){
-            if(templist[i].id==cir.id+1){
-                cir1Draw=cir;
-                cir2Draw=templist[i];
+        for (var i:int = 0; i < templist.length; i++) {
+            if (templist[i].id == cir.id + 1) {
+                cir1Draw = cir;
+                cir2Draw = templist[i];
 //                var timer:Timer=new Timer(0,1);
 //                timer.addEventListener(TimerEvent.TIMER, delayDraw)
 //                timer.start();
                 delayDraw();
-                drawLineWin(templist[i].x,templist[i].y,templist[i]);
+                drawLineWin(templist[i].x, templist[i].y, templist[i]);
             }
         }
     }
 
     private function delayDraw():void {
-        var shapee:Shape=new Shape();
-        shapee.graphics.moveTo(cir1Draw.sprite.x+cir1Draw.sprite.width/2,cir1Draw.sprite.y+cir1Draw.sprite.width/2);
+        var shapee:Shape = new Shape();
+        shapee.graphics.moveTo(cir1Draw.sprite.x + cir1Draw.sprite.width / 2, cir1Draw.sprite.y + cir1Draw.sprite.width / 2);
         shapee.graphics.lineStyle(1, 0x000000);
-        shapee.graphics.lineTo(cir2Draw.sprite.x+cir1Draw.sprite.width/2,cir2Draw.sprite.y+cir2Draw.sprite.width/2);
+        shapee.graphics.lineTo(cir2Draw.sprite.x + cir1Draw.sprite.width / 2, cir2Draw.sprite.y + cir2Draw.sprite.width / 2);
         addChild(shapee);
     }
 
-    private function popupWin( mess:String):void {
-        btnHelp.visible=false;
-        txtHelp.visible=false;
-        var popupWin:Sprite=new Sprite();
+    private function popupWin(mess:String):void {
+        var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
-        popupWin.graphics.beginFill(0xFFFFFF,0.9);
-        popupWin.graphics.drawRoundRect(width / 2-75-200,-70,400,600,20,20);
+        popupWin.graphics.beginFill(0xFFFFFF, 0.9);
+        popupWin.graphics.drawRoundRect(0, -185, 640, 920,0,0 );
         popupWin.graphics.endFill();
         addChild(popupWin);
         var tf:TextFormat = new TextFormat();
@@ -1010,44 +1040,45 @@ public class Main extends Sprite {
         tf.bold = true;
         tf.font = "Arial"
         tf.color = 0x000000;
-        tf.align="center";
+        tf.align = "center";
         var capt:TextField = new TextField();
         capt.defaultTextFormat = tf;
         capt.width = 200;
         capt.height = 40;
         capt.text = mess;
         capt.y = 0;
-        capt.x = width/2-75-100;
+        capt.x = width / 2 - 75 - 100;
         capt.border = false;
         capt.selectable = false;
         var button:Sprite = new Sprite();
+
         function drawButton():void {
             button.graphics.clear();
-            button.graphics.beginFill(0xD4D4D4, 0.8); // grey color
-            button.graphics.drawRoundRect(width/2-75-100, 450, 200, 45, 10, 10); // x, y, width, height, ellipseW, ellipseH
+            button.graphics.beginFill(0x5D527D, 0.8); // grey color
+            button.graphics.drawEllipse(0, 0, 75, 75);
+            button.x= (width-button.width-140)/2;
+            button.y= 100;
             button.graphics.endFill();
-            var txtRestart:TextField = new TextField();
-            tf.color=0xB90335;
-            txtRestart.defaultTextFormat = tf;
-            txtRestart.width = 200;
-            txtRestart.height = 40;
-            txtRestart.text = "New Game";
-            txtRestart.y = 450;
-            txtRestart.x = width/2-75-100;
-            button.addChild(txtRestart);
+            var reload:DisplayObject=new Reload();
+            reload.x=(width-button.width-140)/2+12.5;
+            reload.y=100+12.5;
+            reload.scaleX=0.75;
+            reload.scaleY=0.75;
+            addChild(reload);
         }
+
         function resetGameinPop(event:MouseEvent):void {
+            sou.play();
             myTimer.reset();
-            button.x += 20
-            if (button.x > 400) { button.x = 0}
-            numShape=0;
-            n2=nLevel/2;
+            numShape = 0;
+            n2 = nLevel / 2;
             loadGame();
         }
-        if(contains(timeSprite)){
+
+        if (contains(timeSprite)) {
             removeChild(timeSprite);
         }
-        if(contains(timerTextField)){
+        if (contains(timerTextField)) {
             removeChild(timerTextField);
         }
         timeSprite.graphics.clear();
@@ -1056,210 +1087,176 @@ public class Main extends Sprite {
         button.addEventListener(MouseEvent.MOUSE_DOWN, resetGameinPop);
         drawButton();
         addChild(capt);
+
+
+
     }
+
     private function popupNewGame():void {
-        txtHelp.visible=false;
-        btnHelp.visible=false;
+        sou.play();
         myTimer.stop();
-        var popupWin:Sprite=new Sprite();
+        var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
-        popupWin.graphics.beginFill(0xFFFFFF,0.9);
-        popupWin.graphics.drawRoundRect(width / 2-75-200,-70,400,600,20,20);
+        popupWin.graphics.beginFill(0xFFFFFF, 0.9);
+        popupWin.graphics.drawRoundRect( 0, -185, 640, 920, 0,0);
         popupWin.graphics.endFill();
         addChild(popupWin);
         listSrpiteLevel.push(popupWin);
-        var tf:TextFormat=new TextFormat();
-        tf.bold=true;
-        tf.size=18;
-        tf.font="Arial";
-        tf.align="center";
 
         var btnLevelBeginner:Sprite = new Sprite();
         btnLevelBeginner.graphics.clear();
-        btnLevelBeginner.graphics.beginFill(0x008AF0, 1);
-        btnLevelBeginner.graphics.drawRoundRect(0, 0, 100, 30,5,5);
+        btnLevelBeginner.graphics.beginFill(0x008AF0, 0);
+        btnLevelBeginner.graphics.drawEllipse(0, 0, 75, 75);
         btnLevelBeginner.graphics.endFill();
-        btnLevelBeginner.x =  width/2-120;
-        btnLevelBeginner.y = 5-30-3.5+300;
-        var txtLevekBeginner:TextField = new TextField();
-        txtLevekBeginner.x = btnLevelBeginner.x;
-        txtLevekBeginner.y = btnLevelBeginner.y;
-        txtLevekBeginner.width=100;
-        txtLevekBeginner.height=30;
-        txtLevekBeginner.mouseEnabled = false;
-        tf.size=16;
-        tf.color=0xffffff;
-        txtLevekBeginner.defaultTextFormat=tf;
-        txtLevekBeginner.text = "Beginner";
+        btnLevelBeginner.x = (width-btnLevelBeginner.width-140)/2;
+        btnLevelBeginner.y = 350;
+        var siverIcon:DisplayObject=new Bronze();
+        siverIcon.scaleX=0.25;
+        siverIcon.scaleY=0.25;
+        siverIcon.x=(width-siverIcon.width-140)/2;
+        siverIcon.y=350;
+        addChild(siverIcon);
 
+        listSrpiteLevel.push(siverIcon);
         listSrpiteLevel.push(btnLevelBeginner);
-        listTxtLevel.push(txtLevekBeginner);
         addChild(btnLevelBeginner);
-        addChild(txtLevekBeginner);
         btnLevelBeginner.addEventListener(MouseEvent.CLICK, onClickLevelBe);
 
         var btnLevelMedium:Sprite = new Sprite();
         btnLevelMedium.graphics.clear();
-        btnLevelMedium.graphics.beginFill(0x0057F0, 1);
-        btnLevelMedium.graphics.drawRoundRect(0, 0, 100, 30,5,5);
+        btnLevelMedium.graphics.beginFill(0x0057F0, 0);
+        btnLevelMedium.graphics.drawEllipse(0, 0, 75, 75);
         btnLevelMedium.graphics.endFill();
-        btnLevelMedium.x =  width/2-120;
-        btnLevelMedium.y = 5-60-7+300;
-        var txtLevekMedium:TextField = new TextField();
-        txtLevekMedium.x = btnLevelMedium.x;
-        txtLevekMedium.y = btnLevelMedium.y;
-        txtLevekMedium.width=100;
-        txtLevekMedium.height=30;
-        txtLevekMedium.mouseEnabled = false;
-        tf.size=16;
-        tf.color=0xffffff;
-        txtLevekMedium.defaultTextFormat=tf;
-        txtLevekMedium.text = "Medium";
+        btnLevelMedium.x = (width-siverIcon.width-140)/2;
+        btnLevelMedium.y = 250;
 
+        var siverIcon:DisplayObject=new SiverIcon();
+        siverIcon.scaleX=0.5;
+        siverIcon.scaleY=0.5;
+        siverIcon.x=(width-siverIcon.width-140)/2;
+        siverIcon.y=250;
+        addChild(siverIcon);
+        listSrpiteLevel.push(siverIcon);
         listSrpiteLevel.push(btnLevelMedium);
-        listTxtLevel.push(txtLevekMedium);
         addChild(btnLevelMedium);
-        addChild(txtLevekMedium);
         btnLevelMedium.addEventListener(MouseEvent.CLICK, onClickLevelMe);
 
         var btnLevelHard:Sprite = new Sprite();
         btnLevelHard.graphics.clear();
-        btnLevelHard.graphics.beginFill(0x001DF0, 1);
-        btnLevelHard.graphics.drawRoundRect(0, 0, 100, 30,5,5);
+        btnLevelHard.graphics.beginFill(0x001DF0, 0);
+        btnLevelHard.graphics.drawEllipse(0, 0, 75, 75 );
         btnLevelHard.graphics.endFill();
-        btnLevelHard.x = width/2-120;
-        btnLevelHard.y = 5-90-10.5+300;
-        var txtLevelHard:TextField = new TextField();
-        txtLevelHard.x = btnLevelHard.x;
-        txtLevelHard.y = btnLevelHard.y;
-        txtLevelHard.width=100;
-        txtLevelHard.height=30;
-        txtLevelHard.mouseEnabled = false;
-        tf.size=16;
-        tf.color=0xffffff;
-        txtLevelHard.defaultTextFormat=tf;
-        txtLevelHard.text = "Hard";
+        btnLevelHard.x = (width-siverIcon.width-140)/2;
+        btnLevelHard.y = 150;
+        var siverIcon:DisplayObject=new Gold();
+        siverIcon.scaleX=0.5;
+        siverIcon.scaleY=0.5;
+        siverIcon.x=(width-siverIcon.width-140)/2;
+        siverIcon.y=150;
+        addChild(siverIcon);
+        listSrpiteLevel.push(siverIcon);
         listSrpiteLevel.push(btnLevelHard);
-        listTxtLevel.push(txtLevelHard);
         addChild(btnLevelHard);
-        addChild(txtLevelHard);
         btnLevelHard.addEventListener(MouseEvent.CLICK, onClickLevelHa);
 
         var btnLevelEvil:Sprite = new Sprite();
         btnLevelEvil.graphics.clear();
-        btnLevelEvil.graphics.beginFill(0x6D00F0, 1);
-        btnLevelEvil.graphics.drawRoundRect(0, 0, 100, 30,5,5);
+        btnLevelEvil.graphics.beginFill(0x6D00F0, 0);
+        btnLevelEvil.graphics.drawEllipse(0, 0, 75, 75);
         btnLevelEvil.graphics.endFill();
-        btnLevelEvil.x =  width/2-120;
-        btnLevelEvil.y = 5-120-14+300;
-        var txtLevelEvil:TextField = new TextField();
-        txtLevelEvil.x = btnLevelEvil.x;
-        txtLevelEvil.y = btnLevelEvil.y;
-        txtLevelEvil.width=100;
-        txtLevelEvil.height=30;
-        txtLevelEvil.mouseEnabled = false;
-        tf.size=16;
-        tf.color=0xffffff;
-        txtLevelEvil.defaultTextFormat=tf;
-        txtLevelEvil.text = "Evil";
+        btnLevelEvil.x = (width-siverIcon.width-140)/2;
+        btnLevelEvil.y = 50;
+        var siverIcon:DisplayObject=new Platium();
+        siverIcon.scaleX=0.5;
+        siverIcon.scaleY=0.5;
+        siverIcon.x=(width-siverIcon.width-140)/2;
+        siverIcon.y=50;
+        addChild(siverIcon);
+        listSrpiteLevel.push(siverIcon);
         listSrpiteLevel.push(btnLevelEvil);
-        listTxtLevel.push(txtLevelEvil);
         addChild(btnLevelEvil);
-        addChild(txtLevelEvil);
         btnLevelEvil.addEventListener(MouseEvent.CLICK, onClickLevelEvil);
 
         var btnLevelXL:Sprite = new Sprite();
         btnLevelXL.graphics.clear();
-        btnLevelXL.graphics.beginFill(0xFF04C6, 1);
-        btnLevelXL.graphics.drawRoundRect(0, 0, 100, 30,5,5);
+        btnLevelXL.graphics.beginFill(0xFF04C6, 0);
+        btnLevelXL.graphics.drawEllipse(0, 0, 75,75);
         btnLevelXL.graphics.endFill();
-        btnLevelXL.x =  width/2-120;
-        btnLevelXL.y = 5-150-17.5+300;
-        var txtLevelXL:TextField = new TextField();
-        txtLevelXL.x = btnLevelXL.x;
-        txtLevelXL.y = btnLevelXL.y;
-        txtLevelXL.width=100;
-        txtLevelXL.height=30;
-        txtLevelXL.mouseEnabled = false;
-        tf.size=16;
-        tf.color=0xffffff;
-        txtLevelXL.defaultTextFormat=tf;
-        txtLevelXL.text = "XL";
+        btnLevelXL.x = (width-siverIcon.width-140)/2;
+        btnLevelXL.y = -50;
+        var siverIcon:DisplayObject=new Diamond();
+        siverIcon.scaleX=0.5;
+        siverIcon.scaleY=0.5;
+        siverIcon.x=(width-siverIcon.width-140)/2;
+        siverIcon.y=-50;
+        addChild(siverIcon);
+        listSrpiteLevel.push(siverIcon);
         listSrpiteLevel.push(btnLevelXL);
-        listTxtLevel.push(txtLevelXL);
         addChild(btnLevelXL);
-        addChild(txtLevelXL);
         btnLevelXL.addEventListener(MouseEvent.CLICK, onClickLevelXL);
 
         var btnLevelXXL:Sprite = new Sprite();
         btnLevelXXL.graphics.clear();
-        btnLevelXXL.graphics.beginFill(0xFF0404, 1);
-        btnLevelXXL.graphics.drawRoundRect(0, 0, 100, 30,5,5);
+        btnLevelXXL.graphics.beginFill(0xFF0404, 0);
+        btnLevelXXL.graphics.drawEllipse(0, 0, 85, 85);
         btnLevelXXL.graphics.endFill();
-        btnLevelXXL.x =  width/2-120;
-        btnLevelXXL.y = 5-180-21+300;
-        var txtLevelXXL:TextField = new TextField();
-        txtLevelXXL.x = btnLevelXXL.x;
-        txtLevelXXL.y = btnLevelXXL.y;
-        txtLevelXXL.width=100;
-        txtLevelXXL.height=32;
-        txtLevelXXL.mouseEnabled = false;
-        tf.size=16;
-        tf.color=0xffffff;
-        txtLevelXXL.defaultTextFormat=tf;
-        txtLevelXXL.text = "Immortal";
+        btnLevelXXL.x = (width-siverIcon.width-140)/2;
+        btnLevelXXL.y = -160;
+        var siverIcon:DisplayObject=new Mater();
+        siverIcon.scaleX=0.6;
+        siverIcon.scaleY=0.6;
+        siverIcon.x=(width-siverIcon.width-140)/2;
+        siverIcon.y=-160;
+        addChild(siverIcon);
+        listSrpiteLevel.push(siverIcon);
         listSrpiteLevel.push(btnLevelXXL);
-        listTxtLevel.push(txtLevelXXL);
         addChild(btnLevelXXL);
-        addChild(txtLevelXXL);
         btnLevelXXL.addEventListener(MouseEvent.CLICK, onClickLevelXXL);
 
         var btnLevelClose:Sprite = new Sprite();
         btnLevelClose.graphics.clear();
-        btnLevelClose.graphics.beginFill(0x000000, 1);
-        btnLevelClose.graphics.drawRoundRect(0, 0, 30, 30,5,5);
+        btnLevelClose.graphics.beginFill(0x5D527D, 1);
+        btnLevelClose.graphics.drawEllipse(0, 0, 50, 50);
         btnLevelClose.graphics.endFill();
-        btnLevelClose.x =  width / 2+90;
-        btnLevelClose.y = -65;
-        var txtLevelClose:TextField = new TextField();
-        txtLevelClose.x = btnLevelClose.x;
-        txtLevelClose.y = btnLevelClose.y;
-        txtLevelClose.width=30;
-        txtLevelClose.height=30;
-        txtLevelClose.mouseEnabled = false;
-        tf.size=20;
-        tf.color=0xffffff;
-        txtLevelClose.defaultTextFormat=tf;
-        txtLevelClose.text = "x";
+        btnLevelClose.x = width-btnLevelClose.width-140-20;
+        btnLevelClose.y = -165;
         listSrpiteLevel.push(btnLevelClose);
-        listTxtLevel.push(txtLevelClose);
         addChild(btnLevelClose);
-        addChild(txtLevelClose);
         btnLevelClose.addEventListener(MouseEvent.CLICK, onClickClose);
+
+        var btnClos:DisplayObject=new BtnClose();
+        btnClos.scaleX=0.4;
+        btnClos.scaleY=0.4;
+        btnClos.x=width-btnLevelClose.width-140-20+12;
+        btnClos.y=-165+12;
+        addChild(btnClos);
+        listSrpiteLevel.push(btnClos);
+
     }
 
     private function onClickClose(event:MouseEvent):void {
-        txtHelp.visible=true;
-        btnHelp.visible=true;
+        sou.play();
         myTimer.start();
-        for(var i:int=0;i<listSrpiteLevel.length;i++){
-            listSrpiteLevel[i].visible=false;
+        for (var i:int = 0; i < listSrpiteLevel.length; i++) {
+            listSrpiteLevel[i].visible = false;
         }
-        for(var i:int=0;i<listTxtLevel.length;i++){
-            listTxtLevel[i].visible=false;
+        for (var i:int = 0; i < listTxtLevel.length; i++) {
+            listTxtLevel[i].visible = false;
         }
     }
+
     private function resetGame(event:MouseEvent):void {
-         numShape=0;
-         n2=nLevel/2;
+        numShape = 0;
+        n2 = nLevel / 2;
         loadGame();
     }
+
     private function startCheck():Boolean {
         for (var i:int = 0; i < nLevel; i++) {
             for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null) {
-                    if(listSprite[i][j].isFillNumber==false){
-                        return  false;
+                    if (listSprite[i][j].isFillNumber == false) {
+                        return false;
                     }
                 }
             }
@@ -1267,17 +1264,17 @@ public class Main extends Sprite {
         return true;
     }
 
-    private function checkWin(i:int,j:int,cir:CirlcleData):Boolean {
-        if(cir.id==numShape-1){
+    private function checkWin(i:int, j:int, cir:CirlcleData):Boolean {
+        if (cir.id == numShape - 1) {
             return true;
         }
         var templist:Array = new Array();
-        if (listSprite[i][j - 1] != null ) {
+        if (listSprite[i][j - 1] != null) {
             listSprite[i][j - 1].x = i;
             listSprite[i][j - 1].y = j - 1;
             templist.push(listSprite[i][j - 1]);
         }
-        if (listSprite[i][j + 1] != null ) {
+        if (listSprite[i][j + 1] != null) {
             listSprite[i][j + 1].x = i;
             listSprite[i][j + 1].y = j + 1;
             templist.push(listSprite[i][j + 1]);
@@ -1285,80 +1282,80 @@ public class Main extends Sprite {
         if (i < n2) {
 
             if (i - 1 >= 0 && i - 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i - 1][j - 1] != null) {
-                    listSprite[i - 1][j - 1].x = i - 1;
-                    listSprite[i - 1][j - 1].y = j - 1;
-                    templist.push(listSprite[i - 1][j - 1]);
+                listSprite[i - 1][j - 1].x = i - 1;
+                listSprite[i - 1][j - 1].y = j - 1;
+                templist.push(listSprite[i - 1][j - 1]);
             }
-            if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null ) {
+            if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null) {
                 listSprite[i - 1][j].x = i - 1;
                 listSprite[i - 1][j].y = j;
                 templist.push(listSprite[i - 1][j]);
             }
-            if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null ) {
+            if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null) {
                 listSprite[i + 1][j].x = i + 1;
                 listSprite[i + 1][j].y = j;
                 templist.push(listSprite[i + 1][j]);
             }
-            if (i + 1 >= 0 && i + 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i + 1][j + 1] != null ) {
+            if (i + 1 >= 0 && i + 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i + 1][j + 1] != null) {
                 listSprite[i + 1][j + 1].x = i + 1;
                 listSprite[i + 1][j + 1].y = j + 1;
                 templist.push(listSprite[i + 1][j + 1]);
             }
         } else {
             if (i == n2) {
-                if (listSprite[i - 1][j - 1] != null ) {
+                if (listSprite[i - 1][j - 1] != null) {
                     listSprite[i - 1][j - 1].x = i - 1;
                     listSprite[i - 1][j - 1].y = j - 1;
                     templist.push(listSprite[i - 1][j - 1]);
                 }
-                if (listSprite[i + 1][j] != null ) {
+                if (listSprite[i + 1][j] != null) {
                     listSprite[i + 1][j].x = i + 1;
                     listSprite[i + 1][j].y = j;
                     templist.push(listSprite[i + 1][j]);
                 }
-                if (listSprite[i + 1][j - 1] != null ) {
+                if (listSprite[i + 1][j - 1] != null) {
                     listSprite[i + 1][j - 1].x = i + 1;
                     listSprite[i + 1][j - 1].y = j - 1;
                     templist.push(listSprite[i + 1][j - 1]);
                 }
-                if (listSprite[i - 1][j] != null ) {
-                    listSprite[i - 1][j].x = i -1;
+                if (listSprite[i - 1][j] != null) {
+                    listSprite[i - 1][j].x = i - 1;
                     listSprite[i - 1][j].y = j;
                     templist.push(listSprite[i - 1][j]);
                 }
             } else {
-                if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null ) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j >= 0 && j < nLevel && listSprite[i + 1][j] != null) {
                     listSprite[i + 1][j].x = i + 1;
                     listSprite[i + 1][j].y = j;
                     templist.push(listSprite[i + 1][j]);
                 }
-                if (i - 1 >= 0 && i - 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i - 1][j + 1] != null ) {
+                if (i - 1 >= 0 && i - 1 < nLevel && j + 1 >= 0 && j + 1 < nLevel && listSprite[i - 1][j + 1] != null) {
                     listSprite[i - 1][j + 1].x = i - 1;
                     listSprite[i - 1][j + 1].y = j + 1;
                     templist.push(listSprite[i - 1][j + 1]);
                 }
-                if (i + 1 >= 0 && i + 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i + 1][j - 1] != null ) {
+                if (i + 1 >= 0 && i + 1 < nLevel && j - 1 >= 0 && j - 1 < nLevel && listSprite[i + 1][j - 1] != null) {
                     listSprite[i + 1][j - 1].x = i + 1;
                     listSprite[i + 1][j - 1].y = j - 1;
                     templist.push(listSprite[i + 1][j - 1]);
                 }
-                if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null ) {
+                if (i - 1 >= 0 && i - 1 < nLevel && j >= 0 && j < nLevel && listSprite[i - 1][j] != null) {
                     listSprite[i - 1][j].x = i - 1;
-                    listSprite[i- 1][j].y = j;
+                    listSprite[i - 1][j].y = j;
                     templist.push(listSprite[i - 1][j]);
                 }
             }
         }
 
-        for(var i:int=0;i<templist.length;i++){
-            if(templist[i].id==cir.id+1){
+        for (var i:int = 0; i < templist.length; i++) {
+            if (templist[i].id == cir.id + 1) {
                 return checkWin(templist[i].x, templist[i].y, templist[i]);
             }
         }
-        var tempB:Boolean=false;
-        for(var i:int=0;i<templist.length;i++){
-            if(templist[i].id==cir.id+1){
-                tempB=true;
+        var tempB:Boolean = false;
+        for (var i:int = 0; i < templist.length; i++) {
+            if (templist[i].id == cir.id + 1) {
+                tempB = true;
             }
         }
         return tempB;
@@ -1367,7 +1364,7 @@ public class Main extends Sprite {
     private function onIsFill(cir:CirlcleData):void {
         cir.isFillNumber = false;
         nextNumber = cir.id;
-        cir.id=0;
+        cir.id = 0;
         txtNextNumber.text = nextNumber.toString();
         cir.getText().text = "";
 
@@ -1375,7 +1372,7 @@ public class Main extends Sprite {
 
 
     private function loadBase():void {
-        if(nLevel<9){
+        if (nLevel < 9) {
             while (true) {
 //            var x:int=Math.random()*7;
 //            var n:int=0;
@@ -1400,35 +1397,39 @@ public class Main extends Sprite {
                         break;
                     }
                 }
-                trace( numShape-1);
+                trace(numShape - 1);
                 trace(numberNextBase.nextBase);
-                if (numberNextBase.nextBase == numShape-1) {
+                if (numberNextBase.nextBase == numShape - 1) {
                     break;
                 }
             }
-        }else{
+        } else {
             switch (nLevel) {
-                case 9:{
-                    var listNumber:Array=[9,8,9,4,3,10,12,6,5,2,1,11,13,14,44,45,46,48,20,19,18,15,43,42,47,49,21,22,17,16,41,52,51,50,23,24,28,38,40,53,54,55,25,27,29,38,37,57,56,26,30,33,35,36,58,31,32,34,60,59];
-                    var l:int=0;
-                    x1=1;y1=5;
+                case 9: {
+                    var listNumber:Array = [9, 8, 9, 4, 3, 10, 12, 6, 5, 2, 1, 11, 13, 14, 44, 45, 46, 48, 20, 19, 18, 15, 43, 42, 47, 49, 21, 22, 17, 16, 41, 52, 51, 50, 23, 24, 28, 38, 40, 53, 54, 55, 25, 27, 29, 38, 37, 57, 56, 26, 30, 33, 35, 36, 58, 31, 32, 34, 60, 59];
+                    var l:int = 0;
+                    x1 = 1;
+                    y1 = 5;
                     for (var i:int = 0; i < nLevel; i++) {
                         for (var j:int = 0; j < nLevel; j++) {
                             if (listSprite[i][j] != null) {
-                                listSprite[i][j].idBase=listNumber[l];l++;
+                                listSprite[i][j].idBase = listNumber[l];
+                                l++;
                             }
                         }
                     }
                     break;
                 }
-                case 11:{
-                    var listNumber:Array=[49, 48,  47, 46, 45, 44, 51, 50, 57, 59, 61, 62, 43, 52, 55, 56, 58, 60, 63, 42, 41, 53, 54, 9, 7, 5, 3, 64, 40, 39, 13 ,11, 10, 8, 6, 4, 2, 65, 37, 38, 14, 12, 80, 79, 78, 1, 68,  66, 36, 35, 15, 82, 81, 77, 76, 75, 69, 67, 32, 34, 16, 83, 86, 87, 74, 73, 70, 31, 33, 17, 84 ,85, 88, 72, 71, 28, 30, 18, 19, 89, 90, 24, 27, 29, 20, 21, 22, 23, 25, 26];
-                    var l:int=0;
-                    x1=5;y1=6;
+                case 11: {
+                    var listNumber:Array = [49, 48, 47, 46, 45, 44, 51, 50, 57, 59, 61, 62, 43, 52, 55, 56, 58, 60, 63, 42, 41, 53, 54, 9, 7, 5, 3, 64, 40, 39, 13, 11, 10, 8, 6, 4, 2, 65, 37, 38, 14, 12, 80, 79, 78, 1, 68, 66, 36, 35, 15, 82, 81, 77, 76, 75, 69, 67, 32, 34, 16, 83, 86, 87, 74, 73, 70, 31, 33, 17, 84, 85, 88, 72, 71, 28, 30, 18, 19, 89, 90, 24, 27, 29, 20, 21, 22, 23, 25, 26];
+                    var l:int = 0;
+                    x1 = 5;
+                    y1 = 6;
                     for (var i:int = 0; i < nLevel; i++) {
                         for (var j:int = 0; j < nLevel; j++) {
                             if (listSprite[i][j] != null) {
-                                listSprite[i][j].idBase=listNumber[l];l++;
+                                listSprite[i][j].idBase = listNumber[l];
+                                l++;
                             }
                         }
                     }
@@ -1442,7 +1443,7 @@ public class Main extends Sprite {
         listSprite[x1][y1].id = listSprite[x1][y1].idBase;
         listSprite[x1][y1].colorBase = new ColorTransform(0xFF865);
         listSprite[x1][y1].shape.transform.colorTransform = listSprite[x1][y1].colorBase;
-        listSprite[x1][y1] .sprite.removeEventListener(MouseEvent.MOUSE_OUT, onMouseOutCircle);
+        listSprite[x1][y1].sprite.removeEventListener(MouseEvent.MOUSE_OUT, onMouseOutCircle);
         var temp:int = 0;
         while (true) {
             var x:int = Math.random() * nLevel;
@@ -1455,7 +1456,7 @@ public class Main extends Sprite {
                 listSprite[x][y].shape.transform.colorTransform = new ColorTransform(0xFF865);
                 listSprite[x][y].sprite.removeEventListener(MouseEvent.MOUSE_OUT, onMouseOutCircle);
                 temp++;
-                if (temp == numberSuggest-1) {
+                if (temp == numberSuggest - 1) {
                     break;
                 }
             }
@@ -1469,6 +1470,7 @@ public class Main extends Sprite {
         txtNextNumber.text = nextNumber.toString();
         isPlusType = true;
         switchCheck = !switchCheck;
+        isLoad=true;
     }
 
     private function FindPath(cir:CirlcleData, i:int, j:int, numberNextBase:NumberBaseData):void {
@@ -1535,24 +1537,26 @@ public class Main extends Sprite {
 
     }
 
-    public function drawHex( a:int, b:int, sizee:int):Shape{
+    public function drawHex(a:int, b:int, sizee:int):Shape {
         var myShape:Shape = new Shape();
-        var size: int = sizee;
-        var pointA:Point = new Point(0,0);
-        myShape.graphics.moveTo(pointy_hex_corner(pointA,size,0).x, pointy_hex_corner(pointA,size,0).y);
+        var size:int = sizee;
+        var pointA:Point = new Point(0, 0);
+        myShape.graphics.moveTo(pointy_hex_corner(pointA, size, 0).x, pointy_hex_corner(pointA, size, 0).y);
         myShape.graphics.beginFill(0xFFF888);
-        for (var i:int = 0; i <7; i++){
+        for (var i:int = 0; i < 7; i++) {
             myShape.graphics.lineStyle(2, 0xFF888B);
-            myShape.graphics.lineTo(pointy_hex_corner(pointA,size,i).x, pointy_hex_corner(pointA, size, i).y);
+            myShape.graphics.lineTo(pointy_hex_corner(pointA, size, i).x, pointy_hex_corner(pointA, size, i).y);
             addChild(myShape);
         }
         myShape.graphics.endFill();
-        myShape.x=a;
-        myShape.y=b;
-        var cortran:ColorTransform =new ColorTransform();cortran.color=0xBAF6F7;
-        myShape.transform.colorTransform=new ColorTransform(0xF0FF00);
+        myShape.x = a;
+        myShape.y = b;
+        var cortran:ColorTransform = new ColorTransform();
+        cortran.color = 0xBAF6F7;
+        myShape.transform.colorTransform = new ColorTransform(0xF0FF00);
         return myShape;
     }
+
     public function pointy_hex_corner(center, size, i):Point {
         var angle_deg = 60 * i - 30;
         var angle_rad = Math.PI / 180 * angle_deg;
