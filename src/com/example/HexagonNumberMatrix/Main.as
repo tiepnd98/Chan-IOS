@@ -8,6 +8,8 @@ import flash.display.Bitmap;
 import flash.display.DisplayObject;
 
 import flash.display.Loader;
+import flash.display.Scene;
+import flash.display.Screen;
 import flash.display.Shape;
 import flash.display.Sprite;
 import flash.events.MouseEvent;
@@ -58,7 +60,7 @@ public class Main extends Sprite {
     private const embeddedImage:Class;
     [Embed(source='img/btnStart.png')]
     private const BtnStart:Class;
-    [Embed(source='img/test.jpg')]
+    [Embed(source='img/BG.png')]
     private const BgIngame:Class;
     [Embed(source='img/btnPause.png')]
     private const btnPause:Class;
@@ -82,6 +84,18 @@ public class Main extends Sprite {
     private const Mater:Class;
     [Embed(source='img/reload.png')]
     private const Reload:Class;
+    //embed
+    [Embed(source='img/ButtonClick.mp3')]
+    private const SoundClick:Class;
+    [Embed(source='img/Win.mp3')]
+    private const LevelClick:Class;
+    [Embed(source='img/PickCell.mp3')]
+
+    private const WinSound:Class;
+    var isLoad:Boolean=true;
+    var sou=new SoundClick();
+    var winSound=new WinSound();
+    var levelClick=new LevelClick();
     public function Main() {
         welcomeGame();
     }
@@ -114,6 +128,7 @@ public class Main extends Sprite {
     }
 
     private function onButtonWelcomeClick(event:MouseEvent):void {
+        sou.play();
         loadGame();
     }
 
@@ -382,6 +397,7 @@ public class Main extends Sprite {
     }
 
     private function onClickHelp(event:MouseEvent):void {
+        sou.play();
         myTimer.stop();
         var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
@@ -468,6 +484,7 @@ public class Main extends Sprite {
     }
 
     private function onClickCloseHelp(event:MouseEvent):void {
+        sou.play();
         myTimer.start();
         for (var i:int = 0; i < listSrpiteLevel.length; i++) {
             listSrpiteLevel[i].visible = false;
@@ -478,6 +495,7 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelXXL(event:MouseEvent):void {
+        levelClick.play();
         nLevel = 11;
         conf = -54 + 24;
         confRight = -26 + 27;
@@ -497,6 +515,7 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelEvil(event:MouseEvent):void {
+        levelClick.play();
         nLevel = 11;
         conf = -54 + 24;
         confRight = -26 + 27;
@@ -516,6 +535,7 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelXL(event:MouseEvent):void {
+        levelClick.play();
         nLevel = 11;
         conf = -54 + 24;
         confRight = -26 + 27;
@@ -535,6 +555,7 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelHa(event:MouseEvent):void {
+        levelClick.play();
         time = 211;
         nLevel = 9;
         conf = -28;
@@ -553,24 +574,29 @@ public class Main extends Sprite {
     }
 
     private function onClickLevelMe(event:MouseEvent):void {
-        time = 91;
-        nLevel = 7;
-        conf = -1;
-        confRight = 28 + 5;
-        numShape = 0;
-        n2 = nLevel / 2;
-        numberSuggest = 12;
-        numberPoint = 7;
-        myTimer.reset();
-        timeSprite.graphics.clear();
-        distanceX = 54;
-        distanceY = 47;
-        sizee = 30;
-        confDistanceShape = 7;
-        loadGame();
+        levelClick.play();
+        if(isLoad){
+            isLoad=false;
+            time = 91;
+            nLevel = 7;
+            conf = -1;
+            confRight = 28 + 5;
+            numShape = 0;
+            n2 = nLevel / 2;
+            numberSuggest = 12;
+            numberPoint = 7;
+            myTimer.reset();
+            timeSprite.graphics.clear();
+            distanceX = 54;
+            distanceY = 47;
+            sizee = 30;
+            confDistanceShape = 7;
+            loadGame();
+        }
     }
 
     private function onClickLevelBe(event:MouseEvent):void {
+        levelClick.play();
         time = 31;
         nLevel = 5;
         conf = 26;
@@ -627,6 +653,8 @@ public class Main extends Sprite {
         addChild(popupWin);
         var bg:DisplayObject=new BgIngame();
         bg.y=-185;
+        bg.scaleX=0.335;
+        bg.scaleY=0.5;
         addChild(bg);
         n2 = nLevel / 2;
         for (var i:int = 0; i < nLevel; i++) {
@@ -748,6 +776,7 @@ public class Main extends Sprite {
     }
 
     private function onMouseDownCircle(event:MouseEvent):void {
+        sou.play();
         for (var i:int = 0; i < nLevel; i++) {
             for (var j:int = 0; j < nLevel; j++) {
                 if (listSprite[i][j] != null && listSprite[i][j].sprite == event.currentTarget) {
@@ -895,6 +924,7 @@ public class Main extends Sprite {
     }
 
     function timerListener(e:TimerEvent):void {
+        winSound.play();
         popupWin("You Won!");
     }
 
@@ -1038,6 +1068,7 @@ public class Main extends Sprite {
         }
 
         function resetGameinPop(event:MouseEvent):void {
+            sou.play();
             myTimer.reset();
             numShape = 0;
             n2 = nLevel / 2;
@@ -1062,6 +1093,7 @@ public class Main extends Sprite {
     }
 
     private function popupNewGame():void {
+        sou.play();
         myTimer.stop();
         var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
@@ -1203,6 +1235,7 @@ public class Main extends Sprite {
     }
 
     private function onClickClose(event:MouseEvent):void {
+        sou.play();
         myTimer.start();
         for (var i:int = 0; i < listSrpiteLevel.length; i++) {
             listSrpiteLevel[i].visible = false;
@@ -1437,6 +1470,7 @@ public class Main extends Sprite {
         txtNextNumber.text = nextNumber.toString();
         isPlusType = true;
         switchCheck = !switchCheck;
+        isLoad=true;
     }
 
     private function FindPath(cir:CirlcleData, i:int, j:int, numberNextBase:NumberBaseData):void {
