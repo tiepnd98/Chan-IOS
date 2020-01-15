@@ -14,7 +14,7 @@
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android enabled="true" package-file-name="Hexagon-Number-Matrix" />
-        <packaging-ios package-file-name="Hexagon-Number-Matrix" />
+        <packaging-ios enabled="true" package-file-name="Hexagon-Number-Matrix" />
       </configuration>
     </configurations>
     <compiler-options />

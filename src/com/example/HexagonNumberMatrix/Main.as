@@ -12,6 +12,7 @@ import flash.display.Scene;
 import flash.display.Screen;
 import flash.display.Shape;
 import flash.display.Sprite;
+import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.events.TimerEvent;
 import flash.geom.ColorTransform;
@@ -54,6 +55,7 @@ public class Main extends Sprite {
     var time:int = 30; //in secs +1
     var delay:int = 1000; // in milliseconds
     var myTimer:Timer = new Timer(0);
+    var firstClick:Boolean = new Boolean;
 
     //Embed Image
     [Embed(source='img/test.jpg')]
@@ -129,9 +131,12 @@ public class Main extends Sprite {
 
     private function onButtonWelcomeClick(event:MouseEvent):void {
         sou.play();
-        loadGame();
+        mainMenu();
     }
 
+    private function mainMenu():void {
+        settingMenu();
+    }
     private function loadGame():void {
         loadBoard();
         timer();
@@ -247,6 +252,29 @@ public class Main extends Sprite {
         }
         return null;
     }
+//    var fakeTimerSprite:Sprite = new Sprite();
+//    var fakeTimerTxt:TextField = new TextField();
+//
+//    private function fakeTimer(a: String):void {
+//        firstClick  = false;
+//        var tf:TextFormat = new TextFormat();
+//        tf.size = 30;
+//        tf.bold = true;
+//        tf.font = "Agency FB"
+//        tf.color = 0xde0b0b;
+//        tf.align = "center";
+//        fakeTimerTxt.defaultTextFormat = tf;
+//        fakeTimerSprite.graphics.beginFill(0x696969, 0.3);
+//        fakeTimerSprite.graphics.drawRoundRect(5, 0, 85, 35, 20, 40);
+//        fakeTimerSprite.addChild(timerTextField);
+//        fakeTimerSprite.graphics.endFill();
+//        addChild(fakeTimerSprite);
+//        fakeTimerTxt.text = a;
+//        fakeTimerTxt.x = 0;
+//        fakeTimerTxt.y = 0;
+//        addChild(fakeTimerTxt);
+//    }
+
 
     var timerTextField:TextField = new TextField();
     var timeSprite:Sprite = new Sprite();
@@ -615,6 +643,47 @@ public class Main extends Sprite {
     }
 
     private function onClickNewGame(event:MouseEvent):void {
+        settingMenu();
+    }
+    private function settingMenu():void {
+        myTimer.stop();
+        if (contains(timeSprite)) {
+            removeChild(timeSprite);
+        }
+        if (contains(timerTextField)) {
+            removeChild(timerTextField);
+        }
+        var settingPannel:Sprite = new Sprite();
+        var settingButtonPannel: Sprite = new Sprite();
+        var settingButtonTxt:TextField = new TextField();
+        var newGamePannel: Sprite = new Sprite();
+        var newGameButton: Sprite = new Sprite();
+        settingPannel.graphics.clear();
+        settingPannel.graphics.beginFill(0xFFFFFF, 0.9);
+        settingPannel.graphics.drawRoundRect( 0, -185, 640, 920, 0,0);
+        settingPannel.graphics.endFill();
+        addChild(settingPannel);
+        settingButtonPannel.graphics.beginFill(0x224ec7,0.1);
+        settingButtonPannel.graphics.drawRoundRect(0, 0, 160, 40, 15 ,15);
+        settingButtonPannel.graphics.endFill();
+        settingButtonPannel.x = 180;
+        settingButtonPannel.y = -100;
+        var tf:TextFormat = new TextFormat();
+        tf.bold = true;
+        tf.font = "Courier New";
+        tf.size = 18;
+        tf.align = "center";
+        tf.bold = true;
+        tf.color = "0xff0000";
+        settingButtonTxt.defaultTextFormat= tf;
+        settingButtonTxt.text = "New Game";
+        settingButtonTxt.x = settingButtonPannel.x +20;
+        settingButtonTxt.y = settingButtonPannel.y +5;
+        addChild(settingButtonTxt);
+        addChild(settingButtonPannel);
+        settingButtonPannel.addEventListener(MouseEvent.MOUSE_DOWN, newGameMenu);
+    }
+    private function newGameMenu(event:MouseEvent):void{
         popupNewGame();
     }
 
