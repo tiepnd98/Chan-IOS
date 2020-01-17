@@ -12,6 +12,7 @@ import flash.events.TimerEvent;
 import flash.geom.ColorTransform;
 import flash.geom.Point;
 import flash.media.SoundChannel;
+import flash.media.SoundTransform;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.utils.Timer;
@@ -652,6 +653,11 @@ public class Main extends Sprite {
         settingMenu();
     }
     var listSettingSprite:Array = [];
+    var settingPannel:Sprite = new Sprite();
+    var settingButtonPannel: Sprite = new Sprite();
+    var settingButtonTxt:TextField = new TextField();
+    var newGameButtonTxt: TextField = new TextField();
+    var newGameButton: Sprite = new Sprite();
     private function settingMenu():void {
         myTimer.stop();
         if (contains(timeSprite)) {
@@ -660,11 +666,6 @@ public class Main extends Sprite {
         if (contains(timerTextField)) {
             removeChild(timerTextField);
         }
-        var settingPannel:Sprite = new Sprite();
-        var settingButtonPannel: Sprite = new Sprite();
-        var settingButtonTxt:TextField = new TextField();
-        var newGameButtonTxt: TextField = new TextField();
-        var newGameButton: Sprite = new Sprite();
         settingPannel.graphics.clear();
         settingPannel.graphics.beginFill(0xFFFFFF, 0.9);
         settingPannel.graphics.drawRoundRect( 0, -185, 640, 920, 0,0);
@@ -710,7 +711,7 @@ public class Main extends Sprite {
         addChild(settingButtonPannel);
         listSettingSprite.push(settingButtonPannel);
         listSettingSprite.push(settingButtonTxt);
-        settingButtonPannel.addEventListener(MouseEvent.MOUSE_DOWN, newGameMenu);
+        settingButtonPannel.addEventListener(MouseEvent.MOUSE_DOWN, onClickSound);
         var btnLevelClose:Sprite = new Sprite();
         btnLevelClose.graphics.clear();
         btnLevelClose.graphics.beginFill(0x5D527D, 1);
@@ -739,6 +740,24 @@ public class Main extends Sprite {
         addChild(timeSprite);
         for (var i:int = 0 ;i < listSettingSprite.length ;i++){
             listSettingSprite[i].visible = false;
+        }
+    }
+    var isSoundOn:Boolean=true;
+    private function onClickSound(event: MouseEvent):void{
+        settingSound();
+    }
+    var volumeAdjust:SoundTransform = new SoundTransform();
+    private function settingSound():void{
+        isSoundOn=!isSoundOn;
+        if(isSoundOn){
+            settingButtonTxt.text = "Sound: ON";
+            volumeAdjust.volume = 1;
+            con.soundTransform = volumeAdjust;
+        }else {
+
+            settingButtonTxt.text = "Sound: OFF";
+            volumeAdjust.volume = 0;
+            con.soundTransform = volumeAdjust;
         }
     }
     private function newGameMenu(event:MouseEvent):void{
