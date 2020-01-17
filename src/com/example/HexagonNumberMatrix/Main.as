@@ -2,14 +2,8 @@ package com.example.HexagonNumberMatrix {
 
 import data.CirlcleData;
 import data.NumberBaseData;
-
-import flash.compiler.embed.EmbeddedMovieClip;
-import flash.display.Bitmap;
 import flash.display.DisplayObject;
-
 import flash.display.Loader;
-import flash.display.Scene;
-import flash.display.Screen;
 import flash.display.Shape;
 import flash.display.Sprite;
 import flash.events.Event;
@@ -17,6 +11,7 @@ import flash.events.MouseEvent;
 import flash.events.TimerEvent;
 import flash.geom.ColorTransform;
 import flash.geom.Point;
+import flash.media.SoundChannel;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.utils.Timer;
@@ -57,6 +52,7 @@ public class Main extends Sprite {
     var myTimer:Timer = new Timer(0);
     var firstClick:Boolean = new Boolean;
 
+    var con:SoundChannel;
     //Embed Image
     [Embed(source='img/test.jpg')]
     private const embeddedImage:Class;
@@ -86,33 +82,39 @@ public class Main extends Sprite {
     private const Mater:Class;
     [Embed(source='img/reload.png')]
     private const Reload:Class;
-    //embed
+    //embed  sound
     [Embed(source='img/ButtonClick.mp3')]
     private const SoundClick:Class;
     [Embed(source='img/Win.mp3')]
     private const LevelClick:Class;
+    [Embed(source='img/Purple-Planet.mp3')]
+    private const MainSound:Class;
     [Embed(source='img/PickCell.mp3')]
+
 
     private const WinSound:Class;
     var isLoad:Boolean=true;
     var sou=new SoundClick();
     var winSound=new WinSound();
     var levelClick=new LevelClick();
+    var mainSound=new MainSound();
     public function Main() {
         welcomeGame();
     }
 
     private function welcomeGame():void {
+        con=mainSound.play();
+        con.addEventListener( Event.SOUND_COMPLETE, finishMainSound);
         var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF, 0.9);
-        popupWin.graphics.drawRoundRect(0, -185, width, height,0,0 );
+        popupWin.graphics.drawRoundRect(0, -200, width, height,0,0 );
         popupWin.graphics.endFill();
         addChild(popupWin);
         var bg:DisplayObject = new embeddedImage();
         bg.scaleY = 0.85;
         bg.scaleX = 0.8;
-        bg.y = -185;
+        bg.y = -200;
         addChild(bg);
         var btnStart:DisplayObject = new BtnStart();
         btnStart.scaleX = 1.5;
@@ -127,6 +129,10 @@ public class Main extends Sprite {
         buttonWelcome.addChild(btnStart);
         addChild(buttonWelcome);
         buttonWelcome.addEventListener(MouseEvent.CLICK, onButtonWelcomeClick);
+    }
+
+    private function finishMainSound(event:Event):void {
+        mainSound.play();
     }
 
     private function onButtonWelcomeClick(event:MouseEvent):void {
@@ -430,7 +436,7 @@ public class Main extends Sprite {
         var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF, 0.9);
-        popupWin.graphics.drawRoundRect(0, -185, 640, 920 ,0,0);
+        popupWin.graphics.drawRoundRect(0, -200, 640, 920 ,0,0);
         popupWin.graphics.endFill();
         addChild(popupWin);
         listSrpiteLevel.push(popupWin);
@@ -717,11 +723,11 @@ public class Main extends Sprite {
         var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF, 0.9);
-        popupWin.graphics.drawRoundRect(0, -185, width, height,0,0 );
+        popupWin.graphics.drawRoundRect(0, -200, width, height,0,0 );
         popupWin.graphics.endFill();
         addChild(popupWin);
         var bg:DisplayObject=new BgIngame();
-        bg.y=-185;
+        bg.y=-200;
         bg.scaleX=0.335;
         bg.scaleY=0.5;
         addChild(bg);
@@ -1101,7 +1107,7 @@ public class Main extends Sprite {
         var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF, 0.9);
-        popupWin.graphics.drawRoundRect(0, -185, 640, 920,0,0 );
+        popupWin.graphics.drawRoundRect(0, -200, 640, 920,0,0 );
         popupWin.graphics.endFill();
         addChild(popupWin);
         var tf:TextFormat = new TextFormat();
@@ -1167,7 +1173,7 @@ public class Main extends Sprite {
         var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF, 0.9);
-        popupWin.graphics.drawRoundRect( 0, -185, 640, 920, 0,0);
+        popupWin.graphics.drawRoundRect( 0, -200, 640, 920, 0,0);
         popupWin.graphics.endFill();
         addChild(popupWin);
         listSrpiteLevel.push(popupWin);
@@ -1190,6 +1196,138 @@ public class Main extends Sprite {
         listSrpiteLevel.push(btnLevelBeginner);
         addChild(btnLevelBeginner);
         btnLevelBeginner.addEventListener(MouseEvent.CLICK, onClickLevelBe);
+        var tf:TextFormat = new TextFormat();
+        tf.size = 30;
+        tf.bold = true;
+        tf.font = "Arial"
+        tf.color = 0x000000;
+        tf.align = "center";
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=50;
+        txtPlus.y=370;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "Begin";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=300;
+        txtPlus.y=370;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "Begin";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
+
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=50;
+        txtPlus.y=270;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "Medium";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=300;
+        txtPlus.y=270;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "Medium";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
+
+
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=50;
+        txtPlus.y=170;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "Hard";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=300;
+        txtPlus.y=170;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "Hard";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
+
+
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=50;
+        txtPlus.y=70;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "Evil";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=300;
+        txtPlus.y=70;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "Evil";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
+
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=50;
+        txtPlus.y=-30;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "Xl";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=300;
+        txtPlus.y=-30;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "Xl";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
+
+        var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=50;
+        txtPlus.y=-130;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "XXl";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);var txtPlus:TextField = new TextField();
+        txtPlus.width = 150;
+        txtPlus.height = 50;
+        txtPlus.x=300;
+        txtPlus.y=-130;
+        txtPlus.mouseEnabled = false;
+        txtPlus.defaultTextFormat = tf;
+        txtPlus.text = "XXl";
+        addChild(txtPlus);
+        listTxtLevel.push(txtPlus);
 
         var btnLevelMedium:Sprite = new Sprite();
         btnLevelMedium.graphics.clear();
