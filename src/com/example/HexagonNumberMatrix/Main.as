@@ -734,7 +734,12 @@ public class Main extends Sprite {
         resume();
     }
     private function resume():void{
-
+        sou.play();
+        myTimer.start();
+        addChild(timeSprite);
+        for (var i:int = 0 ;i < listSettingSprite.length ;i++){
+            listSettingSprite[i].visible = false;
+        }
     }
     private function newGameMenu(event:MouseEvent):void{
         popupNewGame();

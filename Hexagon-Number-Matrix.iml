@@ -13,9 +13,9 @@
           </map>
         </compiler-options>
         <packaging-air-desktop />
-        <packaging-android package-file-name="Hexagon-Number-Matrix" />
+        <packaging-android enabled="true" package-file-name="Hexagon-Number-Matrix" />
         <packaging-ios enabled="true" package-file-name="Hexagon-Number-Matrix">
-          <AirSigningOptions keystore-path="$MODULE_DIR$/src/cer/Certificates_dev.p12" provisioning-profile-path="$MODULE_DIR$/src/cer/HexagonNumberMatrix_dev.mobileprovision" />
+          <AirSigningOptions keystore-path="$MODULE_DIR$/src/cer/Certificates_dis.p12" provisioning-profile-path="$MODULE_DIR$/src/cer/HexagonNumberMatrix_dis.mobileprovision" />
         </packaging-ios>
       </configuration>
     </configurations>
