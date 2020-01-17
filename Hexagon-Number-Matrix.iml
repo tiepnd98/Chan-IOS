@@ -13,8 +13,10 @@
           </map>
         </compiler-options>
         <packaging-air-desktop />
-        <packaging-android enabled="true" package-file-name="Hexagon-Number-Matrix" />
-        <packaging-ios enabled="true" package-file-name="Hexagon-Number-Matrix" />
+        <packaging-android package-file-name="Hexagon-Number-Matrix" />
+        <packaging-ios enabled="true" package-file-name="Hexagon-Number-Matrix">
+          <AirSigningOptions keystore-path="$MODULE_DIR$/src/cer/Certificates_dev.p12" provisioning-profile-path="$MODULE_DIR$/src/cer/HexagonNumberMatrix_dev.mobileprovision" />
+        </packaging-ios>
       </configuration>
     </configurations>
     <compiler-options />

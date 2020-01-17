@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2460d42e-eb52-429f-9757-694fe081b3e9" name="Default Changelist" comment="Push all code">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="d0ed96ad-043f-485b-ad92-53ca332d6502" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/cer/Certificate.cer" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cer/HexagonNumberMatrix_dev.mobileprovision" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hexagon-Number-Matrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Hexagon-Number-Matrix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main-app.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Main-app.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main-android-descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main-android-descriptor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main.swf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HexagonNumberMatrix/main.swf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/HexagonNumberMatrix/Main.as" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/HexagonNumberMatrix/Main.as" afterDir="false" />
@@ -35,7 +35,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1UT5RMXk29SRrrJukIRaBDu2ixF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -54,7 +54,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="D:/test.jpg" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/cer/Certificates_dev.p12" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -67,6 +67,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Chan-Mobile\Chan-IOS\src\cer" />
+    </key>
     <key name="CreateActionScriptClassDialog.DESTINATION_PACKAGE_RECENT_KEY">
       <recent name="com.example.HexagonNumberMatrix" />
       <recent name="data" />
@@ -76,7 +79,7 @@
       <recent name="C:\Users\tiepn\IdeaProjects\BlockPuzzle-Chan\src\com\example\BlockPuzzle" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Flash App.ios">
     <configuration name="HexagonNumberMatrix" type="FlashRunConfigurationType">
       <option name="BCName" value="Hexagon-Number-Matrix" />
       <option name="IOSSimulatorDevice" value="" />
@@ -155,6 +158,49 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ios" type="FlashRunConfigurationType">
+      <option name="BCName" value="Hexagon-Number-Matrix" />
+      <option name="IOSSimulatorDevice" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="clearAppDataOnEachLaunch" value="true" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="iOSDevice" />
+      <option name="moduleName" value="Hexagon-Number-Matrix" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Flash App.HexagonNumberMatrix" />
+      <item itemvalue="Flash App.ios" />
+    </list>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -173,7 +219,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2460d42e-eb52-429f-9757-694fe081b3e9" name="Default Changelist" comment="Push all code" />
+      <changelist id="d0ed96ad-043f-485b-ad92-53ca332d6502" name="Default Changelist" comment="" />
       <created>1575367735864</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -199,6 +245,7 @@
       <workItem from="1577257673503" duration="2584000" />
       <workItem from="1578983315001" duration="6606000" />
       <workItem from="1579073081731" duration="8938000" />
+      <workItem from="1579226970550" duration="6155000" />
     </task>
     <task id="LOCAL-00001" summary="Merge with TiepND || add 3 level || Fix timer">
       <created>1576753706855</created>
@@ -283,15 +330,19 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="310" y="33" key="#BlockPuzzle-Chan/0.0.1366.738@0.0.1366.738" timestamp="1576035064599" />
+    <state x="587" y="189" key="#HexagonNumberMatrix" timestamp="1579235591130">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="587" y="189" key="#HexagonNumberMatrix/0.0.1920.1050@0.0.1920.1050" timestamp="1579235591130" />
     <state x="275" y="27" key="#Project_Structure" timestamp="1576021591557">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#Project_Structure/0.0.1366.738@0.0.1366.738" timestamp="1576021591557" />
-    <state x="553" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577349102949">
+    <state x="553" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579235631193">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="79" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1576124069782" />
-    <state x="553" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577349102949" />
+    <state x="553" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1579235631193" />
     <state x="488" y="84" key="#com.intellij.ide.util.MemberChooser" timestamp="1576479695028">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -309,11 +360,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="320" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1576017517720" />
-    <state x="918" y="307" key="AirPackageDialog.DimensionServiceKey" timestamp="1578990189131">
+    <state x="936" y="264" key="AirPackageDialog.DimensionServiceKey" timestamp="1579235697433">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="378" y="106" key="AirPackageDialog.DimensionServiceKey/0.0.1366.738@0.0.1366.738" timestamp="1576493271587" />
-    <state x="918" y="307" key="AirPackageDialog.DimensionServiceKey/0.0.1920.1050@0.0.1920.1050" timestamp="1578990189131" />
+    <state x="936" y="264" key="AirPackageDialog.DimensionServiceKey/0.0.1920.1050@0.0.1920.1050" timestamp="1579235697433" />
     <state x="778" y="134" key="CommitChangelistDialog2" timestamp="1577349590119">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -322,31 +373,31 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="92" y="92" width="1736" height="866" key="DiffContextDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1578983494034" />
-    <state x="651" y="175" key="FileChooserDialogImpl" timestamp="1578990546282">
+    <state x="651" y="175" key="FileChooserDialogImpl" timestamp="1579235537233">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1575971464643" />
-    <state x="651" y="175" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1578990546282" />
-    <state width="1877" height="112" key="GridCell.Tab.0.bottom" timestamp="1579086013082">
+    <state x="651" y="175" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1579235537233" />
+    <state width="1877" height="112" key="GridCell.Tab.0.bottom" timestamp="1579229167293">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1877" height="112" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1579086013082" />
-    <state width="1877" height="112" key="GridCell.Tab.0.center" timestamp="1579086013082">
+    <state width="1877" height="112" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1579229167293" />
+    <state width="1877" height="112" key="GridCell.Tab.0.center" timestamp="1579229167293">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1576494942987" />
-    <state width="1877" height="112" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1579086013082" />
-    <state width="1877" height="112" key="GridCell.Tab.0.left" timestamp="1579086013082">
+    <state width="1877" height="112" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1579229167293" />
+    <state width="1877" height="112" key="GridCell.Tab.0.left" timestamp="1579229167293">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1576494942987" />
-    <state width="1877" height="112" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1579086013082" />
-    <state width="1877" height="112" key="GridCell.Tab.0.right" timestamp="1579086013082">
+    <state width="1877" height="112" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1579229167293" />
+    <state width="1877" height="112" key="GridCell.Tab.0.right" timestamp="1579229167293">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1576494942988" />
-    <state width="1877" height="112" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1579086013082" />
+    <state width="1877" height="112" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1579229167293" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1578633283896">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -371,19 +422,23 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="567" y="249" key="IDE.errors.dialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577258698900" />
-    <state x="184" y="86" key="MergeDialog" timestamp="1577349325322">
+    <state x="184" y="86" key="MergeDialog" timestamp="1579227420168">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="184" y="86" key="MergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577349325322" />
-    <state x="672" y="240" key="MultipleFileMergeDialog" timestamp="1578983544745">
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1579227420168" />
+    <state x="672" y="240" key="MultipleFileMergeDialog" timestamp="1579227420174">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="672" y="240" key="MultipleFileMergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1578983544745" />
-    <state x="658" y="186" width="998" height="691" key="SettingsEditor" timestamp="1578991419357">
+    <state x="672" y="240" key="MultipleFileMergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1579227420174" />
+    <state x="742" y="246" key="RollbackChangesDialog" timestamp="1579168367927">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="742" y="246" key="RollbackChangesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1579168367927" />
+    <state x="688" y="126" width="998" height="691" key="SettingsEditor" timestamp="1579235538864">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="161" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1575971573833" />
-    <state x="658" y="186" width="998" height="691" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1578991419357" />
+    <state x="688" y="126" width="998" height="691" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1579235538864" />
     <state x="653" y="145" key="Vcs.Push.Dialog.v2" timestamp="1577349596427">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -396,18 +451,18 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="379" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1576478150501" />
-    <state x="769" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578983494027">
+    <state x="769" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1579227250730">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="769" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050@0.0.1920.1050" timestamp="1578983494027" />
+    <state x="769" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050@0.0.1920.1050" timestamp="1579227250730" />
     <state x="656" y="262" width="607" height="526" key="find.popup" timestamp="1579074234139">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="656" y="262" width="607" height="526" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1579074234139" />
-    <state x="614" y="237" key="git4idea.branch.GitSmartOperationDialog" timestamp="1578983541498">
+    <state x="614" y="237" key="git4idea.branch.GitSmartOperationDialog" timestamp="1579227275873">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="614" y="237" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1578983541498" />
+    <state x="614" y="237" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1579227275873" />
     <state x="601" y="336" key="git4idea.ui.GitUnstashDialog" timestamp="1578983580965">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -429,12 +484,5 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="682" y="436" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1577258734373" />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="FlashRunConfigurationType">
-        <watch expression="event.currentTarget.parent.sprite.y" language="ECMA Script Level 4" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

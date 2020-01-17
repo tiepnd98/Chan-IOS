@@ -651,6 +651,7 @@ public class Main extends Sprite {
     private function onClickNewGame(event:MouseEvent):void {
         settingMenu();
     }
+    var listSettingSprite:Array = [];
     private function settingMenu():void {
         myTimer.stop();
         if (contains(timeSprite)) {
@@ -662,32 +663,78 @@ public class Main extends Sprite {
         var settingPannel:Sprite = new Sprite();
         var settingButtonPannel: Sprite = new Sprite();
         var settingButtonTxt:TextField = new TextField();
-        var newGamePannel: Sprite = new Sprite();
+        var newGameButtonTxt: TextField = new TextField();
         var newGameButton: Sprite = new Sprite();
         settingPannel.graphics.clear();
         settingPannel.graphics.beginFill(0xFFFFFF, 0.9);
         settingPannel.graphics.drawRoundRect( 0, -185, 640, 920, 0,0);
         settingPannel.graphics.endFill();
         addChild(settingPannel);
-        settingButtonPannel.graphics.beginFill(0x224ec7,0.1);
-        settingButtonPannel.graphics.drawRoundRect(0, 0, 160, 40, 15 ,15);
-        settingButtonPannel.graphics.endFill();
-        settingButtonPannel.x = 180;
-        settingButtonPannel.y = -100;
+        listSettingSprite.push(settingPannel);
+        newGameButton.graphics.beginFill(0xff0000,0.1);
+        newGameButton.graphics.drawRoundRect(0, 0, 180, 40, 15 ,15);
+        newGameButton.graphics.endFill();
+        newGameButton.x = 180;
+        newGameButton.y = -100;
         var tf:TextFormat = new TextFormat();
         tf.bold = true;
         tf.font = "Courier New";
-        tf.size = 18;
+        tf.size = 20;
         tf.align = "center";
         tf.bold = true;
         tf.color = "0xff0000";
+        newGameButtonTxt.defaultTextFormat= tf;
+        newGameButtonTxt.text = "New Game";
+        newGameButtonTxt.x = newGameButton.x +20;
+        newGameButtonTxt.y = newGameButton.y +5;
+        newGameButtonTxt.width = newGameButton.width;
+        newGameButtonTxt.height = newGameButton.height;
+        addChild(newGameButtonTxt);
+        addChild(newGameButton);
+        listSettingSprite.push(newGameButton);
+        listSettingSprite.push(newGameButtonTxt);
+        newGameButton.addEventListener(MouseEvent.MOUSE_DOWN, newGameMenu);
+
+        settingButtonPannel.graphics.beginFill(0xff0000,0.1);
+        settingButtonPannel.graphics.drawRoundRect(0, 0, 180, 40, 15 ,15);
+        settingButtonPannel.graphics.endFill();
+        settingButtonPannel.x = 180;
+        settingButtonPannel.y = -40;
         settingButtonTxt.defaultTextFormat= tf;
-        settingButtonTxt.text = "New Game";
+        settingButtonTxt.text = "Sound: ON";
+        settingButtonTxt.width = settingButtonPannel.width;
+        settingButtonTxt.height = settingButtonPannel.height;
         settingButtonTxt.x = settingButtonPannel.x +20;
         settingButtonTxt.y = settingButtonPannel.y +5;
         addChild(settingButtonTxt);
         addChild(settingButtonPannel);
+        listSettingSprite.push(settingButtonPannel);
+        listSettingSprite.push(settingButtonTxt);
         settingButtonPannel.addEventListener(MouseEvent.MOUSE_DOWN, newGameMenu);
+        var btnLevelClose:Sprite = new Sprite();
+        btnLevelClose.graphics.clear();
+        btnLevelClose.graphics.beginFill(0x5D527D, 1);
+        btnLevelClose.graphics.drawEllipse(0, 0, 50, 50);
+        btnLevelClose.graphics.endFill();
+        btnLevelClose.x = width-btnLevelClose.width-140-20;
+        btnLevelClose.y = -165;
+        addChild(btnLevelClose);
+        listSettingSprite.push(btnLevelClose);
+        btnLevelClose.addEventListener(MouseEvent.CLICK, onClickCloseSetting);
+
+        var btnClos:DisplayObject=new BtnClose();
+        btnClos.scaleX=0.4;
+        btnClos.scaleY=0.4;
+        btnClos.x=width-btnLevelClose.width-140-20+12;
+        btnClos.y=-165+12;
+        addChild(btnClos);
+        listSettingSprite.push(btnClos);
+    }
+    private function onClickCloseSetting(event: MouseEvent):void{
+        resume();
+    }
+    private function resume():void{
+
     }
     private function newGameMenu(event:MouseEvent):void{
         popupNewGame();
