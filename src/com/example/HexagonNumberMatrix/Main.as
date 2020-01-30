@@ -55,33 +55,33 @@ public class Main extends Sprite {
 
     var con:SoundChannel;
     //Embed Image
-    [Embed(source='img/test.jpg')]
+    [Embed(source='art/bg1.jpg')]
     private const embeddedImage:Class;
-    [Embed(source='img/btnStart.png')]
+    [Embed(source='art/btn_play.png')]
     private const BtnStart:Class;
-    [Embed(source='img/BG.png')]
+    [Embed(source='art/bg1.jpg')]
     private const BgIngame:Class;
-    [Embed(source='img/btnPause.png')]
+    [Embed(source='art/pause.png')]
     private const btnPause:Class;
-    [Embed(source='img/question-mark.png')]
+    [Embed(source='art/help.png')]
     private const BtnHelp:Class;
     [Embed(source='img/access-denied.png')]
     private const BtnClose:Class;
-    [Embed(source='img/helpIcon.png')]
+    [Embed(source='art/help.png')]
     private const HelpIcon:Class;
-    [Embed(source='img/Siver.png')]
+    [Embed(source='art/Vector Smart Object copy 7.png')]
     private const SiverIcon:Class;
-    [Embed(source='img/Bronze.png')]
+    [Embed(source='art/Vector Smart Object copy 3.png')]
     private const Bronze:Class;
-    [Embed(source='img/Gold.png')]
+    [Embed(source='art/Vector Smart Object copy 17.png')]
     private const Gold:Class;
-    [Embed(source='img/Platium.png')]
+    [Embed(source='art/Vector Smart Object copy 23.png')]
     private const Platium:Class;
-    [Embed(source='img/Diamond.png')]
+    [Embed(source='art/Vector Smart Object copy 24.png')]
     private const Diamond:Class;
-    [Embed(source='img/Mater.png')]
+    [Embed(source='art/Vector Smart Object copy 25.png')]
     private const Mater:Class;
-    [Embed(source='img/reload.png')]
+    [Embed(source='art/btn_Resume.png')]
     private const Reload:Class;
     //embed  sound
     [Embed(source='img/ButtonClick.mp3')]
@@ -259,29 +259,6 @@ public class Main extends Sprite {
         }
         return null;
     }
-//    var fakeTimerSprite:Sprite = new Sprite();
-//    var fakeTimerTxt:TextField = new TextField();
-//
-//    private function fakeTimer(a: String):void {
-//        firstClick  = false;
-//        var tf:TextFormat = new TextFormat();
-//        tf.size = 30;
-//        tf.bold = true;
-//        tf.font = "Agency FB"
-//        tf.color = 0xde0b0b;
-//        tf.align = "center";
-//        fakeTimerTxt.defaultTextFormat = tf;
-//        fakeTimerSprite.graphics.beginFill(0x696969, 0.3);
-//        fakeTimerSprite.graphics.drawRoundRect(5, 0, 85, 35, 20, 40);
-//        fakeTimerSprite.addChild(timerTextField);
-//        fakeTimerSprite.graphics.endFill();
-//        addChild(fakeTimerSprite);
-//        fakeTimerTxt.text = a;
-//        fakeTimerTxt.x = 0;
-//        fakeTimerTxt.y = 0;
-//        addChild(fakeTimerTxt);
-//    }
-
 
     var timerTextField:TextField = new TextField();
     var timeSprite:Sprite = new Sprite();
@@ -659,6 +636,14 @@ public class Main extends Sprite {
     var newGameButtonTxt: TextField = new TextField();
     var newGameButton: Sprite = new Sprite();
     private function settingMenu():void {
+        for (var i:int = 0 ;i < listSettingSprite.length ;i++){
+            if (contains(listSettingSprite[i])) {
+                removeChild(listSettingSprite[i]);
+            }
+        }
+        for (var i:int = 0 ;i < listSettingSprite.length ;i++){
+            listSettingSprite[i].visible = true;
+        }
         myTimer.stop();
         if (contains(timeSprite)) {
             removeChild(timeSprite);
@@ -666,6 +651,7 @@ public class Main extends Sprite {
         if (contains(timerTextField)) {
             removeChild(timerTextField);
         }
+
         settingPannel.graphics.clear();
         settingPannel.graphics.beginFill(0xFFFFFF, 0.9);
         settingPannel.graphics.drawRoundRect( 0, -185, 640, 920, 0,0);
@@ -799,8 +785,8 @@ public class Main extends Sprite {
         addChild(popupWin);
         var bg:DisplayObject=new BgIngame();
         bg.y=-200;
-        bg.scaleX=0.335;
-        bg.scaleY=0.5;
+        bg.scaleX=1;
+        bg.scaleY=1;
         addChild(bg);
         n2 = nLevel / 2;
         for (var i:int = 0; i < nLevel; i++) {
@@ -1508,8 +1494,6 @@ public class Main extends Sprite {
         btnClos.x=width-btnLevelClose.width-140-20+12;
         btnClos.y=-165+12;
         addChild(btnClos);
-        listSrpiteLevel.push(btnClos);
-
     }
 
     private function onClickClose(event:MouseEvent):void {
