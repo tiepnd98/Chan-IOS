@@ -63,6 +63,13 @@ public class Main extends Sprite {
     private const BGLose:Class;
     [Embed(source='art/bg1.jpg')]
     private const embeddedImage:Class;
+
+    [Embed(source='art/soundOff.png')]
+    private const SoundOff:Class;
+
+    [Embed(source='art/soundOn.png')]
+    private const SoundOn:Class;
+
     [Embed(source='art/btn_play.png')]
     private const BtnStart:Class;
     [Embed(source='art/bg1.jpg')]
@@ -316,7 +323,8 @@ public class Main extends Sprite {
             }
         }
     }
-
+    var soundon:DisplayObject=new SoundOn();
+    var soundoff:DisplayObject=new SoundOff();
     private function loadNextNumber():void {
         var sprite:Sprite = new Sprite();
         sprite.graphics.clear();
@@ -412,6 +420,33 @@ public class Main extends Sprite {
         btnHel.x=width-btnNewgame.width-140-20+10;
         btnHel.y=-100+10;
         addChild(btnHel);
+
+        var btnSound:Sprite = new Sprite();
+        btnSound.graphics.clear();
+        btnSound.graphics.beginFill(0x5B527F, 1);
+        btnSound.graphics.drawEllipse(width-btnNewgame.width-140-80, -168, 50, 50);
+        btnSound.graphics.endFill();
+        addChild(btnSound);
+        btnSound.addEventListener(MouseEvent.CLICK, onClickButtonSound);
+
+
+        soundon.x=width-btnNewgame.width-140-70;
+        soundon.y=-160;
+        soundon.scaleX=0.2;
+        soundon.scaleY=0.2;
+        addChild(soundon);
+
+
+        soundoff.x=width-btnNewgame.width-140-70;
+        soundoff.y=-160;
+        soundoff.scaleX=0.2;
+        soundoff.scaleY=0.2;
+        addChild(soundoff);
+        soundoff.visible=false;
+    }
+
+    private function onClickButtonSound(event:MouseEvent):void {
+        settingSound();
     }
 
     private function onClickHelp(event:MouseEvent):void {
@@ -746,10 +781,13 @@ public class Main extends Sprite {
         isSoundOn=!isSoundOn;
         if(isSoundOn){
             settingButtonTxt.text = "Sound: ON";
+            soundon.visible=true;
+            soundoff.visible=false;
             volumeAdjust.volume = 1;
             con.soundTransform = volumeAdjust;
         }else {
-
+            soundon.visible=false;
+            soundoff.visible=true;
             settingButtonTxt.text = "Sound: OFF";
             volumeAdjust.volume = 0;
             con.soundTransform = volumeAdjust;
