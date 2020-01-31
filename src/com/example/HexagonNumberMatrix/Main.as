@@ -55,6 +55,12 @@ public class Main extends Sprite {
 
     var con:SoundChannel;
     //Embed Image
+    [Embed(source='art/bg_menu.jpg')]
+    private const BGStart:Class;
+    [Embed(source='art/win_bg.jpg')]
+    private const BGWIn:Class;
+    [Embed(source='art/lose.jpg')]
+    private const BGLose:Class;
     [Embed(source='art/bg1.jpg')]
     private const embeddedImage:Class;
     [Embed(source='art/btn_play.png')]
@@ -71,15 +77,15 @@ public class Main extends Sprite {
     private const HelpIcon:Class;
     [Embed(source='art/Vector Smart Object copy 7.png')]
     private const SiverIcon:Class;
-    [Embed(source='art/Vector Smart Object copy 3.png')]
-    private const Bronze:Class;
-    [Embed(source='art/Vector Smart Object copy 17.png')]
-    private const Gold:Class;
-    [Embed(source='art/Vector Smart Object copy 23.png')]
-    private const Platium:Class;
-    [Embed(source='art/Vector Smart Object copy 24.png')]
-    private const Diamond:Class;
     [Embed(source='art/Vector Smart Object copy 25.png')]
+    private const Bronze:Class;
+    [Embed(source='art/Vector Smart Object copy 24.png')]
+    private const Gold:Class;
+    [Embed(source='art/Vector Smart Object copy 3.png')]
+    private const Platium:Class;
+    [Embed(source='art/Vector Smart Object copy 23.png')]
+    private const Diamond:Class;
+    [Embed(source='art/Vector Smart Object copy 17.png')]
     private const Mater:Class;
     [Embed(source='art/btn_Resume.png')]
     private const Reload:Class;
@@ -112,19 +118,19 @@ public class Main extends Sprite {
         popupWin.graphics.drawRoundRect(0, -200, width, height,0,0 );
         popupWin.graphics.endFill();
         addChild(popupWin);
-        var bg:DisplayObject = new embeddedImage();
+        var bg:DisplayObject = new BGStart();
         bg.scaleY = 0.85;
         bg.scaleX = 0.8;
         bg.y = -200;
         addChild(bg);
         var btnStart:DisplayObject = new BtnStart();
-        btnStart.scaleX = 1.5;
-        btnStart.scaleY = 1.5;
+        btnStart.scaleX = .5;
+        btnStart.scaleY = .5;
         btnStart.x = stage.width / 2 - btnStart.width / 2;
         btnStart.y = stage.height / 2 - btnStart.height / 2;
         var buttonWelcome:Sprite = new Sprite();
         buttonWelcome.graphics.clear();
-        buttonWelcome.graphics.beginFill(0xD4D4D4, 0.8);
+        buttonWelcome.graphics.beginFill(0xD4D4D4, 0);
         buttonWelcome.graphics.drawEllipse(stage.width / 2 - btnStart.width / 2, stage.height / 2 - btnStart.height / 2, btnStart.width, btnStart.height);
         buttonWelcome.graphics.endFill();
         buttonWelcome.addChild(btnStart);
@@ -305,7 +311,7 @@ public class Main extends Sprite {
 
             function onComplete(e:TimerEvent):void {
                 myTimer.reset();
-                popupWin("Time Out!!!")
+                popupWin(new BGLose());
 
             }
         }
@@ -395,7 +401,7 @@ public class Main extends Sprite {
 
         var btnHelp:Sprite = new Sprite();
         btnHelp.graphics.clear();
-        btnHelp.graphics.beginFill(0x5B527F, 1);
+        btnHelp.graphics.beginFill(0x5B527F, 0);
         btnHelp.graphics.drawEllipse(width-btnNewgame.width-140-20, -100, 50, 50);
         btnHelp.graphics.endFill();
         addChild(btnHelp);
@@ -443,8 +449,8 @@ public class Main extends Sprite {
         listSrpiteLevel.push(btnClos);
 
         var helpIcon:DisplayObject=new HelpIcon();
-        helpIcon.scaleX=0.75;
-        helpIcon.scaleY=0.75;
+        helpIcon.scaleX=1;
+        helpIcon.scaleY=1;
         helpIcon.x=(width-helpIcon.width-140)/2;
         helpIcon.y=-160;
         addChild(helpIcon);
@@ -635,7 +641,7 @@ public class Main extends Sprite {
     var settingButtonTxt:TextField = new TextField();
     var newGameButtonTxt: TextField = new TextField();
     var newGameButton: Sprite = new Sprite();
-    private function settingMenu():void {
+    private function settingMenu1():void {
         for (var i:int = 0 ;i < listSettingSprite.length ;i++){
             if (contains(listSettingSprite[i])) {
                 removeChild(listSettingSprite[i]);
@@ -672,7 +678,7 @@ public class Main extends Sprite {
         tf.color = "0xff0000";
         newGameButtonTxt.defaultTextFormat= tf;
         newGameButtonTxt.text = "New Game";
-        newGameButtonTxt.x = newGameButton.x +20;
+        newGameButtonTxt.x = newGameButton.x +10;
         newGameButtonTxt.y = newGameButton.y +5;
         newGameButtonTxt.width = newGameButton.width;
         newGameButtonTxt.height = newGameButton.height;
@@ -691,7 +697,7 @@ public class Main extends Sprite {
         settingButtonTxt.text = "Sound: ON";
         settingButtonTxt.width = settingButtonPannel.width;
         settingButtonTxt.height = settingButtonPannel.height;
-        settingButtonTxt.x = settingButtonPannel.x +20;
+        settingButtonTxt.x = settingButtonPannel.x +10;
         settingButtonTxt.y = settingButtonPannel.y +5;
         addChild(settingButtonTxt);
         addChild(settingButtonPannel);
@@ -716,6 +722,9 @@ public class Main extends Sprite {
         btnClos.y=-165+12;
         addChild(btnClos);
         listSettingSprite.push(btnClos);
+    }
+    private function settingMenu():void{
+        popupNewGame();
     }
     private function onClickCloseSetting(event: MouseEvent):void{
         resume();
@@ -1050,14 +1059,14 @@ public class Main extends Sprite {
                 myTimer.addEventListener(TimerEvent.TIMER, timerListener);
                 myTimer.start();
             } else {
-                popupWin("You Lose!");
+                popupWin(new BGLose());
             }
         }
     }
 
     function timerListener(e:TimerEvent):void {
         winSound.play();
-        popupWin("You Won!");
+        popupWin(new BGWIn());
     }
 
     private function drawLineWin(i:int, j:int, cir:CirlcleData):void {
@@ -1160,45 +1169,34 @@ public class Main extends Sprite {
         addChild(shapee);
     }
 
-    private function popupWin(mess:String):void {
+    private function popupWin(bg:DisplayObject):void {
         var popupWin:Sprite = new Sprite();
         popupWin.graphics.clear();
         popupWin.graphics.beginFill(0xFFFFFF, 0.9);
         popupWin.graphics.drawRoundRect(0, -200, 640, 920,0,0 );
         popupWin.graphics.endFill();
         addChild(popupWin);
-        var tf:TextFormat = new TextFormat();
-        tf.size = 30;
-        tf.bold = true;
-        tf.font = "Arial"
-        tf.color = 0x000000;
-        tf.align = "center";
-        var capt:TextField = new TextField();
-        capt.defaultTextFormat = tf;
-        capt.width = 200;
-        capt.height = 40;
-        capt.text = mess;
-        capt.y = 0;
-        capt.x = width / 2 - 75 - 100;
-        capt.border = false;
-        capt.selectable = false;
         var button:Sprite = new Sprite();
+
+        bg.scaleY = 0.85;
+        bg.scaleX = 0.8;
+        bg.y = -200;
+        addChild(bg);
 
         function drawButton():void {
             button.graphics.clear();
-            button.graphics.beginFill(0x5D527D, 0.8); // grey color
-            button.graphics.drawEllipse(0, 0, 75, 75);
-            button.x= (width-button.width-140)/2;
-            button.y= 100;
+            button.graphics.beginFill(0x5D527D, 0); // grey color
+            button.graphics.drawRect(0, 0, 100, 50);
+            button.x= 175;
+            button.y= 400;
             button.graphics.endFill();
             var reload:DisplayObject=new Reload();
-            reload.x=(width-button.width-140)/2+12.5;
-            reload.y=100+12.5;
+            reload.x=button.x;
+            reload.y=button.y;
             reload.scaleX=0.75;
             reload.scaleY=0.75;
             addChild(reload);
         }
-
         function resetGameinPop(event:MouseEvent):void {
             sou.play();
             myTimer.reset();
@@ -1218,9 +1216,6 @@ public class Main extends Sprite {
         addChild(button);
         button.addEventListener(MouseEvent.MOUSE_DOWN, resetGameinPop);
         drawButton();
-        addChild(capt);
-
-
 
     }
 
@@ -1243,8 +1238,8 @@ public class Main extends Sprite {
         btnLevelBeginner.x = (width-btnLevelBeginner.width-140)/2;
         btnLevelBeginner.y = 350;
         var siverIcon:DisplayObject=new Bronze();
-        siverIcon.scaleX=0.25;
-        siverIcon.scaleY=0.25;
+        siverIcon.scaleX=1;
+        siverIcon.scaleY=1;
         siverIcon.x=(width-siverIcon.width-140)/2;
         siverIcon.y=350;
         addChild(siverIcon);
@@ -1395,8 +1390,8 @@ public class Main extends Sprite {
         btnLevelMedium.y = 250;
 
         var siverIcon:DisplayObject=new SiverIcon();
-        siverIcon.scaleX=0.5;
-        siverIcon.scaleY=0.5;
+        siverIcon.scaleX=1;
+        siverIcon.scaleY=1;
         siverIcon.x=(width-siverIcon.width-140)/2;
         siverIcon.y=250;
         addChild(siverIcon);
@@ -1413,8 +1408,8 @@ public class Main extends Sprite {
         btnLevelHard.x = (width-siverIcon.width-140)/2;
         btnLevelHard.y = 150;
         var siverIcon:DisplayObject=new Gold();
-        siverIcon.scaleX=0.5;
-        siverIcon.scaleY=0.5;
+        siverIcon.scaleX=1;
+        siverIcon.scaleY=1;
         siverIcon.x=(width-siverIcon.width-140)/2;
         siverIcon.y=150;
         addChild(siverIcon);
@@ -1431,8 +1426,8 @@ public class Main extends Sprite {
         btnLevelEvil.x = (width-siverIcon.width-140)/2;
         btnLevelEvil.y = 50;
         var siverIcon:DisplayObject=new Platium();
-        siverIcon.scaleX=0.5;
-        siverIcon.scaleY=0.5;
+        siverIcon.scaleX=1;
+        siverIcon.scaleY=1;
         siverIcon.x=(width-siverIcon.width-140)/2;
         siverIcon.y=50;
         addChild(siverIcon);
@@ -1449,8 +1444,8 @@ public class Main extends Sprite {
         btnLevelXL.x = (width-siverIcon.width-140)/2;
         btnLevelXL.y = -50;
         var siverIcon:DisplayObject=new Diamond();
-        siverIcon.scaleX=0.5;
-        siverIcon.scaleY=0.5;
+        siverIcon.scaleX=1;
+        siverIcon.scaleY=1;
         siverIcon.x=(width-siverIcon.width-140)/2;
         siverIcon.y=-50;
         addChild(siverIcon);
@@ -1467,8 +1462,8 @@ public class Main extends Sprite {
         btnLevelXXL.x = (width-siverIcon.width-140)/2;
         btnLevelXXL.y = -160;
         var siverIcon:DisplayObject=new Mater();
-        siverIcon.scaleX=0.6;
-        siverIcon.scaleY=0.6;
+        siverIcon.scaleX=1;
+        siverIcon.scaleY=1;
         siverIcon.x=(width-siverIcon.width-140)/2;
         siverIcon.y=-160;
         addChild(siverIcon);
@@ -1494,6 +1489,7 @@ public class Main extends Sprite {
         btnClos.x=width-btnLevelClose.width-140-20+12;
         btnClos.y=-165+12;
         addChild(btnClos);
+        listSrpiteLevel.push(btnClos);
     }
 
     private function onClickClose(event:MouseEvent):void {
